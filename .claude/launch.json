@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-l", "3000", "."],
+      "port": 3000
+    },
+    {
+      "name": "headless-ds",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "headless-ds", "--", "--port", "5173"],
+      "port": 5173
+    }
+  ]
+}

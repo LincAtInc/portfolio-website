@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINC Logo Converter</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f3f4f6;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 { color: #1f2937; margin-bottom: 10px; }
+        p { color: #6b7280; margin-bottom: 30px; }
+        .preview {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+        .preview-item {
+            text-align: center;
+        }
+        .preview-item h3 {
+            margin-bottom: 10px;
+            color: #374151;
+            font-size: 14px;
+        }
+        canvas {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+        }
+        img {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+        }
+        button {
+            background: linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+        .instructions {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f9fafb;
+            border-radius: 8px;
+            border-left: 4px solid #2563eb;
+        }
+        .instructions h3 {
+            margin-top: 0;
+            color: #1f2937;
+        }
+        .instructions ol {
+            color: #4b5563;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>LINC Logo - LinkedIn Version</h1>
+        <p>Convert your 48x48 LINC logo to PNG for LinkedIn</p>
+
+        <div class="preview">
+            <div class="preview-item">
+                <h3>SVG Preview</h3>
+                <img id="svgPreview" src="linc-logo-48.svg" width="96" height="96" alt="SVG Preview">
+            </div>
+            <div class="preview-item">
+                <h3>PNG Preview (48x48)</h3>
+                <canvas id="canvas" width="48" height="48"></canvas>
+            </div>
+        </div>
+
+        <button id="downloadBtn">Download PNG for LinkedIn</button>
+
+        <div class="instructions">
+            <h3>How to use on LinkedIn:</h3>
+            <ol>
+                <li>Click the "Download PNG for LinkedIn" button above</li>
+                <li>Go to your LinkedIn profile</li>
+                <li>Click on your profile picture</li>
+                <li>Click "Add photo" or "Change photo"</li>
+                <li>Upload the downloaded linc-logo-48.png file</li>
+                <li>Adjust the positioning if needed</li>
+                <li>Click "Apply" to save</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const downloadBtn = document.getElementById('downloadBtn');
+
+        // Load and draw SVG to canvas
+        const img = new Image();
+        img.onload = function() {
+            ctx.drawImage(img, 0, 0, 48, 48);
+        };
+        img.src = 'linc-logo-48.svg';
+
+        // Download function
+        downloadBtn.addEventListener('click', function() {
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'linc-logo-48.png';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+        });
+    </script>
+</body>
+</html>
