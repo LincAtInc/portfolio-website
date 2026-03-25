@@ -1,43 +1,25 @@
 import styles from './WhyHeadless.module.css';
+import behaviourIcon from '../assets/icons/behaviour.svg';
+import tokensIcon from '../assets/icons/tokens.svg';
+import machineIcon from '../assets/icons/machine.svg';
 
 const cards = [
   {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="16 18 22 12 16 6" />
-        <polyline points="8 6 2 12 8 18" />
-      </svg>
-    ),
+    icon: behaviourIcon,
     iconClass: 'behaviour',
     title: 'Behaviour Separation',
     description:
       'Headless primitives (Radix, React Aria) handle accessibility, keyboard navigation, focus management, and state. Zero opinions on styling. The stable foundation agents can rely on.',
   },
   {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="3" width="7" height="7" rx="1" />
-        <rect x="14" y="3" width="7" height="7" rx="1" />
-        <rect x="3" y="14" width="7" height="7" rx="1" />
-        <rect x="14" y="14" width="7" height="7" rx="1" />
-      </svg>
-    ),
+    icon: tokensIcon,
     iconClass: 'tokens',
     title: 'Token-Driven Theming',
     description:
       'Your design system layer maps tokens to component variants. Swap token sets, swap brands. Same component tree, infinite visual identities. Styling becomes data, not code.',
   },
   {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.58-3.25 3.93" />
-        <path d="M12 2a4 4 0 0 0-4 4c0 1.95 1.4 3.58 3.25 3.93" />
-        <rect x="8" y="10" width="8" height="6" rx="1" />
-        <path d="M10 16v2" />
-        <path d="M14 16v2" />
-        <path d="M8 20h8" />
-      </svg>
-    ),
+    icon: machineIcon,
     iconClass: 'machine',
     title: 'Machine-Readable',
     description:
@@ -59,7 +41,7 @@ export function WhyHeadless() {
           {cards.map((card) => (
             <div key={card.title} className={styles.card}>
               <div className={`${styles.icon} ${styles[card.iconClass]}`}>
-                {card.icon}
+                <img src={card.icon} alt={card.title} width={32} height={32} />
               </div>
               <h3>{card.title}</h3>
               <p>{card.description}</p>
