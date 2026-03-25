@@ -1,4 +1,5 @@
 import { useEffect, useRef, useCallback } from 'react';
+import { Section } from '../components/Section';
 import styles from './Architecture.module.css';
 import primitivesIcon from '../assets/icons/primitives.svg';
 import dsLayerIcon from '../assets/icons/ds-layer.svg';
@@ -136,8 +137,7 @@ export function Architecture() {
   }, [drawConnectors]);
 
   return (
-    <section id="architecture" className={styles.section}>
-      <div className={styles.container}>
+    <Section id="architecture" variant="secondary">
         <h2 className={styles.title}>The Architecture</h2>
         <p className={styles.intro}>
           From headless primitives to AI-authored interfaces. Each layer adds
@@ -160,7 +160,6 @@ export function Architecture() {
             ))}
           </div>
         </div>
-      </div>
-    </section>
+    </Section>
   );
 }

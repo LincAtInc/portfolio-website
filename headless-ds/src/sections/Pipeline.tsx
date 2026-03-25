@@ -1,3 +1,4 @@
+import { Section } from '../components/Section';
 import styles from './Pipeline.module.css';
 import figmaIcon from '../assets/icons/figma.svg';
 import mcpIcon from '../assets/icons/mcp.svg';
@@ -31,8 +32,7 @@ const pipelineCards = [
 
 export function Pipeline() {
   return (
-    <section id="pipeline" className={styles.section}>
-      <div className={styles.container}>
+    <Section id="pipeline" variant="dark">
         <h2 className={styles.title}>The Figma MCP Pipeline</h2>
         <p className={styles.intro}>
           The headless architecture plugs directly into Figma's MCP server, creating a
@@ -66,7 +66,6 @@ export function Pipeline() {
             that amplifies both directions.
           </p>
         </div>
-      </div>
-    </section>
+    </Section>
   );
 }

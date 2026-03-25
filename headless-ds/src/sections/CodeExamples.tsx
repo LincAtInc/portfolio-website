@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Section } from '../components/Section';
 import styles from './CodeExamples.module.css';
 
 type TabId = 'primitive' | 'ds-component' | 'tokens';
@@ -98,8 +99,7 @@ export function CodeExamples() {
   const [activeTab, setActiveTab] = useState<TabId>('primitive');
 
   return (
-    <section id="code" className={styles.section}>
-      <div className={styles.container}>
+    <Section id="code" variant="secondary">
         <h2 className={styles.title}>The Code</h2>
         <p className={styles.intro}>
           Three layers that create the machine-readable contract. Headless behaviour,
@@ -121,7 +121,6 @@ export function CodeExamples() {
         <pre className={styles.codeBlock}>
           <code>{codeMap[activeTab]}</code>
         </pre>
-      </div>
-    </section>
+    </Section>
   );
 }

@@ -1,4 +1,5 @@
 import { useState, type CSSProperties } from 'react';
+import { Section } from '../components/Section';
 import { Button } from '../components/Button';
 import { Card } from '../components/Card';
 import { Input } from '../components/Input';
@@ -19,8 +20,7 @@ export function InteractiveDemo() {
   const currentTokens = themes[activeTheme];
 
   return (
-    <section id="demo" className={styles.section}>
-      <div className={styles.container}>
+    <Section id="demo" variant="primary">
         <h2 className={styles.title}>Interactive Demo</h2>
         <p className={styles.intro}>
           Same headless structure, different brand tokens. Toggle themes to see how
@@ -129,7 +129,6 @@ export function InteractiveDemo() {
             </div>
           ))}
         </div>
-      </div>
-    </section>
+    </Section>
   );
 }

@@ -1,12 +1,5 @@
 .cta {
-  padding: var(--space-16) var(--container-padding);
   text-align: center;
-  background: var(--color-bg-secondary);
-}
-
-.container {
-  max-width: var(--container-max-width);
-  margin: 0 auto;
 }
 
 .cta h2 {
@@ -57,9 +50,6 @@
 
 /* Footer */
 .footer {
-  background: var(--color-bg-dark);
-  color: var(--color-text-inverse);
-  padding: var(--space-8) var(--container-padding);
   text-align: center;
 }
 
