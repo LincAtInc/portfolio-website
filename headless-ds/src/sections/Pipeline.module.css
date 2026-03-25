@@ -84,10 +84,10 @@
 .i { color: var(--color-accent); }
 .n { color: var(--color-secondary); }
 .c { color: var(--color-primary); }
-.arrow { color: rgba(255, 255, 255, 0.3); }
+.arrow { color: var(--color-inverse-muted); }
 
 .incLoop p {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--color-inverse-medium);
   font-size: var(--font-size-sm);
 }
 

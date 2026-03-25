@@ -20,7 +20,7 @@
 .tab {
   padding: var(--space-3) var(--space-5);
   background: #1a2332;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--color-inverse-muted);
   font-size: var(--font-size-xs);
   font-family: var(--font-mono);
   border: none;
@@ -43,7 +43,7 @@
   font-family: var(--font-mono);
   font-size: var(--font-size-xs);
   line-height: 1.8;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--color-inverse-strong);
   overflow-x: auto;
   white-space: pre;
   margin: 0;

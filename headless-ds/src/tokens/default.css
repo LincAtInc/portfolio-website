@@ -95,6 +95,10 @@
   --color-inverse-hover: rgba(255, 255, 255, var(--opacity-hover));
   --color-inverse-border: rgba(255, 255, 255, var(--opacity-border));
   --color-inverse-border-subtle: rgba(255, 255, 255, var(--opacity-border-subtle));
+  --color-inverse-border-strong: rgba(255, 255, 255, var(--opacity-border-strong));
+  --color-inverse-muted: rgba(255, 255, 255, 0.4);
+  --color-inverse-medium: rgba(255, 255, 255, 0.6);
+  --color-inverse-strong: rgba(255, 255, 255, 0.85);
   --color-bg-overlay: rgba(15, 23, 42, var(--opacity-overlay));
 
   /* Transitions */

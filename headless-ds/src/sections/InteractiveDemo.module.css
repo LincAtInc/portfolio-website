@@ -150,12 +150,12 @@
   font-family: var(--font-mono);
   font-size: var(--font-size-xs);
   line-height: 2;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--color-inverse-medium);
   overflow-x: auto;
 }
 
 .tokenLabel {
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--color-inverse-muted);
   font-size: 0.65rem;
   display: block;
   margin-bottom: var(--space-2);
