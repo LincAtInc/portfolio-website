@@ -58,12 +58,12 @@
   font-size: 24px;
 }
 
-.primitives { background: rgba(6, 182, 212, 0.1); color: var(--color-accent); }
-.ds { background: rgba(37, 99, 235, 0.1); color: var(--color-primary); }
-.tokens { background: rgba(139, 92, 246, 0.1); color: var(--color-secondary); }
-.figma { background: rgba(162, 89, 255, 0.1); color: #a259ff; }
-.mcp { background: rgba(37, 99, 235, 0.1); color: var(--color-primary); }
-.agent { background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(139, 92, 246, 0.1)); color: var(--color-secondary); }
+.primitives { background: var(--color-accent-muted); color: var(--color-accent); }
+.ds { background: var(--color-primary-muted); color: var(--color-primary); }
+.tokens { background: var(--color-secondary-muted); color: var(--color-secondary); }
+.figma { background: var(--color-secondary-muted); color: #a259ff; }
+.mcp { background: var(--color-primary-muted); color: var(--color-primary); }
+.agent { background: linear-gradient(135deg, var(--color-primary-muted), var(--color-secondary-muted)); color: var(--color-secondary); }
 
 .node h4 {
   font-size: var(--font-size-sm);

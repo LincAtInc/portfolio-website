@@ -32,17 +32,17 @@
   font-weight: var(--font-weight-semibold);
   font-size: var(--font-size-sm);
   text-decoration: none;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid var(--color-inverse-border-strong);
   transition: all var(--transition-base);
 }
 
 .btnPrimary {
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--color-inverse-border);
   color: white;
 }
 
 .btnPrimary:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: var(--color-inverse-border);
 }
 
 .btnSecondary {
@@ -51,7 +51,7 @@
 }
 
 .btnSecondary:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--color-inverse-hover);
 }
 
 @media (max-width: 768px) {
