@@ -1,0 +1,23 @@
+.footer {
+  background: var(--color-bg-dark);
+  padding: var(--space-6);
+  text-align: center;
+}
+.copyright {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-2);
+}
+.links {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+}
+.links a {
+  font-size: var(--font-size-xs);
+  color: var(--color-primary);
+  text-decoration: none;
+}
+.links a:hover {
+  text-decoration: underline;
+}

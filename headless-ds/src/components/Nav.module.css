@@ -1,0 +1,43 @@
+.nav {
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(12px);
+  padding: var(--space-4) var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+.brand {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-lg);
+  color: var(--color-text-inverse);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.logo {
+  width: 36px;
+  height: 36px;
+}
+.links {
+  display: flex;
+  gap: var(--space-6);
+  list-style: none;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+.links a {
+  color: var(--color-text-inverse);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  transition: color var(--transition-base);
+}
+.links a:hover {
+  color: var(--color-accent);
+}

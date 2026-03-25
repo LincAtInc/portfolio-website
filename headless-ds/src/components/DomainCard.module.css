@@ -1,0 +1,42 @@
+.card {
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  transition: all var(--transition-base);
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+.title {
+  font-size: var(--font-size-xl);
+  margin: 0 0 var(--space-1);
+}
+.tagline {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  margin: 0 0 var(--space-5);
+}
+.roles {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Variants */
+.design {
+  background: rgba(6, 182, 212, 0.06);
+  border: 1px solid rgba(6, 182, 212, 0.15);
+}
+.design .title { color: var(--color-accent); }
+
+.business {
+  background: rgba(139, 92, 246, 0.06);
+  border: 1px solid rgba(139, 92, 246, 0.15);
+}
+.business .title { color: var(--color-secondary); }
+
+.development {
+  background: rgba(37, 99, 235, 0.06);
+  border: 1px solid rgba(37, 99, 235, 0.15);
+}
+.development .title { color: var(--color-primary); }
