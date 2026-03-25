@@ -12,6 +12,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev", "--prefix", "headless-ds", "--", "--port", "5173"],
       "port": 5173
+    },
+    {
+      "name": "headless-ds-preview",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "preview", "--prefix", "headless-ds", "--", "--port", "4173"],
+      "port": 4173
     }
   ]
 }

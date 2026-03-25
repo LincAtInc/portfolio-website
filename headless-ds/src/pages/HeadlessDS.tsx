@@ -6,6 +6,7 @@ import { InteractiveDemo } from '../sections/InteractiveDemo';
 import { CodeExamples } from '../sections/CodeExamples';
 import { Pipeline } from '../sections/Pipeline';
 import { CTAFooter } from '../sections/CTAFooter';
+import { INCLoop } from '../sections/INCLoop';
 
 export function HeadlessDS() {
   return (
@@ -18,6 +19,7 @@ export function HeadlessDS() {
         <InteractiveDemo />
         <CodeExamples />
         <Pipeline />
+        <INCLoop />
         <CTAFooter />
       </main>
     </>
