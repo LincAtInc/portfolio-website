@@ -1,0 +1,30 @@
+{
+  "$description": "Wellness theme — holistic health, mindfulness, warmth",
+  "fontFamily": {
+    "$type": "fontFamily",
+    "$description": "Override brand fonts — softer, more humanist",
+    "display": { "$value": "Plus Jakarta Sans" },
+    "body": { "$value": "Plus Jakarta Sans" },
+    "label": { "$value": "Inter" }
+  },
+  "color": {
+    "$type": "color",
+    "primary": { "$value": "#7c3aed", "$description": "Violet — mindfulness, holistic health" },
+    "primary-hover": { "$value": "#6d28d9" },
+    "secondary": { "$value": "#db2777", "$description": "Rose — warmth, care, human connection" },
+    "secondary-hover": { "$value": "#be185d" },
+    "accent": { "$value": "#0891b2", "$description": "Cyan — balance, clarity" },
+    "error": { "$value": "#dc2626" },
+    "warning": { "$value": "#d97706" },
+    "success": { "$value": "#16a34a" },
+    "info": { "$value": "#7c3aed" }
+  },
+  "borderRadius": {
+    "$type": "dimension",
+    "$description": "Softer, rounder — approachable and warm",
+    "sm": { "$value": "0.5rem" },
+    "md": { "$value": "0.75rem" },
+    "lg": { "$value": "1rem" },
+    "xl": { "$value": "1.5rem" }
+  }
+}

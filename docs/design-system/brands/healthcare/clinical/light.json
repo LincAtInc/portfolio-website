@@ -1,0 +1,28 @@
+{
+  "$description": "Clinical light mode — clean whites, green tint surfaces",
+  "color": {
+    "$type": "color",
+    "primary-container": { "$value": "#d1fae5" },
+    "on-primary": { "$value": "#ffffff" },
+    "on-primary-container": { "$value": "#064e3b" },
+    "secondary-container": { "$value": "#ccfbf1" },
+    "on-secondary": { "$value": "#ffffff" },
+    "on-secondary-container": { "$value": "#134e4a" },
+    "accent-container": { "$value": "#dbeafe" },
+    "background": { "$value": "#ffffff" },
+    "surface": { "$value": "#f0fdf4", "$description": "Subtle green tint — clinical cleanliness" },
+    "surface-container": { "$value": "#ffffff" },
+    "surface-container-high": { "$value": "#f8fafc" },
+    "on-background": { "$value": "#064e3b" },
+    "on-surface": { "$value": "#14532d" },
+    "on-surface-variant": { "$value": "#166534" },
+    "border": { "$value": "#bbf7d0" },
+    "border-subtle": { "$value": "#dcfce7" }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "sm": { "$value": "0 1px 2px rgba(5, 150, 105, 0.06)" },
+    "md": { "$value": "0 2px 8px -2px rgba(5, 150, 105, 0.12)" },
+    "lg": { "$value": "0 8px 24px -4px rgba(5, 150, 105, 0.10)" }
+  }
+}

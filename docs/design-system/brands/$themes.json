@@ -1,0 +1,134 @@
+[
+  {
+    "id": "healthcare-clinical-light",
+    "name": "Healthcare / Clinical / Light",
+    "group": "Healthcare",
+    "selectedTokenSets": {
+      "global": "source",
+      "healthcare/brand": "source",
+      "healthcare/clinical/theme": "enabled",
+      "healthcare/clinical/light": "enabled"
+    }
+  },
+  {
+    "id": "healthcare-clinical-dark",
+    "name": "Healthcare / Clinical / Dark",
+    "group": "Healthcare",
+    "selectedTokenSets": {
+      "global": "source",
+      "healthcare/brand": "source",
+      "healthcare/clinical/theme": "enabled",
+      "healthcare/clinical/dark": "enabled"
+    }
+  },
+  {
+    "id": "healthcare-wellness-light",
+    "name": "Healthcare / Wellness / Light",
+    "group": "Healthcare",
+    "selectedTokenSets": {
+      "global": "source",
+      "healthcare/brand": "source",
+      "healthcare/wellness/theme": "enabled",
+      "healthcare/wellness/light": "enabled"
+    }
+  },
+  {
+    "id": "healthcare-wellness-dark",
+    "name": "Healthcare / Wellness / Dark",
+    "group": "Healthcare",
+    "selectedTokenSets": {
+      "global": "source",
+      "healthcare/brand": "source",
+      "healthcare/wellness/theme": "enabled",
+      "healthcare/wellness/dark": "enabled"
+    }
+  },
+  {
+    "id": "fintech-corporate-light",
+    "name": "FinTech / Corporate / Light",
+    "group": "FinTech",
+    "selectedTokenSets": {
+      "global": "source",
+      "fintech/brand": "source",
+      "fintech/corporate/theme": "enabled",
+      "fintech/corporate/light": "enabled"
+    }
+  },
+  {
+    "id": "fintech-corporate-dark",
+    "name": "FinTech / Corporate / Dark",
+    "group": "FinTech",
+    "selectedTokenSets": {
+      "global": "source",
+      "fintech/brand": "source",
+      "fintech/corporate/theme": "enabled",
+      "fintech/corporate/dark": "enabled"
+    }
+  },
+  {
+    "id": "fintech-consumer-light",
+    "name": "FinTech / Consumer / Light",
+    "group": "FinTech",
+    "selectedTokenSets": {
+      "global": "source",
+      "fintech/brand": "source",
+      "fintech/consumer/theme": "enabled",
+      "fintech/consumer/light": "enabled"
+    }
+  },
+  {
+    "id": "fintech-consumer-dark",
+    "name": "FinTech / Consumer / Dark",
+    "group": "FinTech",
+    "selectedTokenSets": {
+      "global": "source",
+      "fintech/brand": "source",
+      "fintech/consumer/theme": "enabled",
+      "fintech/consumer/dark": "enabled"
+    }
+  },
+  {
+    "id": "bennie-james-soulful-dark",
+    "name": "Bennie James / Soulful / Dark",
+    "group": "Bennie James",
+    "selectedTokenSets": {
+      "global": "source",
+      "bennie-james/brand": "source",
+      "bennie-james/soulful/theme": "enabled",
+      "bennie-james/soulful/dark": "enabled"
+    }
+  },
+  {
+    "id": "bennie-james-soulful-light",
+    "name": "Bennie James / Soulful / Light",
+    "group": "Bennie James",
+    "selectedTokenSets": {
+      "global": "source",
+      "bennie-james/brand": "source",
+      "bennie-james/soulful/theme": "enabled",
+      "bennie-james/soulful/light": "enabled"
+    }
+  },
+  {
+    "id": "bennie-james-wedding-dark",
+    "name": "Bennie James / Wedding / Dark",
+    "group": "Bennie James",
+    "selectedTokenSets": {
+      "global": "source",
+      "bennie-james/brand": "source",
+      "bennie-james/wedding/theme": "enabled",
+      "bennie-james/wedding/dark": "enabled"
+    }
+  },
+  {
+    "id": "bennie-james-wedding-light",
+    "name": "Bennie James / Wedding / Light",
+    "group": "Bennie James",
+    "selectedTokenSets": {
+      "global": "source",
+      "bennie-james/brand": "source",
+      "bennie-james/wedding/theme": "enabled",
+      "bennie-james/wedding/light": "enabled"
+    }
+  }
+]

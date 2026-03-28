@@ -1,0 +1,23 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "$description": "Bennie James — Soul DJ. Weddings, events, and the Black music scene across New Jersey and Philadelphia. Warm, soulful, celebratory.",
+  "brand": "Bennie James",
+  "market": "New Jersey / Philadelphia",
+  "audience": "Wedding couples, event planners, Black community events, soul/R&B/gospel music lovers",
+
+  "fontFamily": {
+    "$type": "fontFamily",
+    "display": { "$value": "DM Serif Display", "$description": "Warm, elegant serif — wedding/event sophistication without coldness" },
+    "body": { "$value": "Plus Jakarta Sans", "$description": "Friendly, modern, readable" },
+    "label": { "$value": "Space Grotesk", "$description": "DJ/music metadata, track listings, set times" }
+  },
+  "brand": {
+    "$type": "color",
+    "primary": { "$value": "#d97706", "$description": "Warm amber — soul, warmth, golden hour, celebration" },
+    "primary-light": { "$value": "#fbbf24", "$description": "Bright gold — highlights, CTAs, energy" },
+    "primary-dark": { "$value": "#b45309", "$description": "Deep amber — hover states, depth" },
+    "secondary": { "$value": "#7c2d12", "$description": "Deep burgundy — soul music, vinyl, rich warmth" },
+    "secondary-light": { "$value": "#dc2626", "$description": "Warm red accent — passion, celebration" },
+    "accent": { "$value": "#f5f0e8", "$description": "Warm cream — elegance, wedding stationery feel" }
+  }
+}

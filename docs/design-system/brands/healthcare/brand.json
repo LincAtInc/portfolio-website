@@ -1,0 +1,18 @@
+{
+  "$description": "Healthcare brand — trust, clinical authority, patient wellbeing",
+  "fontFamily": {
+    "$type": "fontFamily",
+    "display": { "$value": "Inter", "$description": "Clean, medical-grade clarity" },
+    "body": { "$value": "Inter" },
+    "label": { "$value": "JetBrains Mono", "$description": "Clinical data, codes, patient IDs" }
+  },
+  "brand": {
+    "$type": "color",
+    "primary": { "$value": "#059669", "$description": "Emerald — trust, clinical calm" },
+    "primary-light": { "$value": "#34d399" },
+    "primary-dark": { "$value": "#047857" },
+    "secondary": { "$value": "#0d9488", "$description": "Teal — supporting, calming" },
+    "secondary-light": { "$value": "#5eead4" },
+    "secondary-dark": { "$value": "#0f766e" }
+  }
+}

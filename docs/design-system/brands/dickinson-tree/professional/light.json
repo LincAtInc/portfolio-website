@@ -1,0 +1,19 @@
+{
+  "$description": "Professional light — clean, bright, trustworthy",
+  "color": {
+    "$type": "color",
+    "background": { "$value": "#ffffff" },
+    "surface": { "$value": "#f0fdf4", "$description": "Subtle green tint — natural" },
+    "surface-container": { "$value": "#ffffff" },
+    "surface-container-high": { "$value": "#f8fafc" },
+    "on-background": { "$value": "#14532d" },
+    "on-surface": { "$value": "#1a2e1a" },
+    "on-surface-variant": { "$value": "#4a6a4a" },
+    "primary-container": { "$value": "#dcfce7" },
+    "on-primary": { "$value": "#ffffff" },
+    "secondary-container": { "$value": "#fef3c7" },
+    "on-secondary": { "$value": "#ffffff" },
+    "border": { "$value": "#bbf7d0" },
+    "border-subtle": { "$value": "#dcfce7" }
+  }
+}

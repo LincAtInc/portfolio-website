@@ -1,0 +1,30 @@
+{
+  "$description": "Consumer theme — modern fintech app, friendly and approachable",
+  "fontFamily": {
+    "$type": "fontFamily",
+    "$description": "Override brand fonts — friendlier for consumer",
+    "display": { "$value": "Plus Jakarta Sans" },
+    "body": { "$value": "Inter" },
+    "label": { "$value": "Space Grotesk" }
+  },
+  "color": {
+    "$type": "color",
+    "primary": { "$value": "#6366f1", "$description": "Indigo — modern, approachable" },
+    "primary-hover": { "$value": "#4f46e5" },
+    "secondary": { "$value": "#f43f5e", "$description": "Rose — energy, action, urgency" },
+    "secondary-hover": { "$value": "#e11d48" },
+    "accent": { "$value": "#10b981", "$description": "Emerald — money, growth" },
+    "error": { "$value": "#ef4444" },
+    "warning": { "$value": "#f59e0b" },
+    "success": { "$value": "#10b981" },
+    "info": { "$value": "#6366f1" }
+  },
+  "borderRadius": {
+    "$type": "dimension",
+    "$description": "Rounder — friendly, consumer-grade",
+    "sm": { "$value": "0.375rem" },
+    "md": { "$value": "0.5rem" },
+    "lg": { "$value": "0.75rem" },
+    "xl": { "$value": "1rem" }
+  }
+}

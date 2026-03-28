@@ -1,0 +1,37 @@
+{
+  "$description": "Corporate dark mode — deep navy, Bloomberg terminal aesthetic",
+  "color": {
+    "$type": "color",
+    "primary": { "$value": "{brand.primary-light}" },
+    "primary-hover": { "$value": "#bfdbfe" },
+    "primary-container": { "$value": "{brand.primary-dark}" },
+    "on-primary": { "$value": "#0c1d33" },
+    "on-primary-container": { "$value": "#dbeafe" },
+    "secondary": { "$value": "{brand.secondary-light}", "$description": "Gold on dark — premium wealth" },
+    "secondary-hover": { "$value": "#fcd34d" },
+    "secondary-container": { "$value": "#78350f" },
+    "on-secondary": { "$value": "#78350f" },
+    "on-secondary-container": { "$value": "#fef3c7" },
+    "accent": { "$value": "#5eead4" },
+    "accent-container": { "$value": "#134e4a" },
+    "background": { "$value": "#0b1120", "$description": "Deep navy-black — Bloomberg terminal" },
+    "surface": { "$value": "#111827" },
+    "surface-container": { "$value": "#1a2332" },
+    "surface-container-high": { "$value": "#243044" },
+    "on-background": { "$value": "#e2e8f0" },
+    "on-surface": { "$value": "#f1f5f9" },
+    "on-surface-variant": { "$value": "#94a3b8" },
+    "border": { "$value": "#334155" },
+    "border-subtle": { "$value": "#1e293b" },
+    "error": { "$value": "#ef4444" },
+    "warning": { "$value": "#f59e0b" },
+    "success": { "$value": "#22c55e" },
+    "info": { "$value": "#60a5fa" }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "sm": { "$value": "0 1px 2px rgba(0, 0, 0, 0.3)" },
+    "md": { "$value": "0 2px 6px rgba(0, 0, 0, 0.4)" },
+    "lg": { "$value": "0 4px 16px -2px rgba(0, 0, 0, 0.5)" }
+  }
+}

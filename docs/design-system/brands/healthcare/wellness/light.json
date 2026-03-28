@@ -1,0 +1,28 @@
+{
+  "$description": "Wellness light mode — warm lavender whites",
+  "color": {
+    "$type": "color",
+    "primary-container": { "$value": "#ede9fe" },
+    "on-primary": { "$value": "#ffffff" },
+    "on-primary-container": { "$value": "#4c1d95" },
+    "secondary-container": { "$value": "#fce7f3" },
+    "on-secondary": { "$value": "#ffffff" },
+    "on-secondary-container": { "$value": "#831843" },
+    "accent-container": { "$value": "#cffafe" },
+    "background": { "$value": "#faf5ff", "$description": "Warm lavender white" },
+    "surface": { "$value": "#ffffff" },
+    "surface-container": { "$value": "#faf5ff" },
+    "surface-container-high": { "$value": "#f5f3ff" },
+    "on-background": { "$value": "#3b0764" },
+    "on-surface": { "$value": "#1e1b4b" },
+    "on-surface-variant": { "$value": "#6b21a8" },
+    "border": { "$value": "#ddd6fe" },
+    "border-subtle": { "$value": "#ede9fe" }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "sm": { "$value": "0 1px 3px rgba(124, 58, 237, 0.06)" },
+    "md": { "$value": "0 4px 12px -2px rgba(124, 58, 237, 0.10)" },
+    "lg": { "$value": "0 12px 32px -4px rgba(124, 58, 237, 0.08)" }
+  }
+}

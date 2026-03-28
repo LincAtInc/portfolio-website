@@ -1,0 +1,21 @@
+{
+  "$description": "Soulful theme — NJ/Philly soul, vinyl warmth, late-night groove. The main brand expression.",
+  "color": {
+    "$type": "color",
+    "primary": { "$value": "{brand.primary}" },
+    "primary-hover": { "$value": "{brand.primary-dark}" },
+    "secondary": { "$value": "{brand.secondary}" },
+    "secondary-hover": { "$value": "#991b1b" },
+    "accent": { "$value": "{brand.accent}" },
+    "error": { "$value": "#ef4444" },
+    "success": { "$value": "#16a34a" }
+  },
+  "borderRadius": {
+    "$type": "dimension",
+    "$description": "Slightly rounded — warm but not childish",
+    "sm": { "$value": "0.25rem" },
+    "md": { "$value": "0.5rem" },
+    "lg": { "$value": "0.75rem" },
+    "xl": { "$value": "1rem" }
+  }
+}

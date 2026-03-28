@@ -1,0 +1,18 @@
+{
+  "$description": "FinTech brand — authority, precision, financial trust",
+  "fontFamily": {
+    "$type": "fontFamily",
+    "display": { "$value": "DM Sans", "$description": "Geometric, authoritative, institutional" },
+    "body": { "$value": "Inter" },
+    "label": { "$value": "JetBrains Mono", "$description": "Financial data, account numbers, figures" }
+  },
+  "brand": {
+    "$type": "color",
+    "primary": { "$value": "#1e3a5f", "$description": "Navy — institutional trust" },
+    "primary-light": { "$value": "#93c5fd" },
+    "primary-dark": { "$value": "#0f2744" },
+    "secondary": { "$value": "#b45309", "$description": "Amber — premium, wealth" },
+    "secondary-light": { "$value": "#fbbf24" },
+    "secondary-dark": { "$value": "#92400e" }
+  }
+}

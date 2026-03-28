@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isometric Icons</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        p.subtitle {
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .icons-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .icon-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .icon-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(96, 165, 250, 0.3);
+        }
+
+        .icon-card img {
+            width: 120px;
+            height: 120px;
+        }
+
+        .icon-card h3 {
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .icon-card p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+        }
+
+        a.back-link {
+            margin-top: 2rem;
+            color: #60A5FA;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+
+        a.back-link:hover {
+            color: #93C5FD;
+        }
+
+        .narrative {
+            max-width: 800px;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+        }
+
+        .narrative h2 {
+            color: #fff;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .narrative p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .narrative code {
+            background: rgba(96, 165, 250, 0.15);
+            color: #60A5FA;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.8rem;
+        }
+
+        .narrative pre {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .narrative pre code {
+            background: none;
+            padding: 0;
+            color: #93C5FD;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: rgba(96, 165, 250, 0.1);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            color: #60A5FA;
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Isometric Icons</h1>
+    <p class="subtitle">AI-generated SVG icons using Claude Code + MCP</p>
+
+    <div class="narrative">
+        <h2>The Tech Behind This</h2>
+        <p>
+            This project demonstrates how I trained Claude Code to generate professional isometric icons by integrating an external AI service through the <strong>Model Context Protocol (MCP)</strong>.
+        </p>
+
+        <p>
+            <strong>The Challenge:</strong> Claude Code doesn't natively generate images. When I first asked it to create isometric SVGs manually, the results didn't follow proper isometric projection rules—the angles were inconsistent and shapes looked off.
+        </p>
+
+        <p>
+            <strong>The Solution:</strong> I connected Claude Code to <code>SVGMaker</code>, an AI-powered SVG generation service, using their MCP server. This involved:
+        </p>
+
+        <pre><code># 1. Clone and build the MCP server
+git clone https://github.com/GenWaveLLC/svgmaker-mcp
+cd svgmaker-mcp && npm install && npm run build
+
+# 2. Configure in .mcp.json
+{
+  "mcpServers": {
+    "svgmaker": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["~/.mcp-servers/svgmaker-mcp/build/index.js"],
+      "env": {
+        "SVGMAKER_API_KEY": "your-api-key"
+      }
+    }
+  }
+}</code></pre>
+
+        <p>
+            <strong>Style Training:</strong> I provided Claude with a reference icon (the Drive truck from SVG Repo) and extracted its color palette: warm oranges <code>#F29227</code>, deep reds <code>#BE1E2D</code>, and teals <code>#7BD6C4</code>. Claude then used these colors in prompts to SVGMaker, ensuring a consistent visual style across all generated icons.
+        </p>
+
+        <p>
+            <strong>The Result:</strong> Claude can now generate unlimited isometric icons on demand, maintaining style consistency—something that would typically require a designer or manual SVG coding.
+        </p>
+
+        <div class="tech-stack">
+            <span class="tech-tag">Claude Code</span>
+            <span class="tech-tag">MCP Protocol</span>
+            <span class="tech-tag">SVGMaker API</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">SVG</span>
+        </div>
+    </div>
+
+    <div class="icons-container">
+        <div class="icon-card">
+            <img src="drive-svgrepo-com.svg" alt="Drive Icon">
+            <h3>Drive</h3>
+            <p>Reference style</p>
+        </div>
+
+        <div class="icon-card">
+            <img src="iso-house-v2.svg" alt="House Icon">
+            <h3>House</h3>
+            <p>Household</p>
+        </div>
+
+        <div class="icon-card">
+            <img src="iso-couch-v2.svg" alt="Couch Icon">
+            <h3>Couch</h3>
+            <p>Household</p>
+        </div>
+
+        <div class="icon-card">
+            <img src="iso-fridge-v2.svg" alt="Fridge Icon">
+            <h3>Refrigerator</h3>
+            <p>Household</p>
+        </div>
+
+        <div class="icon-card">
+            <img src="iso-bed-v2.svg" alt="Bed Icon">
+            <h3>Bed</h3>
+            <p>Household</p>
+        </div>
+
+        <div class="icon-card">
+            <img src="iso-dining-v2.svg" alt="Dining Table Icon">
+            <h3>Dining Table</h3>
+            <p>Household</p>
+        </div>
+
+        <div class="icon-card">
+            <img src="iso-washer-v2.svg" alt="Washing Machine Icon">
+            <h3>Washing Machine</h3>
+            <p>Household</p>
+        </div>
+
+        <div class="icon-card">
+            <img src="iso-tv.svg" alt="TV Icon">
+            <h3>Television</h3>
+            <p>Household</p>
+        </div>
+
+        <div class="icon-card">
+            <img src="iso-lamp.svg" alt="Lamp Icon">
+            <h3>Floor Lamp</h3>
+            <p>Household</p>
+        </div>
+    </div>
+
+    <a href="index.html" class="back-link">← Back to Portfolio</a>
+</body>
+</html>

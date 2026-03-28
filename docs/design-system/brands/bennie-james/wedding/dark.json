@@ -1,0 +1,19 @@
+{
+  "$description": "Wedding dark — evening reception, candlelit, romantic glow",
+  "color": {
+    "$type": "color",
+    "background": { "$value": "#0d0806", "$description": "Deep warm black — candlelit room" },
+    "surface": { "$value": "#1a120e" },
+    "surface-container": { "$value": "#241a14" },
+    "surface-container-high": { "$value": "#30221a" },
+    "on-background": { "$value": "#f5f0e8" },
+    "on-surface": { "$value": "#f5f0e8" },
+    "on-surface-variant": { "$value": "#b0a090" },
+    "primary": { "$value": "#fbbf24", "$description": "Gold — candlelight, wedding rings" },
+    "primary-container": { "$value": "#78350f" },
+    "secondary": { "$value": "#fda4af", "$description": "Soft rose on dark" },
+    "secondary-container": { "$value": "#5b2130" },
+    "border": { "$value": "#2a1f14" },
+    "border-subtle": { "$value": "#1a140e" }
+  }
+}

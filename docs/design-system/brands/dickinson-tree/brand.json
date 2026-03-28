@@ -1,0 +1,24 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "$description": "Dickinson Tree Company — Family-run arborist business in Buckinghamshire. Professional, trusted, rooted in nature.",
+  "brand": "Dickinson Tree Company",
+  "owner": "Reece & Charlotte Dickinson",
+  "market": "High Wycombe, Buckinghamshire & surrounding Chilterns",
+  "audience": "Homeowners, estate managers, councils, commercial property managers",
+
+  "fontFamily": {
+    "$type": "fontFamily",
+    "display": { "$value": "DM Sans", "$description": "Clean, professional, trustworthy — not fussy" },
+    "body": { "$value": "Inter", "$description": "Readable, modern" },
+    "label": { "$value": "Space Grotesk", "$description": "Service details, pricing, technical specs" }
+  },
+  "brand": {
+    "$type": "color",
+    "primary": { "$value": "#15803d", "$description": "Forest green — trees, nature, growth, trust" },
+    "primary-light": { "$value": "#22c55e" },
+    "primary-dark": { "$value": "#166534" },
+    "secondary": { "$value": "#78350f", "$description": "Bark brown — earth, timber, natural materials" },
+    "secondary-light": { "$value": "#a16207" },
+    "accent": { "$value": "#f59e0b", "$description": "Amber — safety, hi-vis, professional equipment" }
+  }
+}

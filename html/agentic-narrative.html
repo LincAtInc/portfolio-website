@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic Narrative | Lincoln Mitchell</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body { background: #0f172a; color: #e2e8f0; }
+
+        /* ================================
+           Nav
+           ================================ */
+        .an-nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(15,23,42,0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: var(--space-4) var(--space-8);
+        }
+        .an-nav-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .an-nav-brand {
+            font-weight: var(--font-weight-bold);
+            font-size: var(--font-size-lg);
+            color: var(--color-text-inverse);
+            text-decoration: none;
+        }
+        .an-nav-links { display: flex; gap: var(--space-6); align-items: center; }
+        .an-nav-links a {
+            color: rgba(255,255,255,0.5); font-size: var(--font-size-sm);
+            text-decoration: none; transition: color 0.2s;
+        }
+        .an-nav-links a:hover { color: var(--color-text-inverse); }
+
+        /* ================================
+           Hero
+           ================================ */
+        .an-hero {
+            padding: 120px var(--space-8) 80px;
+            text-align: center;
+        }
+        .an-hero-label {
+            font-family: var(--font-mono);
+            font-size: 13px; font-weight: 500;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: var(--space-6);
+        }
+        .an-hero h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 700;
+            color: var(--color-text-inverse);
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            margin-bottom: var(--space-6);
+        }
+        .an-hero-sub {
+            font-size: var(--font-size-xl);
+            color: rgba(255,255,255,0.5);
+            max-width: 640px; margin: 0 auto var(--space-10);
+            line-height: var(--line-height-relaxed);
+        }
+
+        /* ================================
+           INC Visual — CSS-only
+           ================================ */
+        .inc-visual {
+            position: relative;
+            max-width: 960px; margin: 0 auto;
+            padding: 60px 0 40px;
+        }
+        .inc-formula {
+            text-align: center;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            margin-bottom: 60px;
+        }
+        .inc-formula .letter-i { color: var(--color-primary); }
+        .inc-formula .bracket { color: rgba(139,92,246,0.6); }
+        .inc-formula .letter-n { color: var(--color-secondary); }
+        .inc-formula .letter-c { color: var(--color-accent); }
+
+        .inc-nodes {
+            display: flex; align-items: center; justify-content: center;
+            gap: 0; position: relative;
+        }
+
+        /* Energy beams from N */
+        .inc-beam {
+            flex: 1; max-width: 140px; height: 2px; position: relative;
+        }
+        .inc-beam::before {
+            content: ''; position: absolute;
+            top: -8px; left: 0; right: 0; height: 18px;
+            border-radius: 10px;
+        }
+        .inc-beam--left::before {
+            background: linear-gradient(90deg, rgba(37,99,235,0.05), rgba(139,92,246,0.4));
+            animation: pulseLeft 3s ease-in-out infinite;
+        }
+        .inc-beam--right::before {
+            background: linear-gradient(90deg, rgba(139,92,246,0.4), rgba(6,182,212,0.05));
+            animation: pulseRight 3s ease-in-out infinite;
+        }
+        @keyframes pulseLeft {
+            0%, 100% { opacity: 0.4; } 50% { opacity: 1; }
+        }
+        @keyframes pulseRight {
+            0%, 100% { opacity: 0.4; } 50% { opacity: 1; }
+        }
+
+        /* Particles along beams */
+        .inc-beam--left::after,
+        .inc-beam--right::after {
+            content: ''; position: absolute;
+            top: -4px; width: 8px; height: 8px;
+            border-radius: 50%;
+        }
+        .inc-beam--left::after {
+            background: var(--color-primary);
+            box-shadow: 0 0 12px var(--color-primary);
+            animation: particleLeft 2.5s linear infinite;
+        }
+        .inc-beam--right::after {
+            background: var(--color-accent);
+            box-shadow: 0 0 12px var(--color-accent);
+            animation: particleRight 2.5s linear infinite;
+        }
+        @keyframes particleLeft {
+            0% { right: 0; opacity: 1; } 100% { right: 100%; opacity: 0; }
+        }
+        @keyframes particleRight {
+            0% { left: 0; opacity: 1; } 100% { left: 100%; opacity: 0; }
+        }
+
+        .inc-node {
+            display: flex; flex-direction: column; align-items: center; gap: 16px;
+            position: relative; z-index: 2;
+        }
+        .inc-circle {
+            width: 100px; height: 100px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; font-weight: 700;
+            position: relative;
+        }
+        .inc-circle::before {
+            content: ''; position: absolute; inset: -6px;
+            border-radius: 50%; z-index: -1;
+        }
+
+        /* I node */
+        .inc-node--i .inc-circle {
+            color: var(--color-primary);
+            background: rgba(37,99,235,0.1);
+            border: 2px solid rgba(37,99,235,0.3);
+        }
+        .inc-node--i .inc-circle::before {
+            background: rgba(37,99,235,0.08);
+            box-shadow: 0 0 40px rgba(37,99,235,0.15);
+        }
+
+        /* N node — larger, more prominent */
+        .inc-node--n .inc-circle {
+            width: 130px; height: 130px;
+            font-size: 3rem;
+            color: var(--color-secondary);
+            background: rgba(139,92,246,0.12);
+            border: 2px solid rgba(139,92,246,0.4);
+        }
+        .inc-node--n .inc-circle::before {
+            inset: -12px;
+            background: rgba(139,92,246,0.06);
+            box-shadow: 0 0 60px rgba(139,92,246,0.2), 0 0 120px rgba(139,92,246,0.08);
+            animation: nGlow 3s ease-in-out infinite;
+        }
+        @keyframes nGlow {
+            0%, 100% { box-shadow: 0 0 60px rgba(139,92,246,0.2), 0 0 120px rgba(139,92,246,0.08); }
+            50% { box-shadow: 0 0 80px rgba(139,92,246,0.35), 0 0 160px rgba(139,92,246,0.15); }
+        }
+        .inc-node--n .inc-brackets {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            font-size: 3.5rem; font-weight: 700;
+            color: rgba(139,92,246,0.5);
+        }
+        .inc-node--n .bracket-left { left: -28px; }
+        .inc-node--n .bracket-right { right: -28px; }
+
+        /* C node */
+        .inc-node--c .inc-circle {
+            color: var(--color-accent);
+            background: rgba(6,182,212,0.1);
+            border: 2px solid rgba(6,182,212,0.3);
+        }
+        .inc-node--c .inc-circle::before {
+            background: rgba(6,182,212,0.08);
+            box-shadow: 0 0 40px rgba(6,182,212,0.15);
+        }
+
+        .inc-node-label {
+            font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold);
+            color: var(--color-text-inverse);
+        }
+        .inc-node-desc {
+            font-size: var(--font-size-sm); color: rgba(255,255,255,0.4);
+            text-align: center; max-width: 180px; line-height: 1.5;
+        }
+
+        .inc-tagline {
+            text-align: center;
+            font-size: var(--font-size-base);
+            color: rgba(255,255,255,0.35);
+            margin-top: 48px;
+            font-style: italic;
+            max-width: 600px; margin-left: auto; margin-right: auto;
+        }
+
+        /* ================================
+           Narrative Expansion Section
+           ================================ */
+        .an-expand {
+            max-width: 1200px; margin: 0 auto;
+            padding: 100px var(--space-8) 80px;
+        }
+        .an-expand-header {
+            margin-bottom: 56px;
+        }
+        .an-expand-label {
+            font-family: var(--font-mono);
+            font-size: 13px; font-weight: 500;
+            color: var(--color-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: var(--space-3);
+        }
+        .an-expand h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700; color: var(--color-text-inverse);
+            letter-spacing: -0.02em; line-height: 1.15;
+            margin-bottom: var(--space-4);
+        }
+        .an-expand-intro {
+            font-size: 17px; color: rgba(255,255,255,0.5);
+            max-width: 560px; line-height: 1.7;
+        }
+        .an-expand-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-6);
+        }
+        .an-expand-card {
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 36px;
+            background: rgba(30,41,59,0.3);
+        }
+        .an-expand-card-dir {
+            font-family: var(--font-mono);
+            font-size: 12px; font-weight: 600;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            margin-bottom: var(--space-4);
+        }
+        .an-expand-card--left .an-expand-card-dir { color: var(--color-primary); }
+        .an-expand-card--right .an-expand-card-dir { color: var(--color-accent); }
+        .an-expand-card h3 {
+            font-size: var(--font-size-xl); font-weight: 600;
+            color: var(--color-text-inverse); margin-bottom: var(--space-3);
+        }
+        .an-expand-card p {
+            font-size: var(--font-size-sm); color: rgba(255,255,255,0.45);
+            line-height: 1.7;
+        }
+        .an-expand-card ul {
+            list-style: none; padding: 0; margin: var(--space-4) 0 0;
+        }
+        .an-expand-card li {
+            font-size: var(--font-size-sm); color: rgba(255,255,255,0.5);
+            padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+            display: flex; align-items: center; gap: 10px;
+        }
+        .an-expand-card li::before {
+            content: ''; width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+        }
+        .an-expand-card--left li::before { background: var(--color-primary); }
+        .an-expand-card--right li::before { background: var(--color-accent); }
+
+        /* ================================
+           What is Agentic Narrative
+           ================================ */
+        .an-what {
+            max-width: 1200px; margin: 0 auto;
+            padding: 80px var(--space-8);
+            border-top: 1px solid rgba(255,255,255,0.04);
+        }
+        .an-what-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px; align-items: start;
+        }
+        .an-what-label {
+            font-family: var(--font-mono);
+            font-size: 13px; font-weight: 500;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: var(--space-3);
+        }
+        .an-what h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700; color: var(--color-text-inverse);
+            letter-spacing: -0.02em; line-height: 1.15;
+            margin-bottom: var(--space-6);
+        }
+        .an-what-text {
+            font-size: 17px; color: rgba(255,255,255,0.5);
+            line-height: 1.8;
+        }
+        .an-what-text p { margin-bottom: var(--space-6); }
+        .an-what-code {
+            background: rgba(30,41,59,0.5);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 32px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            line-height: 2;
+            color: rgba(255,255,255,0.6);
+        }
+        .an-what-code .comment { color: rgba(255,255,255,0.25); }
+        .an-what-code .key { color: var(--color-accent); }
+        .an-what-code .val { color: #fbbf24; }
+        .an-what-code .str { color: #86efac; }
+
+        /* ================================
+           CTA
+           ================================ */
+        .an-cta {
+            max-width: 1200px; margin: 0 auto;
+            padding: 100px var(--space-8) 60px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.04);
+        }
+        .an-cta h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700; color: var(--color-text-inverse);
+            margin-bottom: var(--space-4);
+        }
+        .an-cta-sub {
+            font-size: var(--font-size-base);
+            color: rgba(255,255,255,0.4);
+            max-width: 480px; margin: 0 auto var(--space-8);
+            line-height: 1.7;
+        }
+        .an-cta-buttons { display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; }
+        .an-cta-buttons a {
+            font-size: 15px; font-weight: 500; padding: 14px 32px;
+            border-radius: 8px; text-decoration: none; transition: all 0.2s;
+        }
+        .an-cta-btn-primary {
+            background: var(--color-primary); color: var(--color-text-inverse);
+        }
+        .an-cta-btn-primary:hover { background: var(--color-primary-dark); }
+        .an-cta-btn-secondary {
+            color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.12);
+        }
+        .an-cta-btn-secondary:hover { color: var(--color-text-inverse); border-color: rgba(255,255,255,0.25); }
+
+        /* ================================
+           Footer
+           ================================ */
+        .an-footer {
+            max-width: 1200px; margin: 0 auto;
+            padding: var(--space-8);
+            border-top: 1px solid rgba(255,255,255,0.04);
+            text-align: center;
+        }
+        .an-footer p {
+            font-size: 13px; color: rgba(255,255,255,0.25);
+            margin-bottom: var(--space-2);
+        }
+        .an-footer a { color: rgba(255,255,255,0.35); text-decoration: none; }
+        .an-footer a:hover { color: rgba(255,255,255,0.6); }
+
+        /* ================================
+           Responsive
+           ================================ */
+        @media (max-width: 768px) {
+            .an-hero { padding: 80px var(--space-6) 40px; }
+            .inc-nodes { flex-direction: column; gap: 20px; }
+            .inc-beam { display: none; }
+            .inc-node--n .inc-circle { width: 110px; height: 110px; }
+            .an-expand-grid { grid-template-columns: 1fr; }
+            .an-what-grid { grid-template-columns: 1fr; gap: 40px; }
+            .an-nav-links a:not(:last-child) { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Nav -->
+    <nav class="an-nav">
+        <div class="an-nav-inner">
+            <a href="index.html" class="an-nav-brand">Lincoln Mitchell</a>
+            <div class="an-nav-links">
+                <a href="#expand">How N Expands</a>
+                <a href="#what">What Is It</a>
+                <a href="headless-ds.html">Headless DS</a>
+                <a href="index.html#contact" style="color: var(--color-text-inverse); background: var(--color-primary); padding: 8px 20px; border-radius: 6px;">Get in Touch</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="an-hero">
+        <div class="an-hero-label">Design Systems Architecture</div>
+        <h1>Agentic Narrative</h1>
+        <p class="an-hero-sub">
+            The design system isn't a component library. It's the narrative layer that
+            encodes domain knowledge into machine-readable context &mdash; amplifying both
+            discovery and execution.
+        </p>
+
+        <!-- INC Visual — pure CSS -->
+        <div class="inc-visual">
+            <div class="inc-formula">
+                <span class="letter-i">I</span>
+                <span class="bracket"> &lt;</span><span class="letter-n">N</span><span class="bracket">&gt; </span>
+                <span class="letter-c">C</span>
+            </div>
+
+            <div class="inc-nodes">
+                <!-- I Node -->
+                <div class="inc-node inc-node--i">
+                    <div class="inc-circle">I</div>
+                    <div class="inc-node-label">Ideate</div>
+                    <div class="inc-node-desc">Discovery &middot; NorthStar Prototyping &middot; Possibilities</div>
+                </div>
+
+                <!-- Beam left -->
+                <div class="inc-beam inc-beam--left"></div>
+
+                <!-- N Node -->
+                <div class="inc-node inc-node--n">
+                    <div class="inc-circle">
+                        <span class="inc-brackets bracket-left">&lt;</span>
+                        N
+                        <span class="inc-brackets bracket-right">&gt;</span>
+                    </div>
+                    <div class="inc-node-label">Narrate</div>
+                    <div class="inc-node-desc">The Agentic Design System Layer</div>
+                </div>
+
+                <!-- Beam right -->
+                <div class="inc-beam inc-beam--right"></div>
+
+                <!-- C Node -->
+                <div class="inc-node inc-node--c">
+                    <div class="inc-circle">C</div>
+                    <div class="inc-node-label">Create</div>
+                    <div class="inc-node-desc">Production Code &middot; Content &middot; Shipping</div>
+                </div>
+            </div>
+
+            <p class="inc-tagline">N is not a step between I and C &mdash; it's the amplifier that radiates into both directions.</p>
+        </div>
+    </header>
+
+    <main>
+        <!-- How N Expands -->
+        <section id="expand" class="an-expand">
+            <div class="an-expand-header">
+                <div class="an-expand-label">The Amplifier Effect</div>
+                <h2>How narrative expands both directions</h2>
+                <p class="an-expand-intro">
+                    Domain knowledge encoded as machine-readable context doesn't just sit
+                    in the middle. It actively amplifies what's possible on both sides.
+                </p>
+            </div>
+
+            <div class="an-expand-grid">
+                <!-- N → I -->
+                <div class="an-expand-card an-expand-card--left">
+                    <div class="an-expand-card-dir">N &rarr; I &middot; Expanding Discovery</div>
+                    <h3>Narrative widens ideation</h3>
+                    <p>When the design system encodes domain knowledge, AI agents can explore
+                       possibilities that a human alone would miss. The narrative layer gives
+                       agents the context to ideate within real constraints.</p>
+                    <ul>
+                        <li>NorthStar prototypes grounded in domain truth</li>
+                        <li>AI explores the full possibility space, not just obvious paths</li>
+                        <li>CLAUDE.md as discovery context, not just build instructions</li>
+                        <li>Stakeholder language encoded &mdash; CEO, CIO, CTO each get their view</li>
+                    </ul>
+                </div>
+
+                <!-- N → C -->
+                <div class="an-expand-card an-expand-card--right">
+                    <div class="an-expand-card-dir">N &rarr; C &middot; Accelerating Execution</div>
+                    <h3>Narrative accelerates creation</h3>
+                    <p>Machine-readable tokens, typed variants, and component contracts mean
+                       agents don't guess &mdash; they compose with precision. The narrative
+                       layer eliminates ambiguity from the build process.</p>
+                    <ul>
+                        <li>Tokens as structured data, not design specs to interpret</li>
+                        <li>Component APIs that agents consume without hallucination</li>
+                        <li>Code Connect maps Figma to codebase &mdash; zero translation loss</li>
+                        <li>MCP endpoints expose the system as queryable infrastructure</li>
+                    </ul>
+                </div>
+
+                <!-- Bidirectional -->
+                <div class="an-expand-card an-expand-card--left">
+                    <div class="an-expand-card-dir">I &rarr; N &middot; Discovery Feeds the System</div>
+                    <h3>Ideation enriches the narrative</h3>
+                    <p>Every NorthStar prototype reveals domain patterns that feed back into
+                       the design system. Discovery doesn't end at a handoff &mdash; it
+                       continuously enriches the machine-readable layer.</p>
+                    <ul>
+                        <li>Prototypes surface edge cases that update token contracts</li>
+                        <li>User research becomes encoded context, not slide decks</li>
+                        <li>New patterns graduate from exploration to system components</li>
+                    </ul>
+                </div>
+
+                <div class="an-expand-card an-expand-card--right">
+                    <div class="an-expand-card-dir">C &rarr; N &middot; Production Validates the System</div>
+                    <h3>Code strengthens the narrative</h3>
+                    <p>Production implementation reveals which abstractions hold and which
+                       break. The build process is a feedback loop that makes the narrative
+                       layer more precise over time.</p>
+                    <ul>
+                        <li>Real usage data refines component variant APIs</li>
+                        <li>Performance constraints shape token decisions</li>
+                        <li>Agent-generated code validates machine-readability claims</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- What Is Agentic Narrative -->
+        <section id="what" class="an-what">
+            <div class="an-what-grid">
+                <div>
+                    <div class="an-what-label">The Concept</div>
+                    <h2>What is an agentic narrative?</h2>
+                    <div class="an-what-text">
+                        <p>It's the encoding of domain knowledge, design decisions, and
+                           organisational context into formats that AI agents can consume
+                           and act upon.</p>
+                        <p>Not documentation for humans. Not component APIs for developers.
+                           A structured narrative that gives machines the <em>why</em> behind
+                           the <em>what</em> &mdash; so they can make informed decisions
+                           rather than probabilistic guesses.</p>
+                        <p>CLAUDE.md files, design tokens, typed component contracts, MCP
+                           server endpoints &mdash; these are all forms of agentic narrative.
+                           They turn a design system from a reference library into
+                           AI infrastructure.</p>
+                    </div>
+                </div>
+                <div class="an-what-code">
+                    <span class="comment">// CLAUDE.md — agentic narrative in practice</span><br><br>
+                    <span class="key">Brand:</span> <span class="str">Healthcare</span><br>
+                    <span class="key">Primary:</span> <span class="val">#059669</span> <span class="comment">// trust, clinical calm</span><br>
+                    <span class="key">Radius:</span> <span class="val">0.75rem</span> <span class="comment">// soft, approachable</span><br>
+                    <span class="key">Tone:</span> <span class="str">professional, reassuring</span><br><br>
+                    <span class="comment">// The agent doesn't just know the values.</span><br>
+                    <span class="comment">// It knows WHY these values were chosen.</span><br>
+                    <span class="comment">// It can make decisions that ALIGN</span><br>
+                    <span class="comment">// with the domain intent.</span><br><br>
+                    <span class="key">Components:</span><br>
+                    &nbsp;&nbsp;<span class="key">Button:</span> <span class="str">variant=primary|secondary|ghost</span><br>
+                    &nbsp;&nbsp;<span class="key">Card:</span> <span class="str">elevation=sm|md|lg</span><br>
+                    &nbsp;&nbsp;<span class="key">Alert:</span> <span class="str">severity=info|success|warning|error</span><br><br>
+                    <span class="comment">// Typed. Constrained. Machine-readable.</span><br>
+                    <span class="comment">// The narrative IS the infrastructure.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="an-cta">
+            <h2>The design system is the narrative. The narrative is the infrastructure.</h2>
+            <p class="an-cta-sub">
+                Let's talk about encoding your domain knowledge into systems that AI agents can actually use.
+            </p>
+            <div class="an-cta-buttons">
+                <a href="https://cal.com/lincmitch" target="_blank" rel="noopener noreferrer" class="an-cta-btn-primary">Book a Chat</a>
+                <a href="headless-ds.html" class="an-cta-btn-secondary">See the Headless DS</a>
+                <a href="index.html" class="an-cta-btn-secondary">Back to Portfolio</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="an-footer">
+        <p>This page was generated via Claude Code prompts &mdash; proving that agentic narrative works.</p>
+        <p><a href="index.html">lincolnmitchell.io</a> &middot; linc@lincolnmitchell.io</p>
+    </footer>
+</body>
+</html>

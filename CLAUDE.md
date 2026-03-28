@@ -46,14 +46,14 @@ A **proof-of-practice site** — not a resume, not a traditional portfolio. It d
 ### Title
 **Design Systems Architect** — subtitle: *NorthStar Prototyping | Agentic Design*
 
-### INC Framework (Ideate × Narrate × Create)
+### INC Framework (Ideate < Narrate > Create)
 The core methodology. Maps to the three approach steps on the site:
 - **I (Ideate)** — Discovery-first NorthStar prototyping with AI
-- **×N (Narrate)** — The agentic design system infrastructure that amplifies both directions. N = domain knowledge encoded as agentic context
+- **<N> (Narrate)** — The agentic design system infrastructure that amplifies both directions. N = domain knowledge encoded as agentic context. The angle brackets read like an HTML tag — the design system IS the markup that wraps everything.
 - **C (Create)** — Production code, content authoring, shipping
 
-The × is the crossover point — an infinity loop, not a linear pipeline:
-`I ◄──► ×N ◄──► C`
+N is the expansion layer — not a step between I and C, but the amplifier that radiates into both:
+`I <N> C`
 
 ### Key Differentiators
 - **NorthStar Prototyping** — Exploratory AI prototyping to shape vision early when possibilities are widest

@@ -1,0 +1,28 @@
+{
+  "$description": "Wedding theme — elegant, celebratory, romantic. For wedding enquiries, event pages, and couple-facing content.",
+  "fontFamily": {
+    "$type": "fontFamily",
+    "$description": "Override brand fonts — more elegant for wedding context",
+    "display": { "$value": "Playfair Display", "$description": "Classic serif — timeless elegance" },
+    "body": { "$value": "Plus Jakarta Sans" },
+    "label": { "$value": "Inter" }
+  },
+  "color": {
+    "$type": "color",
+    "primary": { "$value": "#92400e", "$description": "Deep gold — wedding rings, champagne" },
+    "primary-hover": { "$value": "#78350f" },
+    "secondary": { "$value": "#5b2130", "$description": "Deep rose — romance, red carpet" },
+    "secondary-hover": { "$value": "#4a1a27" },
+    "accent": { "$value": "#f5f0e8", "$description": "Warm cream — invitation paper" },
+    "error": { "$value": "#dc2626" },
+    "success": { "$value": "#16a34a" }
+  },
+  "borderRadius": {
+    "$type": "dimension",
+    "$description": "Softer — elegant, romantic",
+    "sm": { "$value": "0.375rem" },
+    "md": { "$value": "0.75rem" },
+    "lg": { "$value": "1rem" },
+    "xl": { "$value": "1.5rem" }
+  }
+}

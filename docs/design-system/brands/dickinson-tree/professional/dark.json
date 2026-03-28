@@ -1,0 +1,20 @@
+{
+  "$description": "Professional dark — evening, premium feel",
+  "color": {
+    "$type": "color",
+    "background": { "$value": "#0a1a0a" },
+    "surface": { "$value": "#0f250f" },
+    "surface-container": { "$value": "#143014" },
+    "surface-container-high": { "$value": "#1a3c1a" },
+    "on-background": { "$value": "#dcfce7" },
+    "on-surface": { "$value": "#ecfdf5" },
+    "on-surface-variant": { "$value": "#86efac" },
+    "primary": { "$value": "#4ade80" },
+    "primary-hover": { "$value": "#86efac" },
+    "primary-container": { "$value": "#166534" },
+    "secondary": { "$value": "#fbbf24" },
+    "secondary-container": { "$value": "#78350f" },
+    "border": { "$value": "#166534" },
+    "border-subtle": { "$value": "#14532d" }
+  }
+}

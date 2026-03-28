@@ -1,0 +1,37 @@
+{
+  "$description": "Consumer dark mode — pure dark zinc, modern app",
+  "color": {
+    "$type": "color",
+    "primary": { "$value": "#a5b4fc" },
+    "primary-hover": { "$value": "#c7d2fe" },
+    "primary-container": { "$value": "#3730a3" },
+    "on-primary": { "$value": "#312e81" },
+    "on-primary-container": { "$value": "#e0e7ff" },
+    "secondary": { "$value": "#fb7185" },
+    "secondary-hover": { "$value": "#fda4af" },
+    "secondary-container": { "$value": "#881337" },
+    "on-secondary": { "$value": "#881337" },
+    "on-secondary-container": { "$value": "#ffe4e6" },
+    "accent": { "$value": "#6ee7b7" },
+    "accent-container": { "$value": "#064e3b" },
+    "background": { "$value": "#09090b", "$description": "Pure dark — modern app feel" },
+    "surface": { "$value": "#18181b" },
+    "surface-container": { "$value": "#27272a" },
+    "surface-container-high": { "$value": "#3f3f46" },
+    "on-background": { "$value": "#fafafa" },
+    "on-surface": { "$value": "#f4f4f5" },
+    "on-surface-variant": { "$value": "#a1a1aa" },
+    "border": { "$value": "#3f3f46" },
+    "border-subtle": { "$value": "#27272a" },
+    "error": { "$value": "#f87171" },
+    "warning": { "$value": "#fbbf24" },
+    "success": { "$value": "#6ee7b7" },
+    "info": { "$value": "#a5b4fc" }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "sm": { "$value": "0 1px 2px rgba(0, 0, 0, 0.4)" },
+    "md": { "$value": "0 4px 12px -2px rgba(0, 0, 0, 0.5)" },
+    "lg": { "$value": "0 12px 32px -4px rgba(165, 180, 252, 0.06)" }
+  }
+}

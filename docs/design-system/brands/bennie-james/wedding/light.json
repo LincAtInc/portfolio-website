@@ -1,0 +1,20 @@
+{
+  "$description": "Wedding light — afternoon ceremony, garden party, golden hour",
+  "color": {
+    "$type": "color",
+    "background": { "$value": "#faf8f5", "$description": "Warm ivory — wedding invitation" },
+    "surface": { "$value": "#ffffff" },
+    "surface-container": { "$value": "#f5f0e8" },
+    "surface-container-high": { "$value": "#efe6d8" },
+    "on-background": { "$value": "#1a120a" },
+    "on-surface": { "$value": "#2a1f10" },
+    "on-surface-variant": { "$value": "#7a6a50" },
+    "primary": { "$value": "#92400e" },
+    "primary-hover": { "$value": "#78350f" },
+    "primary-container": { "$value": "#fef9c3" },
+    "secondary": { "$value": "#5b2130" },
+    "secondary-container": { "$value": "#fce7f3" },
+    "border": { "$value": "#e8dcc8" },
+    "border-subtle": { "$value": "#f0e8d8" }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "$description": "Wellness dark mode — deep violet-black, soft glow",
+  "color": {
+    "$type": "color",
+    "primary": { "$value": "#c4b5fd" },
+    "primary-hover": { "$value": "#ddd6fe" },
+    "primary-container": { "$value": "#4c1d95" },
+    "on-primary": { "$value": "#4c1d95" },
+    "on-primary-container": { "$value": "#ede9fe" },
+    "secondary": { "$value": "#f9a8d4" },
+    "secondary-hover": { "$value": "#fbcfe8" },
+    "secondary-container": { "$value": "#831843" },
+    "on-secondary": { "$value": "#831843" },
+    "on-secondary-container": { "$value": "#fce7f3" },
+    "accent": { "$value": "#67e8f9" },
+    "accent-container": { "$value": "#164e63" },
+    "background": { "$value": "#0f0a1e", "$description": "Deep violet-black" },
+    "surface": { "$value": "#1a1229" },
+    "surface-container": { "$value": "#231a34" },
+    "surface-container-high": { "$value": "#2e2240" },
+    "on-background": { "$value": "#ede9fe" },
+    "on-surface": { "$value": "#f5f3ff" },
+    "on-surface-variant": { "$value": "#c4b5fd" },
+    "border": { "$value": "#5b21b6" },
+    "border-subtle": { "$value": "#4c1d95" },
+    "error": { "$value": "#fca5a5" },
+    "warning": { "$value": "#fcd34d" },
+    "success": { "$value": "#86efac" },
+    "info": { "$value": "#c4b5fd" }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "sm": { "$value": "0 1px 2px rgba(0, 0, 0, 0.3)" },
+    "md": { "$value": "0 4px 12px -2px rgba(0, 0, 0, 0.4)" },
+    "lg": { "$value": "0 12px 32px -4px rgba(196, 181, 253, 0.06)" }
+  }
+}
