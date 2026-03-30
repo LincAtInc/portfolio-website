@@ -8,6 +8,7 @@ const links = [
   { href: "#what", label: "What Is It" },
   { href: "/work", label: "Work" },
   { href: "/headless-ds", label: "Headless DS" },
+  { href: "/system", label: "The System" },
   { href: "/thoughts", label: "Thoughts" },
   { href: "/podcast", label: "Podcast" },
 ];
