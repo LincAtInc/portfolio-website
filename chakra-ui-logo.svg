@@ -1,0 +1,10 @@
+<svg viewBox="0 0 64 64" width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="chakra-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7BCBD4"/>
+      <stop offset="100%" stop-color="#29C6B7"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="32" fill="url(#chakra-gradient)"/>
+  <path d="M 17.32,33.37 39.13,11.70 c 0.41,-0.40 1.06,0.09 0.79,0.59 l -8.12,14.88 c -0.18,0.33 0.06,0.74 0.44,0.74 h 14.03 c 0.45,0 0.67,0.55 0.34,0.86 L 22.03,51.72 c -0.44,0.41 -1.10,-0.17 -0.74,-0.66 L 32.92,35.01 c 0.24,-0.33 0.00,-0.79 -0.40,-0.79 H 17.67 c -0.44,0 -0.67,-0.54 -0.35,-0.85 z" fill="#ffffff"/>
+</svg>

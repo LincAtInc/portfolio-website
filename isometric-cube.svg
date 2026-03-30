@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+	 width="800px" height="800px" viewBox="0 0 32 32">
+<style type="text/css">
+	.cube_top{fill:#7BD6C4;}
+	.cube_left{fill:#569080;}
+	.cube_right{fill:#225B49;}
+</style>
+<g>
+	<!-- Simple Isometric Cube -->
+	<!-- Top face - diamond -->
+	<polygon class="cube_top" points="16,6 6,11 16,16 26,11"/>
+	<!-- Left face -->
+	<polygon class="cube_left" points="6,11 6,21 16,26 16,16"/>
+	<!-- Right face -->
+	<polygon class="cube_right" points="26,11 26,21 16,26 16,16"/>
+</g>
+</svg>

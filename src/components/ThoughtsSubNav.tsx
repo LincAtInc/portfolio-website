@@ -9,6 +9,9 @@ const thinkers = [
   { href: "/thoughts/dyslexic-advantage", label: "MIND Strengths", author: "Brock & Eide" },
   { href: "/thoughts/digital-samsara", label: "Digital Samsara", author: "Ajahn Sumedho" },
   { href: "/thoughts/make-culture", label: "Make Culture", author: "Controversial" },
+  { href: "/thoughts/competing-values", label: "Competing Values", author: "Quinn & Cameron" },
+  { href: "/thoughts/stakeholder-simulator", label: "Stakeholder Sim", author: "Alan Cooper" },
+  { href: "/thoughts/assistive-tech", label: "Assistive Tech", author: "Personal" },
 ];
 
 export function ThoughtsSubNav() {

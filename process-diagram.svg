@@ -1,0 +1,179 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <!-- Background -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Glow filters -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#bgGradient)"/>
+
+  <!-- Grid pattern -->
+  <g opacity="0.03">
+    <line x1="0" y1="0" x2="1920" y2="0" stroke="#fff" stroke-width="1" />
+    <line x1="0" y1="100" x2="1920" y2="100" stroke="#fff" stroke-width="1" />
+    <line x1="0" y1="200" x2="1920" y2="200" stroke="#fff" stroke-width="1" />
+    <line x1="0" y1="300" x2="1920" y2="300" stroke="#fff" stroke-width="1" />
+    <line x1="0" y1="400" x2="1920" y2="400" stroke="#fff" stroke-width="1" />
+    <line x1="0" y1="500" x2="1920" y2="500" stroke="#fff" stroke-width="1" />
+    <line x1="0" y1="600" x2="1920" y2="600" stroke="#fff" stroke-width="1" />
+    <line x1="0" y1="700" x2="1920" y2="700" stroke="#fff" stroke-width="1" />
+    <line x1="0" y1="800" x2="1920" y2="800" stroke="#fff" stroke-width="1" />
+    <line x1="0" y1="900" x2="1920" y2="900" stroke="#fff" stroke-width="1" />
+    <line x1="0" y1="1000" x2="1920" y2="1000" stroke="#fff" stroke-width="1" />
+
+    <line x1="0" y1="0" x2="0" y2="1080" stroke="#fff" stroke-width="1" />
+    <line x1="100" y1="0" x2="100" y2="1080" stroke="#fff" stroke-width="1" />
+    <line x1="200" y1="0" x2="200" y2="1080" stroke="#fff" stroke-width="1" />
+    <line x1="300" y1="0" x2="300" y2="1080" stroke="#fff" stroke-width="1" />
+    <line x1="400" y1="0" x2="400" y2="1080" stroke="#fff" stroke-width="1" />
+    <line x1="500" y1="0" x2="500" y2="1080" stroke="#fff" stroke-width="1" />
+    <line x1="600" y1="0" x2="600" y2="1080" stroke="#fff" stroke-width="1" />
+    <line x1="700" y1="0" x2="700" y2="1080" stroke="#fff" stroke-width="1" />
+    <line x1="800" y1="0" x2="800" y2="1080" stroke="#fff" stroke-width="1" />
+    <line x1="900" y1="0" x2="900" y2="1080" stroke="#fff" stroke-width="1" />
+    <line x1="1000" y1="0" x2="1000" y2="1080" stroke="#fff" stroke-width="1" />
+    <line x1="1100" y1="0" x2="1100" y2="1080" stroke="#fff" stroke-width="1" />
+    <line x1="1200" y1="0" x2="1200" y2="1080" stroke="#fff" stroke-width="1" />
+    <line x1="1300" y1="0" x2="1300" y2="1080" stroke="#fff" stroke-width="1" />
+    <line x1="1400" y1="0" x2="1400" y2="1080" stroke="#fff" stroke-width="1" />
+    <line x1="1500" y1="0" x2="1500" y2="1080" stroke="#fff" stroke-width="1" />
+    <line x1="1600" y1="0" x2="1600" y2="1080" stroke="#fff" stroke-width="1" />
+    <line x1="1700" y1="0" x2="1700" y2="1080" stroke="#fff" stroke-width="1" />
+    <line x1="1800" y1="0" x2="1800" y2="1080" stroke="#fff" stroke-width="1" />
+    <line x1="1900" y1="0" x2="1900" y2="1080" stroke="#fff" stroke-width="1" />
+  </g>
+
+  <!-- Ambient glow circles -->
+  <circle cx="300" cy="200" r="200" fill="#2563eb" opacity="0.08" filter="url(#softGlow)"/>
+  <circle cx="1600" cy="800" r="250" fill="#8b5cf6" opacity="0.08" filter="url(#softGlow)"/>
+  <circle cx="960" cy="500" r="180" fill="#06b6d4" opacity="0.06" filter="url(#softGlow)"/>
+
+  <!-- Process Flow Diagram -->
+  <g transform="translate(960, 750)">
+
+    <!-- Step 1: Ideas/Insights -->
+    <g transform="translate(-550, 0)">
+      <!-- Lightbulb icon -->
+      <g transform="translate(0, -80)">
+        <circle cx="0" cy="0" r="60" fill="none" stroke="#2563eb" stroke-width="3" opacity="0.3"/>
+        <path d="M -15,-20 Q -15,-40 0,-45 Q 15,-40 15,-20 L 15,0 Q 15,10 10,15 L -10,15 Q -15,10 -15,0 Z"
+              fill="none" stroke="#2563eb" stroke-width="2.5" filter="url(#glow)"/>
+        <line x1="-10" y1="20" x2="10" y2="20" stroke="#2563eb" stroke-width="2.5"/>
+        <line x1="-8" y1="25" x2="8" y2="25" stroke="#2563eb" stroke-width="2.5"/>
+        <circle cx="-5" cy="-25" r="2" fill="#2563eb" opacity="0.8"/>
+        <circle cx="5" cy="-30" r="2" fill="#2563eb" opacity="0.8"/>
+        <circle cx="0" cy="-35" r="2" fill="#2563eb" opacity="0.8"/>
+      </g>
+
+      <!-- Text -->
+      <text x="0" y="40" font-family="Arial, sans-serif" font-size="28" font-weight="bold"
+            fill="#2563eb" text-anchor="middle" filter="url(#glow)">Ideas</text>
+      <text x="0" y="70" font-family="Arial, sans-serif" font-size="28" font-weight="bold"
+            fill="#2563eb" text-anchor="middle" filter="url(#glow)">Insights</text>
+
+      <!-- Supporting text -->
+      <text x="0" y="105" font-family="Arial, sans-serif" font-size="16"
+            fill="#64748b" text-anchor="middle" opacity="0.8">Vibe Coding</text>
+      <text x="0" y="127" font-family="Arial, sans-serif" font-size="16"
+            fill="#64748b" text-anchor="middle" opacity="0.8">Discovery</text>
+      <text x="0" y="149" font-family="Arial, sans-serif" font-size="16"
+            fill="#64748b" text-anchor="middle" opacity="0.8">Research</text>
+    </g>
+
+    <!-- Arrow 1 -->
+    <g transform="translate(-330, 0)">
+      <line x1="-40" y1="0" x2="40" y2="0" stroke="#475569" stroke-width="3" opacity="0.5"/>
+      <polygon points="40,0 30,-8 30,8" fill="#475569" opacity="0.5"/>
+    </g>
+
+    <!-- Step 2: Narrative/Storytelling -->
+    <g transform="translate(0, 0)">
+      <!-- Document/Story icon -->
+      <g transform="translate(0, -80)">
+        <circle cx="0" cy="0" r="60" fill="none" stroke="#8b5cf6" stroke-width="3" opacity="0.3"/>
+        <rect x="-25" y="-30" width="50" height="60" rx="4"
+              fill="none" stroke="#8b5cf6" stroke-width="2.5" filter="url(#glow)"/>
+        <line x1="-15" y1="-18" x2="15" y2="-18" stroke="#8b5cf6" stroke-width="2"/>
+        <line x1="-15" y1="-8" x2="15" y2="-8" stroke="#8b5cf6" stroke-width="2"/>
+        <line x1="-15" y1="2" x2="15" y2="2" stroke="#8b5cf6" stroke-width="2"/>
+        <line x1="-15" y1="12" x2="8" y2="12" stroke="#8b5cf6" stroke-width="2"/>
+      </g>
+
+      <!-- Text -->
+      <text x="0" y="40" font-family="Arial, sans-serif" font-size="28" font-weight="bold"
+            fill="#8b5cf6" text-anchor="middle" filter="url(#glow)">Narrative</text>
+      <text x="0" y="70" font-family="Arial, sans-serif" font-size="28" font-weight="bold"
+            fill="#8b5cf6" text-anchor="middle" filter="url(#glow)">Storytelling</text>
+
+      <!-- Supporting text -->
+      <text x="0" y="105" font-family="Arial, sans-serif" font-size="16"
+            fill="#64748b" text-anchor="middle" opacity="0.8">Design Systems</text>
+      <text x="0" y="127" font-family="Arial, sans-serif" font-size="16"
+            fill="#64748b" text-anchor="middle" opacity="0.8">Low-code/No-code</text>
+      <text x="0" y="149" font-family="Arial, sans-serif" font-size="16"
+            fill="#64748b" text-anchor="middle" opacity="0.8">Storymapping</text>
+    </g>
+
+    <!-- Arrow 2 -->
+    <g transform="translate(220, 0)">
+      <line x1="-40" y1="0" x2="40" y2="0" stroke="#475569" stroke-width="3" opacity="0.5"/>
+      <polygon points="40,0 30,-8 30,8" fill="#475569" opacity="0.5"/>
+    </g>
+
+    <!-- Step 3: Creatives/Code/PoC/MVP -->
+    <g transform="translate(550, 0)">
+      <!-- Code/Build icon -->
+      <g transform="translate(0, -80)">
+        <circle cx="0" cy="0" r="60" fill="none" stroke="#06b6d4" stroke-width="3" opacity="0.3"/>
+        <!-- Code brackets -->
+        <path d="M -25,-10 L -30,0 L -25,10" fill="none" stroke="#06b6d4" stroke-width="2.5"
+              stroke-linecap="round" filter="url(#glow)"/>
+        <path d="M 25,-10 L 30,0 L 25,10" fill="none" stroke="#06b6d4" stroke-width="2.5"
+              stroke-linecap="round" filter="url(#glow)"/>
+        <line x1="-10" y1="-15" x2="-5" y2="15" stroke="#06b6d4" stroke-width="2.5"
+              stroke-linecap="round"/>
+        <line x1="5" y1="-15" x2="10" y2="15" stroke="#06b6d4" stroke-width="2.5"
+              stroke-linecap="round"/>
+      </g>
+
+      <!-- Text -->
+      <text x="0" y="40" font-family="Arial, sans-serif" font-size="28" font-weight="bold"
+            fill="#06b6d4" text-anchor="middle" filter="url(#glow)">Creatives</text>
+      <text x="0" y="70" font-family="Arial, sans-serif" font-size="24" font-weight="bold"
+            fill="#06b6d4" text-anchor="middle" filter="url(#glow)">Prototype → PoC → MVP → Product</text>
+
+      <!-- Supporting text -->
+      <text x="0" y="105" font-family="Arial, sans-serif" font-size="16"
+            fill="#64748b" text-anchor="middle" opacity="0.8">Delivery</text>
+      <text x="0" y="127" font-family="Arial, sans-serif" font-size="16"
+            fill="#64748b" text-anchor="middle" opacity="0.8">Production</text>
+    </g>
+
+  </g>
+
+  <!-- Decorative connecting lines in background -->
+  <g opacity="0.05">
+    <path d="M 200,300 Q 960,450 1720,350" fill="none" stroke="#fff" stroke-width="2"/>
+    <path d="M 250,700 Q 960,600 1650,750" fill="none" stroke="#fff" stroke-width="2"/>
+  </g>
+
+</svg>
