@@ -4,7 +4,7 @@ import { Nav } from "@/components/Nav";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "The INC Podcast — Exploring the Potential of Agentic A/V | Lincoln & Ben Mitchell",
+  title: "The MITCHELL Podcast — Exploring the Potential of Agentic A/V | Lincoln & Ben Mitchell",
   description: "Two brothers explore the potential of agentic audio/visual creation. Ben brings the audio, Lincoln brings the visual. AI expands what's creatively possible.",
 };
 
@@ -52,7 +52,7 @@ export default function Podcast() {
           <div className="flex-1">
             <span className="font-mono text-xs font-medium text-[var(--color-warm)] tracking-[0.2em] uppercase block mb-6">Coming Soon</span>
             <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] font-bold text-white tracking-[-0.03em] leading-[1.05] mb-6">
-              The <span className="text-[var(--color-warm-light)]">INC</span> Podcast
+              The <span className="text-[var(--color-warm-light)]">MITCHELL</span> Podcast
             </h1>
             <p className="text-xl text-white/50 leading-relaxed mb-8 max-w-[520px]">
               Two brothers exploring the potential of agentic A/V. Ben brings the audio, Lincoln brings the visual. AI expands what&apos;s creatively possible — and we&apos;re documenting the journey.
@@ -248,7 +248,7 @@ export default function Podcast() {
             <span className="absolute -top-12 -left-6 text-[120px] text-[var(--color-warm)]/30 font-serif leading-none">&ldquo;</span>
             You don&apos;t need to be a developer to build an app. You don&apos;t need to be a producer to make a track. You need vision, taste, and the right tools. AI is the right tool.
           </blockquote>
-          <cite className="text-sm text-[#64748b] not-italic">The INC Podcast — opening thesis</cite>
+          <cite className="text-sm text-[#64748b] not-italic">The MITCHELL Podcast — opening thesis</cite>
         </section>
 
         {/* CTA */}
@@ -274,7 +274,7 @@ export default function Podcast() {
       </main>
 
       <footer className="max-w-[1440px] mx-auto px-8 py-10 border-t border-[#1e293b] text-center">
-        <p className="text-[13px] text-[#475569] mb-2">The INC Podcast — exploring the potential of agentic A/V.</p>
+        <p className="text-[13px] text-[#475569] mb-2">The MITCHELL Podcast — exploring the potential of agentic A/V.</p>
         <p className="text-[13px] text-[#475569]"><Link href="/" className="text-blue-400 no-underline">lincolnmitchell.io</Link> &middot; <a href="https://benniejames.com" target="_blank" rel="noopener noreferrer" className="text-[var(--color-warm)]/50 no-underline">benniejames.com</a></p>
       </footer>
     </>
