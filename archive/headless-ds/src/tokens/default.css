@@ -1,0 +1,131 @@
+/* Default / Portfolio Theme — source of truth from styles.css */
+:root,
+[data-theme="default"] {
+  /* Colors */
+  --color-primary: #2563eb;
+  --color-primary-dark: #1e40af;
+  --color-primary-light: #3b82f6;
+  --color-secondary: #8b5cf6;
+  --color-accent: #06b6d4;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-tertiary: #64748b;
+  --color-text-inverse: #ffffff;
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f8fafc;
+  --color-bg-tertiary: #f1f5f9;
+  --color-bg-dark: #0f172a;
+  --color-border: #e2e8f0;
+  --color-border-dark: #cbd5e1;
+
+  /* Typography */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Fira Code', monospace;
+  --color-muted: #94a3b8;
+  --color-subtle: #64748b;
+  --color-border-subtle: #1e293b;
+  --color-surface: rgba(30, 41, 59, 0.4);
+  --color-surface-deep: #0b1120;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 3.75rem;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* Spacing (4px base) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+
+  /* Opacity */
+  --opacity-subtle: 0.04;
+  --opacity-tint: 0.06;
+  --opacity-hover: 0.08;
+  --opacity-muted: 0.1;
+  --opacity-border-subtle: 0.12;
+  --opacity-border: 0.15;
+  --opacity-border-strong: 0.25;
+  --opacity-overlay: 0.95;
+
+  /* Semantic color tints (colour + opacity composites) */
+  --color-accent-tint: rgba(6, 182, 212, var(--opacity-tint));
+  --color-accent-muted: rgba(6, 182, 212, var(--opacity-muted));
+  --color-accent-border: rgba(6, 182, 212, var(--opacity-border));
+  --color-accent-border-strong: rgba(6, 182, 212, var(--opacity-border-strong));
+  --color-primary-tint: rgba(37, 99, 235, var(--opacity-tint));
+  --color-primary-muted: rgba(37, 99, 235, var(--opacity-muted));
+  --color-primary-border: rgba(37, 99, 235, var(--opacity-border));
+  --color-secondary-tint: rgba(139, 92, 246, var(--opacity-tint));
+  --color-secondary-muted: rgba(139, 92, 246, var(--opacity-muted));
+  --color-secondary-border: rgba(139, 92, 246, var(--opacity-border));
+  --color-error-subtle: rgba(220, 38, 38, var(--opacity-subtle));
+  --color-error-border: rgba(220, 38, 38, var(--opacity-border-subtle));
+  --color-success-subtle: rgba(5, 150, 105, var(--opacity-subtle));
+  --color-success-border: rgba(5, 150, 105, var(--opacity-border-subtle));
+  --color-inverse-hover: rgba(255, 255, 255, var(--opacity-hover));
+  --color-inverse-border: rgba(255, 255, 255, var(--opacity-border));
+  --color-inverse-border-subtle: rgba(255, 255, 255, var(--opacity-border-subtle));
+  --color-inverse-border-strong: rgba(255, 255, 255, var(--opacity-border-strong));
+  --color-inverse-muted: rgba(255, 255, 255, 0.4);
+  --color-inverse-medium: rgba(255, 255, 255, 0.6);
+  --color-inverse-strong: rgba(255, 255, 255, 0.85);
+  --color-bg-overlay: rgba(15, 23, 42, var(--opacity-overlay));
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layout */
+  --container-max-width: 1200px;
+  --container-padding: var(--space-6);
+
+  /* Demo tokens (default theme) */
+  --demo-primary: #2563eb;
+  --demo-primary-hover: #1e40af;
+  --demo-accent: #06b6d4;
+  --demo-radius: 0.5rem;
+  --demo-bg: #ffffff;
+  --demo-bg-subtle: #f8fafc;
+  --demo-text: #0f172a;
+  --demo-text-secondary: #475569;
+  --demo-border: #e2e8f0;
+  --demo-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --demo-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}

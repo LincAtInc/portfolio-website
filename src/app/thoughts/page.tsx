@@ -73,7 +73,7 @@ export default function Thoughts() {
             </div>
             <div className="shrink-0">
               <Image
-                src="/Ian.jpeg"
+                src="/images/Ian.jpeg"
                 alt="Dr Iain McGilchrist"
                 width={180}
                 height={220}

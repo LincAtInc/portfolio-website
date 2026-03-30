@@ -86,7 +86,7 @@ export default function ScoutBees() {
               </h2>
             </div>
             <div className="shrink-0">
-              <Image src="/helen-taylor.png" alt="Dr Helen Taylor" width={140} height={175} className="rounded-xl border border-[#1e293b] object-cover" style={{ width: 140, height: 175 }} />
+              <Image src="/images/helen-taylor.png" alt="Dr Helen Taylor" width={140} height={175} className="rounded-xl border border-[#1e293b] object-cover" style={{ width: 140, height: 175 }} />
               <p className="font-mono text-[11px] text-[#64748b] mt-2 text-center">Dr Helen Taylor</p>
             </div>
           </div>

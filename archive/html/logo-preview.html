@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINC Logo Style Options</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #0f172a;
+            color: white;
+            padding: 40px;
+            margin: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        p {
+            text-align: center;
+            color: #94a3b8;
+            margin-bottom: 40px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .option {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        .option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+        .option h3 {
+            margin: 0 0 10px 0;
+            color: #60a5fa;
+        }
+        .option p {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+        .logo-container {
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 40px;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        button {
+            background: linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        .current {
+            border: 2px solid #22c55e;
+        }
+        .current h3::after {
+            content: " (Current)";
+            color: #22c55e;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>LINC Logo Style Options</h1>
+    <p>Click on any option to select it</p>
+
+    <div class="grid">
+        <!-- Option 1: Current Bold Geometric -->
+        <div class="option current" data-option="1">
+            <h3>Option 1: Bold Geometric</h3>
+            <p>Angular shapes with dynamic slant</p>
+            <div class="logo-container">
+                <svg width="240" height="100" viewBox="0 0 240 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#a78bfa;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <polygon points="10,10 28,10 28,70 10,75" fill="url(#bg1)"/>
+                    <polygon points="10,75 10,85 150,85 150,75" fill="url(#bg1)"/>
+                    <polygon points="35,15 55,10 55,75 35,80" fill="white"/>
+                    <polygon points="65,15 85,10 85,45 105,10 125,15 125,80 105,85 105,50 85,85 65,80" fill="white"/>
+                    <path d="M 185,10 L 145,15 L 135,20 L 135,75 L 145,80 L 185,85 L 190,80 L 190,65 L 170,67 L 160,65 L 160,30 L 170,28 L 190,30 L 190,15 Z" fill="white"/>
+                </svg>
+            </div>
+            <button onclick="selectOption(1)">Use This Style</button>
+        </div>
+
+        <!-- Option 2: Chunky Block -->
+        <div class="option" data-option="2">
+            <h3>Option 2: Chunky Block</h3>
+            <p>Thick, bold rectangular forms</p>
+            <div class="logo-container">
+                <svg width="260" height="110" viewBox="0 0 260 110" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#a78bfa;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="10" y="10" width="20" height="75" fill="url(#bg2)" rx="3"/>
+                    <rect x="10" y="75" width="130" height="20" fill="url(#bg2)" rx="3"/>
+                    <rect x="45" y="15" width="25" height="70" fill="white" rx="2"/>
+                    <polygon points="85,15 110,15 135,85 110,85 105,50 100,85 75,85" fill="white"/>
+                    <path d="M 180,15 Q 145,15 145,50 Q 145,85 180,85 L 185,80 L 185,70 L 170,70 L 160,65 L 160,35 L 170,30 L 185,30 L 185,20 Z" fill="white"/>
+                </svg>
+            </div>
+            <button onclick="selectOption(2)">Use This Style</button>
+        </div>
+
+        <!-- Option 3: Slanted Street -->
+        <div class="option" data-option="3">
+            <h3>Option 3: Slanted Street</h3>
+            <p>Italic street art vibe</p>
+            <div class="logo-container">
+                <svg width="280" height="100" viewBox="0 0 280 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#a78bfa;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <polygon points="5,5 30,8 30,72 8,78" fill="url(#bg3)"/>
+                    <polygon points="8,78 5,90 160,90 160,78" fill="url(#bg3)"/>
+                    <polygon points="40,10 70,12 65,80 35,78" fill="white"/>
+                    <polygon points="80,10 110,12 110,40 130,12 160,14 155,82 125,80 125,50 105,80 75,78" fill="white"/>
+                    <path d="M 220,12 L 175,15 L 168,22 L 165,78 L 172,85 L 220,88 L 228,82 L 228,65 L 205,67 L 195,62 L 195,35 L 205,30 L 228,32 L 228,18 Z" fill="white"/>
+                </svg>
+            </div>
+            <button onclick="selectOption(3)">Use This Style</button>
+        </div>
+
+        <!-- Option 4: Minimal Modern -->
+        <div class="option" data-option="4">
+            <h3>Option 4: Minimal Modern</h3>
+            <p>Clean, thin lines with text</p>
+            <div class="logo-container">
+                <svg width="200" height="80" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="bg4" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#a78bfa;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="10" y="10" width="4" height="60" fill="url(#bg4)" rx="2"/>
+                    <rect x="10" y="66" width="120" height="4" fill="url(#bg4)" rx="2"/>
+                    <text x="28" y="55" font-family="Arial Black, sans-serif" font-size="42" font-weight="900" fill="white" letter-spacing="6">INC</text>
+                </svg>
+            </div>
+            <button onclick="selectOption(4)">Use This Style</button>
+        </div>
+
+        <!-- Option 5: Graffiti Bold -->
+        <div class="option" data-option="5">
+            <h3>Option 5: Graffiti Bold</h3>
+            <p>Extra wide and chunky</p>
+            <div class="logo-container">
+                <svg width="300" height="120" viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="bg5" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#a78bfa;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <polygon points="10,10 35,12 35,85 10,92" fill="url(#bg5)"/>
+                    <polygon points="10,92 8,108 180,108 180,92" fill="url(#bg5)"/>
+                    <polygon points="50,15 85,17 80,90 45,88" fill="white"/>
+                    <polygon points="100,15 130,17 130,50 155,17 190,20 185,95 155,93 155,60 130,93 100,90" fill="white"/>
+                    <path d="M 260,20 L 210,23 L 200,30 L 197,88 L 207,95 L 260,98 L 270,90 L 270,70 L 240,72 L 225,67 L 225,45 L 240,40 L 270,43 L 270,27 Z" fill="white"/>
+                </svg>
+            </div>
+            <button onclick="selectOption(5)">Use This Style</button>
+        </div>
+
+        <!-- Option 6: Compact Bold -->
+        <div class="option" data-option="6">
+            <h3>Option 6: Compact Bold</h3>
+            <p>Tight spacing, maximum impact</p>
+            <div class="logo-container">
+                <svg width="200" height="90" viewBox="0 0 200 90" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="bg6" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#a78bfa;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <polygon points="8,8 22,8 22,65 8,68" fill="url(#bg6)"/>
+                    <polygon points="8,68 8,78 120,78 120,68" fill="url(#bg6)"/>
+                    <polygon points="30,12 48,10 46,70 28,72" fill="white"/>
+                    <polygon points="55,12 70,10 70,38 85,10 100,12 98,72 83,74 83,45 68,74 53,72" fill="white"/>
+                    <path d="M 150,10 L 115,12 L 110,18 L 108,68 L 113,74 L 150,76 L 156,70 L 156,58 L 140,60 L 132,56 L 132,30 L 140,26 L 156,28 L 156,15 Z" fill="white"/>
+                </svg>
+            </div>
+            <button onclick="selectOption(6)">Use This Style</button>
+        </div>
+    </div>
+
+    <script>
+        function selectOption(num) {
+            alert('You selected Option ' + num + '! Let me know which one you want and I\'ll update the website.');
+        }
+
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const optionNum = this.dataset.option;
+                document.querySelectorAll('.option').forEach(o => o.classList.remove('current'));
+                this.classList.add('current');
+            });
+        });
+    </script>
+</body>
+</html>

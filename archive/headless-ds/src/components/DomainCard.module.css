@@ -1,0 +1,42 @@
+.card {
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  transition: all var(--transition-base);
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+.title {
+  font-size: var(--font-size-xl);
+  margin: 0 0 var(--space-1);
+}
+.tagline {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  margin: 0 0 var(--space-5);
+}
+.roles {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Variants */
+.design {
+  background: var(--color-accent-tint);
+  border: 1px solid var(--color-accent-border);
+}
+.design .title { color: var(--color-accent); }
+
+.business {
+  background: var(--color-secondary-tint);
+  border: 1px solid var(--color-secondary-border);
+}
+.business .title { color: var(--color-secondary); }
+
+.development {
+  background: var(--color-primary-tint);
+  border: 1px solid var(--color-primary-border);
+}
+.development .title { color: var(--color-primary); }

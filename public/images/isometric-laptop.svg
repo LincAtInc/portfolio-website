@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+	 width="800px" height="800px" viewBox="0 0 32 32">
+<style type="text/css">
+	.screen_back{fill:#475569;}
+	.screen_left{fill:#334155;}
+	.screen_display{fill:#60A5FA;}
+	.screen_bezel{fill:#1e293b;}
+	.base_top{fill:#64748b;}
+	.base_left{fill:#475569;}
+	.base_right{fill:#334155;}
+	.keyboard{fill:#1e293b;}
+	.trackpad{fill:#334155;}
+</style>
+<g>
+	<!-- Laptop Base - flat isometric box -->
+	<!-- Top surface -->
+	<polygon class="base_top" points="16,18 4,24 16,30 28,24"/>
+	<!-- Left face -->
+	<polygon class="base_left" points="4,24 4,26 16,32 16,30"/>
+	<!-- Right face -->
+	<polygon class="base_right" points="28,24 28,26 16,32 16,30"/>
+
+	<!-- Keyboard area on base top -->
+	<polygon class="keyboard" points="16,19 6,24 14,28 24,23"/>
+
+	<!-- Trackpad -->
+	<polygon class="trackpad" points="16,26 12,28 16,29.5 20,27.5"/>
+
+	<!-- Screen - standing up from back edge, follows isometric angles -->
+	<!-- Screen is a vertical plane that follows the back-left edge of base -->
+	<!-- Back edge of base goes from (4,24) toward upper-left -->
+
+	<!-- Screen back panel (the plastic back) -->
+	<polygon class="screen_back" points="4,24 4,10 16,4 16,18"/>
+
+	<!-- Screen left edge thickness -->
+	<polygon class="screen_left" points="4,10 5,9.5 5,23.5 4,24"/>
+
+	<!-- Screen bezel frame -->
+	<polygon class="screen_bezel" points="5,23 5,11 15,5.5 15,17.5"/>
+
+	<!-- Actual display -->
+	<polygon class="screen_display" points="6,22 6,12 14,7 14,17"/>
+</g>
+</svg>

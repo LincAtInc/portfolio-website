@@ -65,7 +65,7 @@ export default function BennieJames() {
       {/* Hero */}
       <div className="relative">
         <Image
-          src="/bj-hero-wedding.png"
+          src="/images/bj-hero-wedding.png"
           alt="Bennie James — Soul DJ"
           width={1456}
           height={816}
@@ -144,7 +144,7 @@ export default function BennieJames() {
           </div>
           <div className="shrink-0">
             <Image
-              src="/ben-mitchell.png"
+              src="/images/ben-mitchell.png"
               alt="Bennie James"
               width={280}
               height={420}

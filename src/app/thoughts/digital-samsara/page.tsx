@@ -67,7 +67,7 @@ export default function DigitalSamsara() {
               </h2>
             </div>
             <div className="shrink-0">
-              <Image src="/ajahn-sumedho.png" alt="Ajahn Sumedho" width={140} height={175} className="rounded-xl border border-[#1e293b] object-cover" style={{ width: 140, height: 175 }} />
+              <Image src="/images/ajahn-sumedho.png" alt="Ajahn Sumedho" width={140} height={175} className="rounded-xl border border-[#1e293b] object-cover" style={{ width: 140, height: 175 }} />
               <p className="font-mono text-[11px] text-[#64748b] mt-2 text-center">Ajahn Sumedho</p>
             </div>
           </div>

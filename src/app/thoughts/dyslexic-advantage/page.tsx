@@ -94,11 +94,11 @@ export default function DyslexicAdvantage() {
             </div>
             <div className="flex gap-4 shrink-0">
               <div>
-                <Image src="/brock-eide.png" alt="Dr Brock Eide" width={120} height={150} className="rounded-xl border border-[#1e293b] object-cover" style={{ width: 120, height: 150 }} />
+                <Image src="/images/brock-eide.png" alt="Dr Brock Eide" width={120} height={150} className="rounded-xl border border-[#1e293b] object-cover" style={{ width: 120, height: 150 }} />
                 <p className="font-mono text-[11px] text-[#64748b] mt-2 text-center">Brock Eide</p>
               </div>
               <div>
-                <Image src="/fernette-eide.png" alt="Dr Fernette Eide" width={120} height={150} className="rounded-xl border border-[#1e293b] object-cover" style={{ width: 120, height: 150 }} />
+                <Image src="/images/fernette-eide.png" alt="Dr Fernette Eide" width={120} height={150} className="rounded-xl border border-[#1e293b] object-cover" style={{ width: 120, height: 150 }} />
                 <p className="font-mono text-[11px] text-[#64748b] mt-2 text-center">Fernette Eide</p>
               </div>
             </div>

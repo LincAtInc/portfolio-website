@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <Nav />
       <Image
-        src="/inc-narrate-expands.png"
+        src="/images/inc-narrate-expands.png"
         alt="I <N> C Framework — N amplifies both Ideation and Creation"
         width={2752}
         height={1536}

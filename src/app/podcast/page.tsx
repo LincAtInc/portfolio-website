@@ -71,7 +71,7 @@ export default function Podcast() {
           <div className="flex gap-6">
             <div className="flex flex-col items-center gap-3">
               <Image
-                src="/Linc-coffee.png"
+                src="/images/Linc-coffee.png"
                 alt="Lincoln Mitchell"
                 width={160}
                 height={160}
@@ -86,7 +86,7 @@ export default function Podcast() {
             </div>
             <div className="flex flex-col items-center gap-3">
               <Image
-                src="/ben-mitchell.png"
+                src="/images/ben-mitchell.png"
                 alt="Ben Mitchell — Bennie James"
                 width={160}
                 height={160}
