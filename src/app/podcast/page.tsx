@@ -4,8 +4,8 @@ import { Nav } from "@/components/Nav";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "The LINC Podcast — AI Expands Creative Possibility | Lincoln & Ben Mitchell",
-  description: "Two brothers explore how AI expands creative possibility across music, visual design, and UI. Lincoln Mitchell (Design Systems) and Ben Mitchell (DJ/Producer).",
+  title: "The INC Podcast — Exploring the Potential of Agentic A/V | Lincoln & Ben Mitchell",
+  description: "Two brothers explore the potential of agentic audio/visual creation. Ben brings the audio, Lincoln brings the visual. AI expands what's creatively possible.",
 };
 
 const episodes = [
@@ -52,10 +52,10 @@ export default function Podcast() {
           <div className="flex-1">
             <span className="font-mono text-xs font-medium text-[var(--color-warm)] tracking-[0.2em] uppercase block mb-6">Coming Soon</span>
             <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] font-bold text-white tracking-[-0.03em] leading-[1.05] mb-6">
-              The <span className="text-[var(--color-warm-light)]">LINC</span> Podcast
+              The <span className="text-[var(--color-warm-light)]">INC</span> Podcast
             </h1>
             <p className="text-xl text-white/50 leading-relaxed mb-8 max-w-[520px]">
-              Two brothers — one designs interfaces, the other designs dancefloors. Both use AI to expand what's creatively possible. A conversation about music, visual design, and the tools that let us all become more than our skill level.
+              Two brothers exploring the potential of agentic A/V. Ben brings the audio, Lincoln brings the visual. AI expands what&apos;s creatively possible — and we&apos;re documenting the journey.
             </p>
             <div className="flex gap-4 flex-wrap">
               <a href="https://cal.com/lincmitch" target="_blank" rel="noopener noreferrer" className="text-[15px] font-medium text-white bg-[var(--color-primary)] px-8 py-3.5 rounded-lg no-underline hover:bg-[var(--color-primary-dark)] transition-colors">
@@ -80,8 +80,8 @@ export default function Podcast() {
               />
               <div className="text-center">
                 <p className="text-sm font-semibold text-white">Lincoln Mitchell</p>
-                <p className="font-mono text-[11px] text-[var(--color-primary)]">Design Systems</p>
-                <p className="font-mono text-[11px] text-white/25">Visual &middot; UI &middot; Code</p>
+                <p className="font-mono text-[11px] text-[var(--color-primary)]">Visual</p>
+                <p className="font-mono text-[11px] text-white/25">Design &middot; UI &middot; Code</p>
               </div>
             </div>
             <div className="flex flex-col items-center gap-3">
@@ -95,8 +95,8 @@ export default function Podcast() {
               />
               <div className="text-center">
                 <p className="text-sm font-semibold text-white">Ben Mitchell</p>
-                <p className="font-mono text-[11px] text-[var(--color-warm)]">DJ / Producer</p>
-                <p className="font-mono text-[11px] text-white/25">Audio &middot; Music &middot; Live</p>
+                <p className="font-mono text-[11px] text-[var(--color-warm)]">Audio</p>
+                <p className="font-mono text-[11px] text-white/25">Music &middot; Production &middot; Live</p>
               </div>
               <a href="https://benniejames.com" target="_blank" rel="noopener noreferrer" className="font-mono text-[11px] text-white/25 no-underline hover:text-white/50 transition-colors">
                 benniejames.com
@@ -126,8 +126,66 @@ export default function Podcast() {
           </div>
         </section>
 
-        {/* Episode Ideas */}
+        {/* Featured Project */}
         <section className="px-8 md:px-20 py-24 max-w-[1440px] mx-auto">
+          <span className="font-mono text-xs font-medium text-[var(--color-warm)] tracking-[0.2em] uppercase block mb-4">First Project</span>
+          <h2 className="font-display text-[clamp(2rem,4vw,2.5rem)] font-bold text-white tracking-tight leading-[1.1] mb-6">
+            Dad&apos;s songs and photos
+          </h2>
+          <div className="flex flex-col md:flex-row gap-10 mb-12">
+          <div className="shrink-0">
+            <Image
+              src="/images/ron.jpg"
+              alt="Ron Mitchell"
+              width={180}
+              height={180}
+              className="rounded-xl border-2 border-[var(--color-warm)]/30 object-cover"
+              style={{ width: 180, height: 180 }}
+            />
+            <p className="font-mono text-[11px] text-[var(--color-warm)] text-center mt-3">Ron Mitchell</p>
+          </div>
+          <div className="text-[17px] text-white/50 leading-relaxed max-w-[720px] space-y-6">
+            <p>
+              Our father Ron was a guitarist and songwriter. He left behind a collection of songs and photographs. Recordings from another era, images from a life well lived. They deserve more than a box in the attic.
+            </p>
+            <p>
+              This is our first project together: <strong className="text-white">reworking dad&apos;s songs and photos into new music and video using AI.</strong> Ben takes the original recordings — separates stems, reimagines arrangements, layers new production over the bones of the originals. Lincoln takes the old photographs — restores, animates, transforms them into visual narratives that breathe alongside the music.
+            </p>
+            <p>
+              It&apos;s personal. It&apos;s emotional. And it&apos;s the perfect proof of what agentic A/V can do — not replacing the original, but <strong className="text-white">amplifying it into something new while honouring what was there.</strong>
+            </p>
+          </div>
+          </div>
+
+          <div className="flex flex-col md:flex-row gap-6 mb-12">
+            <div className="flex-1 p-8 rounded-xl bg-[var(--color-warm)]/[0.06] border border-[var(--color-warm)]/20">
+              <span className="font-mono text-[11px] text-[var(--color-warm)] uppercase tracking-[0.1em] block mb-3">Ben — Audio</span>
+              <ul className="text-[15px] text-white/50 leading-relaxed space-y-2 list-none">
+                <li>Stem separation from original recordings</li>
+                <li>AI-assisted remastering and restoration</li>
+                <li>New arrangements built on original melodies</li>
+                <li>Reimagined production — same soul, new sound</li>
+              </ul>
+            </div>
+            <div className="flex-1 p-8 rounded-xl bg-[var(--color-primary)]/[0.06] border border-[var(--color-primary)]/20">
+              <span className="font-mono text-[11px] text-[var(--color-primary)] uppercase tracking-[0.1em] block mb-3">Lincoln — Visual + Drums</span>
+              <ul className="text-[15px] text-white/50 leading-relaxed space-y-2 list-none">
+                <li>Photo restoration and AI enhancement</li>
+                <li>Animated visual narratives from still images</li>
+                <li>Music video creation from family archives</li>
+                <li>Drums — adding live percussion to the reworked tracks</li>
+                <li>Visual identity for the project</li>
+              </ul>
+            </div>
+          </div>
+
+          <p className="text-[15px] text-white/30 italic max-w-[640px]">
+            The podcast documents the journey — the tools we use, the creative decisions we make, and what it feels like to collaborate with AI on something that matters.
+          </p>
+        </section>
+
+        {/* Episode Ideas */}
+        <section className="bg-[#0f172a] px-8 md:px-20 py-24 max-w-[1440px] mx-auto">
           <span className="font-mono text-xs font-medium text-[var(--color-secondary)] tracking-[0.2em] uppercase block mb-4">Episode Ideas</span>
           <h2 className="font-display text-[clamp(2rem,4vw,2.5rem)] font-bold text-white tracking-tight leading-[1.1] mb-12">
             Season one
@@ -190,7 +248,7 @@ export default function Podcast() {
             <span className="absolute -top-12 -left-6 text-[120px] text-[var(--color-warm)]/30 font-serif leading-none">&ldquo;</span>
             You don&apos;t need to be a developer to build an app. You don&apos;t need to be a producer to make a track. You need vision, taste, and the right tools. AI is the right tool.
           </blockquote>
-          <cite className="text-sm text-[#64748b] not-italic">The LINC Podcast — opening thesis</cite>
+          <cite className="text-sm text-[#64748b] not-italic">The INC Podcast — opening thesis</cite>
         </section>
 
         {/* CTA */}
@@ -216,7 +274,7 @@ export default function Podcast() {
       </main>
 
       <footer className="max-w-[1440px] mx-auto px-8 py-10 border-t border-[#1e293b] text-center">
-        <p className="text-[13px] text-[#475569] mb-2">The LINC Podcast — AI expands creative possibility.</p>
+        <p className="text-[13px] text-[#475569] mb-2">The INC Podcast — exploring the potential of agentic A/V.</p>
         <p className="text-[13px] text-[#475569]"><Link href="/" className="text-blue-400 no-underline">lincolnmitchell.io</Link> &middot; <a href="https://benniejames.com" target="_blank" rel="noopener noreferrer" className="text-[var(--color-warm)]/50 no-underline">benniejames.com</a></p>
       </footer>
     </>
