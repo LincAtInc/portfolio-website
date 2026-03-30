@@ -1,160 +1,77 @@
-# Lincoln Mitchell - Portfolio Website
+# Lincoln Mitchell
 
-A modern portfolio website showcasing expertise in AI-assisted development, design systems, and vibe coding methodologies.
+**Design Systems Architect**
+NorthStar Prototyping | Agentic Design
 
-## Overview
+> This site demonstrates the methodology it describes.
 
-This portfolio highlights Lincoln Mitchell's approach to modern software development, bridging discovery and delivery through tools like Claude Code, V0.dev, and Cursor.ai, while maintaining consistency through code-based design systems.
-
-## Features
-
-- **Design System Architecture**: Built with a comprehensive design token system (colors, typography, spacing, shadows, transitions)
-- **Responsive Design**: Mobile-first approach with breakpoints at 480px, 768px, and 1024px
-- **Semantic HTML**: Clean, accessible structure
-- **Modern CSS**: CSS custom properties, Grid, Flexbox
-- **Performance Optimized**: Minimal dependencies, pure HTML/CSS
-- **Accessibility**: Reduced motion support, semantic markup
-
-## Design System Tokens
-
-The website is built on a robust design system with the following token categories:
-
-### Color Tokens
-- Primary palette (blue tones for CTAs and interactive elements)
-- Secondary palette (purple for accents)
-- Text hierarchy (primary, secondary, tertiary)
-- Background layers
-- Border colors
-
-### Typography Tokens
-- Font families (system fonts for performance)
-- Size scale (xs to 6xl)
-- Weight scale (normal to bold)
-- Line height (tight, normal, relaxed)
-
-### Spacing Tokens
-- Consistent 8-point grid system
-- Scale from 0.25rem to 6rem
-
-### Component Tokens
-- Border radius (sm to full)
-- Shadows (sm to xl)
-- Transitions (fast, base, slow)
-
-## File Structure
-
-```
-portfolio-website/
-├── index.html          # Main HTML structure
-├── styles.css          # Design system and styles
-└── README.md           # This file
-```
-
-## Running Locally
-
-Simply open `index.html` in a modern web browser:
-
-```bash
-cd portfolio-website
-open index.html  # macOS
-# or
-start index.html  # Windows
-# or
-xdg-open index.html  # Linux
-```
-
-For development with live reload, you can use any static server:
-
-```bash
-# Using Python
-python -m http.server 8000
-
-# Using Node.js (npx)
-npx serve
-
-# Using PHP
-php -S localhost:8000
-```
-
-Then visit `http://localhost:8000` in your browser.
-
-## Sections
-
-1. **Hero**: Eye-catching introduction with gradient background
-2. **About**: Professional background and statistics
-3. **The Vibe Coding Approach**: Detailed methodology using Claude Code, V0.dev, and Cursor.ai
-4. **Featured Projects**: Portfolio of significant work including Helix, RAC, CityWatch, and more
-5. **Design Philosophy**: Core principles and approach
-6. **Contact**: LinkedIn profile and availability
-
-## Customization
-
-### Updating Colors
-
-Edit the CSS custom properties in `styles.css`:
-
-```css
-:root {
-    --color-primary: #2563eb;  /* Change primary brand color */
-    --color-secondary: #8b5cf6;  /* Change secondary accent */
-}
-```
-
-### Adding Projects
-
-Add new project cards in the `#projects` section of `index.html`:
-
-```html
-<div class="project-card">
-    <div class="project-header">
-        <h3>Project Name</h3>
-        <span class="project-role">Your Role</span>
-    </div>
-    <p class="project-description">Description here...</p>
-    <div class="project-tags">
-        <span class="tag">Tag 1</span>
-        <span class="tag">Tag 2</span>
-    </div>
-</div>
-```
-
-## Browser Support
-
-- Chrome/Edge (latest)
-- Firefox (latest)
-- Safari (latest)
-- Mobile browsers (iOS Safari, Chrome Mobile)
-
-## Performance
-
-- **Zero dependencies**: Pure HTML/CSS
-- **Fast load times**: No JavaScript required
-- **Optimized assets**: System fonts, CSS custom properties
-- **Minimal CSS**: Single stylesheet with design tokens
-
-## Accessibility
-
-- Semantic HTML5 elements
-- ARIA-compliant navigation
-- Reduced motion support for users with vestibular disorders
-- Keyboard navigation support
-- High contrast text colors
-
-## Future Enhancements
-
-Consider adding:
-- Dark mode toggle
-- Interactive project galleries
-- Contact form with backend
-- Blog integration
-- Case study deep-dives
-- Animation libraries (GSAP, Framer Motion)
-- Analytics tracking
-
-## License
-
-© 2026 Lincoln Mitchell. All rights reserved.
+[lincolnmitchell.io](https://lincolnmitchell.io) | [linc@lincolnmitchell.io](mailto:linc@lincolnmitchell.io) | [Book a chat](https://cal.com/lincmitch)
 
 ---
 
-Built with modern web standards and a focus on performance. Created using AI-assisted development tools that bridge discovery and delivery.
+## What This Is
+
+This is a proof-of-practice portfolio — not a template, not a starter kit. Every line of code, every word of content, and every design decision was generated through Claude Code prompts. The site IS the case study: a recursive demonstration of the agentic design systems approach it describes.
+
+## The Agent Team
+
+This portfolio is built and maintained by a team of six specialised AI agents, each with a dedicated context file in `.claude/agents/` defining its role, boundaries, and expertise.
+
+| Agent | Role |
+|-------|------|
+| **Lead Content Strategist** | Writes all content in Lincoln's voice |
+| **Lead FED Developer** | React, TypeScript, Tailwind implementation |
+| **Lead UI Designer** | Visual design, design system compliance |
+| **Lead UX Designer** | User flows, interaction patterns |
+| **Lead UX Researcher** | Domain research, competitive analysis |
+| **Stakeholder Simulator** | Pressure-tests ideas against personas |
+
+The agents collaborate through Lincoln's orchestration — he sets the vision, they execute. The `CLAUDE.md` file is the single source of truth that governs the entire system.
+
+## Tech Stack
+
+- **Next.js 16** + **React 19**
+- **Tailwind CSS v4** with design token theme mapping
+- **TypeScript**
+- **Claude Code (Opus)** as the primary development tool
+- **Vercel** for deployment
+
+## The INC Framework
+
+**I \<N\> C** = **Ideate** &lt;**Narrate**&gt; **Create**
+
+The angle brackets are deliberate — `<N>` reads like an HTML tag because the agentic design system IS the markup that wraps everything. N is not a step between Ideation and Creation. It is the amplifier that radiates into both directions:
+
+- **I (Ideate)** — Discovery-first NorthStar prototyping with AI, when possibilities are widest
+- **\<N\> (Narrate)** — Domain knowledge encoded as agentic context. The design system as infrastructure.
+- **C (Create)** — Production code, content authoring, shipping
+
+The career arc is the proof: CDO (Discovery) → React Dev (Delivery) → Design Systems (The Link) → Agentic Design Systems (The Amplified Link).
+
+## Thoughts
+
+Thought leadership pieces exploring the intersection of cognition, design systems, and AI:
+
+- [AI & Creativity — McGilchrist](src/app/thoughts/page.tsx) — Intelligence is not wisdom. AI amplifies left-hemisphere thinking at global scale.
+- [Scout Bees — Helen Taylor](src/app/thoughts/scout-bees/page.tsx) — Complementary cognition and the explorer brain.
+- [MIND Strengths — Brock & Eide](src/app/thoughts/dyslexic-advantage/page.tsx) — The Dyslexic Advantage mapped to the INC framework.
+- [Digital Samsara](src/app/thoughts/digital-samsara/page.tsx) — The infinite scroll, notification as craving, and the 10 perfections.
+- [Make Culture](src/app/thoughts/make-culture/page.tsx) — Why design thinking became divorced from making.
+- [Competing Values — Quinn & Cameron](src/app/thoughts/competing-values/page.tsx) — The four cultures hiding inside your design system.
+- [Stakeholder Simulator](src/app/thoughts/stakeholder-simulator/page.tsx) — An AI agent that pressure-tests ideas against real personas.
+- [Assistive Technology](src/app/thoughts/assistive-tech/page.tsx) — Assistive tech for the dyslexic designer.
+
+## Built With
+
+Every line of code, every word of content, and every design decision on this site was generated through Claude Code prompts. The `CLAUDE.md` file is the single source of truth — the agentic design system in action. This is not a claim about AI replacing designers. It is proof that one person with the right methodology and the right tools can operate as a full discovery-to-delivery team.
+
+## Contact
+
+- **Email:** [linc@lincolnmitchell.io](mailto:linc@lincolnmitchell.io)
+- **Web:** [lincolnmitchell.io](https://lincolnmitchell.io)
+- **Schedule:** [cal.com/lincmitch](https://cal.com/lincmitch)
+- **Location:** London, UK & Sydney, Australia
+
+---
+
+© 2026 Lincoln Mitchell. All rights reserved.
