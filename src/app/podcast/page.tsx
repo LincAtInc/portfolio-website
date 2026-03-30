@@ -52,13 +52,13 @@ export default function Podcast() {
           <div className="flex-1">
             <span className="font-mono text-xs font-medium text-[var(--color-warm)] tracking-[0.2em] uppercase block mb-6">Coming Soon</span>
             <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] font-bold text-white tracking-[-0.03em] leading-[1.05] mb-6">
-              The <span className="text-[var(--color-warm-light)]">MITCHELL</span> Podcast
+              The <span className="bg-[var(--color-warm)] text-[var(--color-surface)] px-[0.3em] py-[0.05em] tracking-[0.06em] rounded-sm">MITCHELL</span> Podcast
             </h1>
             <p className="text-xl text-white/50 leading-relaxed mb-8 max-w-[520px]">
               Two brothers exploring the potential of agentic A/V. Ben brings the audio, Lincoln brings the visual. AI expands what&apos;s creatively possible — and we&apos;re documenting the journey.
             </p>
             <div className="flex gap-4 flex-wrap">
-              <a href="https://cal.com/lincmitch" target="_blank" rel="noopener noreferrer" className="text-[15px] font-medium text-white bg-[var(--color-primary)] px-8 py-3.5 rounded-lg no-underline hover:bg-[var(--color-primary-dark)] transition-colors">
+              <a href="https://cal.com/lincmitch" target="_blank" rel="noopener noreferrer" className="text-[15px] font-medium text-white bg-[#2563eb] px-8 py-3.5 rounded-lg no-underline hover:bg-[#1d4ed8] transition-colors">
                 Be a Guest
               </a>
               <a href="mailto:linc@lincolnmitchell.io" className="text-[15px] font-medium text-white/50 border border-[#1e293b] px-8 py-3.5 rounded-lg no-underline hover:text-white hover:border-[#475569] transition-colors">
@@ -260,7 +260,7 @@ export default function Podcast() {
             We&apos;re looking for guests who use AI to expand their creative practice — any medium, any level. If AI changed how you make things, we want to hear about it.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
-            <a href="https://cal.com/lincmitch" target="_blank" rel="noopener noreferrer" className="text-[15px] font-medium text-white bg-[var(--color-primary)] px-8 py-3.5 rounded-lg no-underline hover:bg-[var(--color-primary-dark)] transition-colors">
+            <a href="https://cal.com/lincmitch" target="_blank" rel="noopener noreferrer" className="text-[15px] font-medium text-white bg-[#2563eb] px-8 py-3.5 rounded-lg no-underline hover:bg-[#1d4ed8] transition-colors">
               Be a Guest
             </a>
             <a href="mailto:linc@lincolnmitchell.io" className="text-[15px] font-medium text-white/50 border border-[#1e293b] px-8 py-3.5 rounded-lg no-underline hover:text-white hover:border-[#475569] transition-colors">
