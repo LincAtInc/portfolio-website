@@ -10,6 +10,7 @@ const links = [
   { href: "/work", label: "Work" },
   { href: "/headless-ds", label: "Headless DS" },
   { href: "/system", label: "The System" },
+  { href: "/explore", label: "Explore" },
   { href: "/thoughts", label: "Thoughts" },
   { href: "/podcast", label: "Podcast" },
 ];

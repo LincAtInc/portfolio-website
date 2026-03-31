@@ -87,6 +87,13 @@ const timeline = [
   },
   {
     year: "2025",
+    tech: "Claude Voice Mode",
+    desc: "Speak to Claude, it writes. Not dictation \u2014 conversation. Hold spacebar, describe what you want in fragmented, dyslexic, verbal thinking, release. The agent translates it into structured output. The input channel shifts from typing to talking. For someone whose thoughts flow faster than their fingers can spell, voice is liberation.",
+    impact: "The keyboard becomes optional. The voice becomes the interface. I\u2192N\u2192C through speech.",
+    era: "now",
+  },
+  {
+    year: "2025",
     tech: "MCP, Figma MCP, Design Tokens as AI Infrastructure",
     desc: "Design systems become machine-readable infrastructure. Tokens, components, and context files that AI agents consume directly. The design system communicates on your behalf — to humans AND machines.",
     impact: "One person, four AI agents, production output. The team is encoded, not hired.",
@@ -261,6 +268,12 @@ export default function AssistiveTech() {
             <p>
               AR/XR, spatial computing, gesture interfaces, ambient UI &mdash; these are all visual-spatial mediums. The designers who will build them think in exactly the way dyslexic brains are wired: Material reasoning, Interconnected reasoning, Dynamic reasoning. Not sequential text processing.
             </p>
+            <p>
+              Yesenia Perez-Cruz at IDS 2026 described the next generation of design systems as a <strong className="text-white">language</strong>: Grammar (design system rules) + Vocabulary (domain objects) = Sentences (composed UI). AI assembles the sentences. The interface isn&apos;t written &mdash; it&apos;s spoken into existence. The text-based specification becomes a visual-spatial composition. The grammar is structural. The vocabulary is contextual. The output is visual.
+            </p>
+            <p>
+              For dyslexic thinkers who always struggled with text grammar but excelled at spatial composition, pattern recognition, and narrative structure &mdash; this new language isn&apos;t learned. It&apos;s <em>native</em>.
+            </p>
             <p className="text-[var(--color-accent)]">
               Dyslexia wasn&apos;t a disability. It was early adoption of a language the world hadn&apos;t invented yet.
             </p>
@@ -303,7 +316,7 @@ export default function AssistiveTech() {
               Your ability to see patterns across domains, to think in spatial relationships, to simulate scenarios dynamically, to encode complex ideas as narrative &mdash; these are <strong className="text-white">cognitive strengths</strong> that the design industry desperately needs. The spelling and sequential processing are what the tools handle.
             </p>
             <p>
-              <strong className="text-white">Build your stack.</strong> Grammarly for writing. Voice input for drafts. Claude Code for implementation. Custom agents for your team. CLAUDE.md for your context. Design tokens for your system. Encode your narrative. Let the agents execute.
+              <strong className="text-white">Build your stack.</strong> Grammarly for writing. Claude Voice Mode for drafts. Claude Code for implementation. Custom agents for your team. CLAUDE.md for your context. Design tokens for your system. Encode your narrative. Let the agents execute.
             </p>
             <p className="text-[var(--color-warm-light)]">
               You were never bad at communication. You were using the wrong medium. AI is the right one.

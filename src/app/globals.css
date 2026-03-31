@@ -221,3 +221,62 @@ body {
   outline: 2px solid var(--color-primary-container);
   outline-offset: 2px;
 }
+
+/* ─── Explore page animations ──────────────────────────────────────────── */
+
+/* Surface fade-in */
+.animate-surface {
+  animation: surface-appear 300ms ease forwards;
+}
+
+/* Staggered region fade-in inside a surface */
+.animate-region {
+  animation: region-appear 300ms ease forwards;
+  animation-delay: calc(60ms * var(--stagger, 0));
+  opacity: 0;
+}
+
+@keyframes surface-appear {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes region-appear {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Input shake on unrecognised intent */
+.animate-shake {
+  animation: input-shake 200ms ease;
+}
+
+@keyframes input-shake {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(-6px); }
+  50%  { transform: translateX(6px); }
+  75%  { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+
+/* No-match message fade */
+.animate-fade-in {
+  animation: fade-in 200ms ease forwards;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-surface,
+  .animate-region,
+  .animate-shake,
+  .animate-fade-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

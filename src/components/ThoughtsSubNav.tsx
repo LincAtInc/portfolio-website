@@ -12,6 +12,11 @@ const thinkers = [
   { href: "/thoughts/competing-values", label: "Competing Values", author: "Quinn & Cameron" },
   { href: "/thoughts/stakeholder-simulator", label: "Stakeholder Sim", author: "Alan Cooper" },
   { href: "/thoughts/assistive-tech", label: "Assistive Tech", author: "Personal" },
+  { href: "/thoughts/beyond-ui", label: "Beyond the Screen", author: "IDS 2026" },
+  { href: "/thoughts/approved-in-theory", label: "Approved in Theory", author: "Personal" },
+  { href: "/thoughts/the-middleware-problem", label: "The Middleware Problem", author: "Personal" },
+  { href: "/thoughts/room-after-the-talk", label: "Room After the Talk", author: "IDS 2026" },
+  { href: "/thoughts/product-primitives", label: "Product Primitives", author: "Yesenia Perez-Cruz" },
 ];
 
 export function ThoughtsSubNav() {
