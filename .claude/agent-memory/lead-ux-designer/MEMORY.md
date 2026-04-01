@@ -1,0 +1,2 @@
+- [project_explore_page.md](project_explore_page.md) — Intent-Based UI /explore page: full UX flow, surface types, interaction model, routing decision
+- [user_lincoln_profile.md](user_lincoln_profile.md) — Lincoln's role, methodology (INC), site context, and UX collaboration preferences
