@@ -50,3 +50,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# claude agent working files
+.claude/agent-memory/
+.claude/worktrees/
+
+# test output
+test-results/
+
+# screenshots (generated, not source)
+screenshots/*.png
