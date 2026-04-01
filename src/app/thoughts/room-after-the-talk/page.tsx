@@ -392,6 +392,188 @@ export default function RoomAfterTheTalk() {
           </div>
         </section>
 
+        {/* Shipping Without a System — Freya Stockman's talk */}
+        <section className="bg-[#0f172a] px-8 md:px-20 py-24 max-w-[1440px] mx-auto">
+          <span className="font-mono text-xs font-medium text-[var(--color-secondary)] tracking-[0.2em] uppercase block mb-4">
+            Shipping Without a System
+          </span>
+          <h2 className="font-display text-[clamp(2rem,4vw,2.5rem)] font-bold text-white tracking-tight leading-[1.1] mb-4">
+            From the &ldquo;I&apos;m not an engineer but I ship code&rdquo; talk
+          </h2>
+          <p className="text-[17px] text-white/50 leading-relaxed max-w-[680px] mb-12">
+            Freya Stockman (Relevance AI) gave a talk that a lot of designers needed to hear: you can ship production code without calling yourself an engineer. The audience loved it. Then they started asking the harder questions &mdash; the ones that come up when you try to do this at scale, inside a real team, with a real codebase. Here are my answers.
+          </p>
+
+          <div className="flex flex-col gap-6 max-w-[860px]">
+            {[
+              {
+                question: "This is brilliant for solo work — but what happens when five designers are all shipping code independently? How do you keep it consistent?",
+                answer: (<>That&apos;s exactly the right question. And it&apos;s the one the talk didn&apos;t need to answer, because Freya&apos;s context is her own work. But yours isn&apos;t. The answer is a design system. Not a Figma library &mdash; a machine-readable context layer that every agent reads before it writes a single line. When five designers are each prompting their own AI, the consistency doesn&apos;t come from them. It comes from the shared system they&apos;re all referencing. CLAUDE.md, design tokens, component contracts. The agents converge on the same output because they&apos;re reading the same instructions. Without that layer, you don&apos;t have five designers shipping code. You have five separate codebases that happen to look similar on a Tuesday.</>),
+              },
+              {
+                question: "What does an engineer think when they inherit code that a designer shipped? Is that a real problem?",
+                answer: (<>Yes. I&apos;ve been both sides of that conversation. Here&apos;s the honest version: AI-generated code from a designer without system context is often structurally fine and semantically fragile. It works. It doesn&apos;t compose. The variable names are arbitrary, the component boundaries are wrong, and the styling is inline. An engineer can use it &mdash; but they&apos;re essentially rewriting it while pretending to extend it. The fix isn&apos;t &ldquo;designers should code better.&rdquo; The fix is a design system that constrains what the AI produces. When the agent is reading a token file and a component API, it generates code that an engineer recognises. Same naming conventions. Same component structure. Same styling approach. The design system is the shared language. Without it, you&apos;re shipping dialects.</>),
+              },
+              {
+                question: "Freya said she's 'not an engineer.' Lincoln, you say you're 50% designer / 30% developer. Does that distinction still matter?",
+                answer: (<>It matters, but not in the way people think. Freya&apos;s point is liberating: you don&apos;t need an engineering identity to produce engineering outputs. That&apos;s true. What she&apos;s doing in discovery &mdash; exploring, prototyping, validating ideas fast &mdash; is the exact work AI was built to amplify. Go crazy there. Ship everything. The hybrid identity matters when you cross into delivery. When your prototype needs to become a component in a living design system. When your token choices affect a production build. When your naming conventions have to match the team&apos;s existing architecture. That&apos;s not gatekeeping. That&apos;s the <Link href="/system/claude-md" className="text-[var(--color-primary)] no-underline hover:underline">INC framework</Link> doing its job &mdash; Ideate freely, then Narrate carefully so that Create is consistent. Freya&apos;s doing brilliant Ideate work. The design system is what makes it repeatable.</>),
+              },
+              {
+                question: "What if there is no design system at the company where I'm trying to do this? Do I need one before I can start?",
+                answer: (<>No. Start without one. That&apos;s the point of NorthStar Prototyping. Explore first. Ship the idea. Prove the value. A prototype that works is better evidence than a proposal for a design system that doesn&apos;t exist yet. Freya&apos;s approach is exactly right for this moment &mdash; move fast, show the possibility, don&apos;t wait for infrastructure permission. But here&apos;s what I&apos;d say to do in parallel: as you&apos;re prototyping, notice what decisions you&apos;re making repeatedly. Colour choices. Button behaviour. Type scale. Spacing. Those repeated decisions are your design system waiting to be written down. The system doesn&apos;t precede the work &mdash; it emerges from it. Start the CLAUDE.md on day one. Even if it&apos;s three lines. That&apos;s the seed. Every decision you make consciously is a constraint you won&apos;t have to re-argue tomorrow. By the time you&apos;ve shipped five prototypes, you have a design system. You just need to name it. <Link href="/system/claude-md" className="text-[var(--color-primary)] no-underline hover:underline">Here&apos;s what mine looks like.</Link></>),
+              },
+              {
+                question: "Is this the end of the traditional UX process — research, wireframes, handoff? Are those skills still worth learning?",
+                answer: (<>The skills are worth more than ever. The delivery mechanism has changed. Research still tells you what to build. The difference is you can now prototype the answer in the same session as the insight, instead of waiting three sprints. Wireframes still test information architecture &mdash; but you can generate five variants in twenty minutes instead of one in a day. Handoff still communicates intent to engineering &mdash; but increasingly the handoff IS the code, not a Figma file with a red-line spec. What&apos;s gone: the artificial distance between thinking and making. The UX process was stretched over weeks partly because the tools made it slow. AI collapses that distance. The research and prototyping still happen. They just happen faster, and closer together. Freya is doing exactly this &mdash; compressing the loop from idea to shipped output. That&apos;s not the end of the UX process. That&apos;s what the UX process always wanted to be. The design system is <Link href="/thoughts/beyond-ui" className="text-[var(--color-accent)] no-underline hover:underline">what keeps it honest at scale</Link> &mdash; so that the faster loop doesn&apos;t produce faster chaos.</>),
+              },
+              {
+                question: "How do you ensure the output is accessible?",
+                answer: (<>The design system handles this. Semantic HTML, ARIA patterns, colour contrast ratios &mdash; these are encoded in the component contracts and token values, not left to the individual prompt. When the agent reads the system, it generates accessible code by default. When it doesn&apos;t, that&apos;s a missing constraint in the system, not a failure of the designer. Fix the system, not the output. Accessibility isn&apos;t a checklist you run after shipping. It&apos;s a constraint you encode before prompting.</>),
+              },
+              {
+                question: "I can&apos;t avoid hardcoding with Tailwind and Cursor. Does the code still need to be reviewed by a developer?",
+                answer: (<>Yes. Always. That&apos;s not a weakness of the approach &mdash; that&apos;s how software works. Every engineer&apos;s code gets reviewed. The question is what the reviewer is checking. Without a design system, they&apos;re checking everything: naming, structure, accessibility, brand compliance. With a design system constraining the agent, they&apos;re checking intent and edge cases. The review burden shrinks because the system already handled the mechanical correctness.</>),
+              },
+              {
+                question: "You&apos;re saying the double diamond is expanding. NNG says it&apos;s compressing. Others say it&apos;s dead. Which is it?",
+                answer: (<>All three are true, depending on where you sit. For delivery teams, it&apos;s compressing &mdash; AI makes execution faster. For discovery, it&apos;s expanding &mdash; AI lets you explore more possibilities than you ever could manually. The people who say it&apos;s dead are watching the diamond from the delivery side, where the gap between idea and output has collapsed. But the divergent phase &mdash; the exploration, the &ldquo;what if&rdquo; &mdash; that&apos;s wider than ever. NorthStar Prototyping lives in that expansion. Freya&apos;s work proves it. The diamond isn&apos;t dead. It&apos;s asymmetric now.</>),
+              },
+              {
+                question: "Is there a use case for vibe-coded apps beyond prototypes? Could it be sold, support multiple users, receive updates?",
+                answer: (<>Today, not without engineering infrastructure underneath. Vibe-coded apps are discovery artefacts. They prove the idea, validate the interaction, test the flow. Production requires auth, databases, CI/CD, error handling, security &mdash; the boring stuff that AI doesn&apos;t add unless you ask for it. But here&apos;s the shift: the prototype IS the spec. Instead of handing off a Figma file, you hand off working code that an engineer refactors into production. The gap between prototype and product shrinks every month.</>),
+              },
+              {
+                question: "Do you use AI for TDD and E2E testing in your vibe coding work?",
+                answer: (<>Not in discovery. Discovery prototypes don&apos;t need test suites &mdash; they need to be fast and disposable. But the moment code moves toward production, yes. Claude Code writes Playwright tests for this portfolio site. The design system&apos;s component contracts define what to test. The agent knows the expected behaviour because the context file describes it. Testing isn&apos;t opposed to vibe coding &mdash; it&apos;s what happens when vibe coding crosses into delivery.</>),
+              },
+              {
+                question: "Being a &apos;full stack product designer&apos; risks stretching thin and being underpaid as a developer. How do you protect the discovery mindset?",
+                answer: (<>This is the most important question in the list. The risk is real &mdash; if you let &ldquo;I can ship code&rdquo; become &ldquo;I am the developer,&rdquo; you&apos;ve traded your most valuable skill for your least differentiated one. The guardrail is the INC framework: Ideate is YOUR job. Create is the AGENT&apos;S job. The design system &mdash; the Narrate layer &mdash; is the bridge between them. You stay in discovery. The system handles delivery. The moment you&apos;re debugging CSS for three hours, you&apos;ve lost the plot.</>),
+              },
+              {
+                question: "Did you create a Design System for the webpage or did Cursor create it by itself?",
+                answer: (<>I directed it. The AI created it with my design and code direction. And in delivery, a UI designer refines it &mdash; in Figma, in code, wherever they work best. That&apos;s the point: the design system starts in discovery as intent and tokens, then gets polished by specialists who contribute back to the shared context. Everyone contributes to the narrative layer &mdash; designer, engineer, product owner. And anyone with an idea can draw from it. The system is a commons, not a deliverable. Figma isn&apos;t where it begins. It&apos;s where it gets refined.</>),
+              },
+              {
+                question: "How do you do dev handoff after coming up with designs in AI tools?",
+                answer: (<>The handoff IS the code. Not a Figma file with annotations. Not a Confluence page with screenshots. Working code in a branch, built against the design system&apos;s tokens and components. The engineer reviews it like any other PR. The prototype and the handoff are the same artefact. No translation layer. No &ldquo;the design said X but the build does Y.&rdquo;</>),
+              },
+              {
+                question: "Do you think the future is no longer in Figma, but instead prototyping and exploration will be in code?",
+                answer: (<>Figma isn&apos;t going away &mdash; but its role is changing. Figma becomes a downstream output, not the origin of truth. Code is the source. Figma reflects it via Code Connect and MCP. I still use Figma for spatial thinking, flow mapping, and stakeholder communication. But the component library lives in code, the tokens live in CSS custom properties, and the agent reads the code &mdash; not the Figma file. Explore wherever you think best. Just make sure the system of record is code.</>),
+              },
+              {
+                question: "Are your context docs shared somehow, for collaborating on building them?",
+                answer: (<><Link href="/system/claude-md" className="text-[var(--color-primary)] no-underline hover:underline">CLAUDE.md lives in the repo</Link>. It&apos;s version-controlled. Every team member reads the same context. Every agent reads the same context. That&apos;s the collaboration model &mdash; not a shared Google Doc, but a shared source of truth co-located with the code it describes. PRs to CLAUDE.md are design decisions. And here&apos;s the reframe: everyone contributes to the narrative. The designer adds voice guidelines. The engineer adds component contracts. The PO adds domain language. The system grows because the whole team feeds it.</>),
+              },
+              {
+                question: "How do you ensure the .md files are well-written but not too verbose?",
+                answer: (<>Curation, not documentation. A context dump is worse than no context &mdash; it drowns the signal. CLAUDE.md contains positioning, tokens, voice, methodology, key decisions. Not every component prop. Not every colour value. The agent needs to know WHY you chose blue, not just that blue is #2563eb. When the file gets too long, that&apos;s a smell &mdash; split it, or delete the parts the agent never uses. Quality of context beats quantity every time.</>),
+              },
+              {
+                question: "Do you have suggestions for people who can&apos;t spend $200 per month on Agentic IDEs?",
+                answer: (<>Claude Code has a free tier. VS Code is free. CSS custom properties are free. A CLAUDE.md file costs nothing. The most expensive part of this workflow is the thinking, not the tooling. Start with what you have. The context file approach works with any LLM that reads markdown &mdash; that&apos;s the whole point of tool-agnostic infrastructure. The system doesn&apos;t require premium tools. It requires clear intent.</>),
+              },
+              {
+                question: "Freya says &apos;make the models fight.&apos; Do you switch between Claude, GPT, and Gemini?",
+                answer: (<>Yes &mdash; but not the way she means. My Claude agents are the team. They do the work &mdash; design, code, research, content &mdash; all reading the same CLAUDE.md, all embedded in the design system. Other models are the opposition. I throw the output at GPT or Gemini and say &ldquo;what&apos;s wrong with this?&rdquo; They don&apos;t know my system, my brand, my context &mdash; which makes them perfect critics. They spot what my own agents are blind to precisely because they&apos;re NOT embedded in the narrative. It&apos;s like having an in-house team and an external reviewer. The team builds. The outsider stress-tests. Same principle as Freya&apos;s &mdash; productive disagreement &mdash; but the disagreement comes from different contexts, not just different models.</>),
+              },
+            ].map((q, i) => (
+              <div
+                key={i}
+                className={`p-8 bg-[#0a0f1a] border border-[#1e293b] border-l-[3px] ${colorCycle[(i + 1) % colorCycle.length].border} rounded-xl`}
+              >
+                <div className="flex gap-6 items-start mb-5">
+                  <span className="font-mono text-[11px] text-white/20 w-5 pt-1 shrink-0">
+                    {String(i + 31).padStart(2, "0")}
+                  </span>
+                  <h3 className={`font-display text-lg font-semibold leading-[1.3] ${colorCycle[(i + 1) % colorCycle.length].label}`}>
+                    &ldquo;{q.question}&rdquo;
+                  </h3>
+                </div>
+                <div className="pl-11">
+                  <p className="text-[16px] text-white/55 leading-relaxed">{q.answer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Context > Probability — Jesse Gardner's talk */}
+        <section className="px-8 md:px-20 py-24 max-w-[1440px] mx-auto">
+          <span className="font-mono text-xs font-medium text-[var(--color-primary)] tracking-[0.2em] uppercase block mb-4">
+            Context &gt; Probability
+          </span>
+          <h2 className="font-display text-[clamp(2rem,4vw,2.5rem)] font-bold text-white tracking-tight leading-[1.1] mb-4">
+            From the Context &gt; Probability talk
+          </h2>
+          <p className="text-[17px] text-white/50 leading-relaxed max-w-[680px] mb-12">
+            Jesse Gardner (Director User Research, New York State) built a custom MCP server for the NYS Design System and cut token costs by 85%. A small team serving dozens of government agencies. He called their philosophy &ldquo;curators, not innovators.&rdquo; It&apos;s one of the clearest talks of the conference on what design systems become when they&apos;re built as infrastructure rather than component catalogues.
+          </p>
+
+          <div className="flex flex-col gap-6 max-w-[860px]">
+            {[
+              {
+                question: "How can design systems act as context for AI, not just UI?",
+                answer: (<>Jesse&apos;s framing says it directly: context over probability. The design system isn&apos;t a library of buttons &mdash; it&apos;s a body of knowledge. Component names, token values, accessibility rules, usage guidelines, anti-patterns. When that knowledge is structured so an AI can query it, the system stops being a resource you consult and becomes infrastructure the agent runs on. My <Link href="/system/claude-md" className="text-[var(--color-primary)] no-underline hover:underline">CLAUDE.md</Link> does this through prose and markdown. Jesse&apos;s MCP server does it through typed tool definitions. Different form, same function: giving the AI the WHY so it doesn&apos;t have to guess.</>),
+              },
+              {
+                question: "What does it mean in practice for a design system to be AI infrastructure?",
+                answer: (<>It means the system has two audiences: humans and machines. Most design systems are built for one. The human audience needs Storybook, docs sites, Figma libraries &mdash; all good. The machine audience needs structured, queryable, predictable interfaces. Jesse built validate_component_api for exactly this reason &mdash; so the AI can check its own output against the system&apos;s rules before it ships. That&apos;s governance automated. When I talk about <Link href="/headless-ds" className="text-[var(--color-accent)] no-underline hover:underline">agentic design systems</Link>, this is precisely what I mean: a system that enforces itself, not one that relies on human review to catch every deviation.</>),
+              },
+              {
+                question: "What did it take to get your design system machine-readable?",
+                answer: (<>Jesse went the TypeScript MCP route &mdash; tool definitions with structured inputs and outputs, served to Claude Code. I went the CLAUDE.md route &mdash; prose, structured headings, decisions captured in plain language. Both work, and they&apos;re complementary not competing. The real cost isn&apos;t technical &mdash; it&apos;s curatorial. You have to decide what the system knows. Jesse&apos;s team spent real time encoding component usage rules, accessibility notes, and token semantics. I spent time encoding brand voice, design decisions, and methodology. Machine-readability isn&apos;t a format &mdash; it&apos;s a commitment to making your implicit knowledge explicit. That&apos;s the hard part.</>),
+              },
+              {
+                question: "Can you explain the difference between using Figma MCP with internal design files versus building a custom MCP server?",
+                answer: (<>Jesse answered this well: Figma MCP pulls structured component data from a designer&apos;s Figma file &mdash; properties, variants, auto-layout. A custom MCP server lets AI build anything that follows your design system&apos;s rules, with no Figma file required. I&apos;d add a third dimension: CLAUDE.md sits between both. Figma MCP knows the visual specification. Custom MCP validates the code. CLAUDE.md explains the intent &mdash; why this component exists, what problem it solves, when not to use it. You need all three for a complete picture.</>),
+              },
+              {
+                question: "How much trial and error did it take to feel confident in your MCP server setup?",
+                answer: (<>Jesse said roughly a month, with ongoing refinement &mdash; and that sounds right. Confidence in this kind of infrastructure isn&apos;t a threshold you cross, it&apos;s a gradient you climb. The first week you&apos;re fixing tool schemas. The second week you&apos;re tuning which context gets passed. A month in you trust the core loop. Six months in you&apos;re refining edge cases. My experience with CLAUDE.md was identical &mdash; the first version was 20 lines and got things wrong constantly. The current version is hundreds of lines and gets things right most of the time. The process doesn&apos;t end. It compounds.</>),
+              },
+              {
+                question: "Any tips on managing content with a design system?",
+                answer: (<>Treat content as a first-class token. Jesse&apos;s system encodes component documentation alongside component APIs &mdash; that&apos;s content as infrastructure. Most design systems separate content guidelines into a document nobody reads. Fold it in. Write rules the AI can consume: &ldquo;headings use sentence case,&rdquo; &ldquo;error messages name the field and tell the user what to do,&rdquo; &ldquo;button labels are verbs.&rdquo; The agent reads those rules exactly as it reads spacing tokens. Content governance scales the same way visual governance does &mdash; through machine-readable constraints, not style guides in a PDF.</>),
+              },
+              {
+                question: "How do you practically integrate AI tools within the constraints of a public-sector or regulated environment?",
+                answer: (<>Jesse served dozens of New York State agencies. I&apos;ve worked in healthcare &mdash; Helix at Telstra Health, PenCS. The answer is the same in both contexts: separate discovery from delivery. In discovery &mdash; NorthStar prototyping, early exploration, stakeholder alignment &mdash; you can move fast and use the best tools available. No production data, no compliance risk. In delivery &mdash; the code that ships to real users &mdash; you&apos;re constrained, and rightly so. Jesse&apos;s validate_component_api is delivery infrastructure: it exists precisely because the output needs to be trustworthy. Build the wall between environments deliberately and you can move quickly on both sides.</>),
+              },
+              {
+                question: "How do you ensure quality for new components or patterns generated by AI?",
+                answer: (<>Jesse&apos;s &ldquo;curators, not innovators&rdquo; framing is the key. The team&apos;s job isn&apos;t to invent new patterns &mdash; it&apos;s to evaluate whether AI-generated patterns hold up against existing user research, accessibility standards, and brand guidelines. That&apos;s a quality gate, not a creative brief. In INC terms, this is N&apos;s role: the Narrate layer encodes what good looks like. The agent generates against those constraints. The human reviews for intent and edge cases, not basic compliance. Don&apos;t try to automate both &mdash; you&apos;ll get efficient outputs that miss the point.</>),
+              },
+              {
+                question: "How do you keep your sources in sync &mdash; documentation, code, design, AI instructions?",
+                answer: (<>Jesse said his team is working on a shared repo where the whole team can update agents, skills, and a CLAUDE.md &mdash; still TBD. That&apos;s exactly the right direction. The sync problem is a governance problem wearing a technical costume. The real question is: who owns the source of truth? In Jesse&apos;s case, the MCP server is the delivery source of truth. In mine, CLAUDE.md is the discovery source of truth. When design changes, the token file updates. When methodology changes, CLAUDE.md updates. The tooling reflects the decision &mdash; not the other way around. That&apos;s the <Link href="/thoughts/the-middleware-problem" className="text-[var(--color-secondary)] no-underline hover:underline">N layer in INC</Link>.</>),
+              },
+              {
+                question: "Many design teams have been reduced due to AI. What is your take on teams shrinking to mainly lead and principal positions?",
+                answer: (<>Jesse has six people serving dozens of government agencies. I have one person plus agents serving this entire site. The question assumes shrinking is the problem. I think the capability expansion is the story. A six-person team that serves the scope of a sixty-person team isn&apos;t a tragedy &mdash; it&apos;s proof the infrastructure works. What gets harder is the invisible cost: when a small team carries the knowledge of a large one, the N layer has to be genuinely robust. Verbal knowledge dies when someone leaves. CLAUDE.md doesn&apos;t. The answer to team shrinking isn&apos;t to resist it &mdash; it&apos;s to build the context infrastructure so deeply that the knowledge outlasts the headcount. That&apos;s <Link href="/thoughts/the-middleware-problem" className="text-[var(--color-warm)] no-underline hover:underline">The Middleware Problem</Link>.</>),
+              },
+            ].map((q, i) => (
+              <div
+                key={i}
+                className={`p-8 bg-[#0a0f1a] border border-[#1e293b] border-l-[3px] ${colorCycle[(i + 4) % colorCycle.length].border} rounded-xl`}
+              >
+                <div className="flex gap-6 items-start mb-5">
+                  <span className="font-mono text-[11px] text-white/20 w-5 pt-1 shrink-0">
+                    {String(i + 49).padStart(2, "0")}
+                  </span>
+                  <h3 className={`font-display text-lg font-semibold leading-[1.3] ${colorCycle[(i + 4) % colorCycle.length].label}`}>
+                    &ldquo;{q.question}&rdquo;
+                  </h3>
+                </div>
+                <div className="pl-11">
+                  <p className="text-[16px] text-white/55 leading-relaxed">{q.answer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* The Pattern */}
         <section className="bg-[#0f172a] px-8 md:px-20 py-24 max-w-[1440px] mx-auto">
           <span className="font-mono text-xs font-medium text-[var(--color-secondary)] tracking-[0.2em] uppercase block mb-4">

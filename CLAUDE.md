@@ -55,6 +55,16 @@ The core methodology. Maps to the three approach steps on the site:
 N is the expansion layer — not a step between I and C, but the amplifier that radiates into both:
 `I <N> C`
 
+**Everyone contributes to N. Anyone can draw from it.** The narrative layer grows from:
+- Design tokens, brand voice, component contracts
+- Real data — design and prototype with real data, not lorem ipsum
+- The architect's ramblings, thoughts, and ideas during NorthStar exploration — talking to the AI like a co-design buddy, thinking out loud
+- SME conversations — comments, current-state mapping, domain knowledge, workflow insights captured as the team maps out the existing app and imagines what's next
+- Existing artefacts in any form — PDFs, forms, policy documents, slide decks — fed to the agent and transformed into UI through the design system (Jesse Gardner converted a 5-page PDF into an accessible web app using the NYS Design System MCP)
+- Engineer constraints, accessibility patterns, platform-specific rules
+
+The design system is a commons, not a deliverable. The architect seeds it, everyone enriches it, any agent can consume it.
+
 ### Key Differentiators
 - **NorthStar Prototyping** — Exploratory AI prototyping to shape vision early when possibilities are widest
 - **Agentic Design Systems** — Machine-readable, code-based design systems that AI agents can consume
@@ -126,6 +136,19 @@ Lincoln is attending IDS 2026 (online). The conference theme is "AI Design Syste
 - "Prototyping for the unknown" (Nate Baldwin, Adobe) — validates NorthStar Prototyping
 
 **Lincoln's hybrid identity:** He is NOT a "designer who learned to code" — he's a genuine hybrid (Designer 50% / Developer 30% / PO 20%) with deep React FED experience. This distinguishes him from speakers like Freya Stockman ("I'm not an engineer but I ship code").
+
+## Constraints (DON'T)
+- Don't add emojis unless explicitly asked
+- Don't refactor or "improve" code you weren't asked to touch
+- Don't add comments, docstrings, or type annotations to unchanged code
+- Don't use American English — organisation, colour, behaviour, not organization, color, behavior
+- Don't use "vibe coding" as a title or identity — it's a technique, used casually
+- Don't invent tokens, components, or brand elements that aren't in the design system
+- Don't create separate documentation files (README, docs/) unless explicitly asked
+- Don't use "we" — this is a personal brand site. Always "I"
+- Don't summarise what you just did at the end of every response
+- Don't add error handling, fallbacks, or validation for scenarios that can't happen
+- Don't use Gmail MCP or browser automation for Google Workspace — always use GWS CLI
 
 ## Important Rules for Editing This Site
 - Keep the "proof-of-practice" framing — this site demonstrates agentic design, not just describes it
