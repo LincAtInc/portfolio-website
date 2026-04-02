@@ -641,6 +641,81 @@ export default function RoomAfterTheTalk() {
           </div>
         </section>
 
+        {/* Building Real Systems — Jan Six's talk */}
+        <section className="px-8 md:px-20 py-24 max-w-[1440px] mx-auto">
+          <span className="font-mono text-xs font-medium text-[var(--color-primary)] tracking-[0.2em] uppercase block mb-4">
+            Building Real Systems
+          </span>
+          <h2 className="font-display text-[clamp(2rem,4vw,2.5rem)] font-bold text-white tracking-tight leading-[1.1] mb-4">
+            From the &ldquo;Building real design systems with agents&rdquo; talk
+          </h2>
+          <p className="text-[17px] text-white/50 leading-relaxed max-w-[680px] mb-12">
+            Jan Six (Principal Product Designer, GitHub / Co-creator, Tokens Studio) gave the most technically complete talk of the conference. AGENTS.md as a router. Rules files for components, tokens, and docs. MCPs that make your brand queryable. He covered the infrastructure layer with more rigour than anyone else &mdash; and was honest enough to say he couldn&apos;t answer everything yet. These are my answers to the questions he left open, and the ones he answered that I want to build on.
+          </p>
+
+          <div className="flex flex-col gap-6 max-w-[860px]">
+            {[
+              {
+                question: "This documentation is suitable for agents &mdash; where should it live?",
+                answer: (<>Jan&apos;s answer is right: colocated with the component. One folder, one component, one set of rules. Everything the agent needs to work with that component lives next to it. But I&apos;d make the principle explicit. Documentation that lives in a separate docs site is documentation for humans who go looking. Documentation that lives next to the code is context the agent finds automatically. The distinction isn&apos;t cosmetic &mdash; it changes what gets consumed and when. When I structure a headless DS, the rule is simple: if the agent has to navigate away to find it, it won&apos;t.</>),
+              },
+              {
+                question: "Is it better to store component rules as markdown files or structured JSON contract files?",
+                answer: (<>Jan said he can&apos;t answer yet &mdash; he hasn&apos;t compared them properly. I&apos;ll give you an opinionated view from experience. Markdown is better for rules and rationale. JSON is better for contracts and data. A component specification has both: the what (JSON &mdash; props, variants, token mappings, accessibility requirements) and the why (markdown &mdash; when to use it, what it replaces, how it behaves across contexts). Nathan Curtis called this &ldquo;components as data&rdquo; and he&apos;s right. The agent reads the JSON to build it. It reads the markdown to understand the intent. Both matter. The answer isn&apos;t markdown or JSON &mdash; it&apos;s a specification format that carries both.</>),
+              },
+              {
+                question: "Is it worth creating your own custom MCP or should you use third-party / open-source?",
+                answer: (<>Start with third-party MCPs to validate the workflow. The Tokens Studio MCP, when it ships, will give you brand tokens as queryable infrastructure with no build cost. Use it. If you reach a point where the off-the-shelf MCP can&apos;t express something central to your system &mdash; a custom naming convention, a proprietary component API, a domain-specific rule set &mdash; then build your own. The decision criteria is specificity: if your system has knowledge that generic tooling can&apos;t represent, encode that knowledge yourself. My <Link href="/system/claude-md" className="text-[var(--color-primary)] no-underline hover:underline">CLAUDE.md</Link> is, in effect, a lightweight MCP &mdash; structured context the agent reads before it touches anything. That costs nothing to build and captures the things a generic tool won&apos;t know.</>),
+              },
+              {
+                question: "When should you use multiple rules files vs multiple skills vs multiple agents?",
+                answer: (<>Jan gave the clearest answer of the conference on this: always use multiple rules files, and let the AGENTS.md act as a router. I&apos;d add the layer above that. Rules files govern component-level decisions. Skills govern task-level repeatable actions &mdash; scaffold this component, audit these tokens, generate this story. Agents govern context-level specialisation &mdash; the UI Designer agent that knows visual rules, the Content Strategist agent that knows voice rules. The question to ask at each level: is this a constraint, a procedure, or a perspective? Constraints belong in rules. Procedures belong in skills. Perspectives belong in agents. <Link href="/system/agents" className="text-[var(--color-secondary)] no-underline hover:underline">The System section shows how I&apos;ve structured this.</Link></>),
+              },
+              {
+                question: "What is the practical difference between CLI-based agents and IDE-based agents?",
+                answer: (<>Jan put it well: CLI agents can do more, and desktop tools are catching up. The practical difference right now is scope. An IDE agent sees the file you&apos;re in, the files you&apos;ve opened, the project context you&apos;ve loaded. A CLI agent sees the whole repository &mdash; it can run audits, refactor across files, commit changes, and iterate on the output of its own previous run. That matters for design systems work specifically. Token audits, component scaffolding, cross-file consistency checks &mdash; these need repository-wide vision. Claude Code operates at that scope. If your workflow involves touching multiple files and evaluating the output holistically, CLI is still the right environment.</>),
+              },
+              {
+                question: "How do CLI agents help us escape &apos;everything looks the same&apos; from generic AI output?",
+                answer: (<>Generic AI output looks the same because it draws from the same training distribution &mdash; the entire internet, averaged. Your design system is the antidote. When the agent has your token file, your component contracts, your naming conventions, and your <Link href="/system/claude-md" className="text-[var(--color-accent)] no-underline hover:underline">voice rules</Link> as context, the output space narrows dramatically. It&apos;s not generating from the average &mdash; it&apos;s generating within your constraints. Jan&apos;s architecture makes this concrete: AGENTS.md routes to your rules files, which constrain the agent&apos;s decisions before it touches a line of code. The brand becomes the prior. The result looks like you, not like every other shadcn site.</>),
+              },
+              {
+                question: "How do you structure good context to give to an agent?",
+                answer: (<>This is the question the whole conference was circling. Jan&apos;s architecture gives a strong answer for the delivery layer &mdash; rules files by domain, AGENTS.md as the router, docs colocated with components. I&apos;d add the temporal dimension, which Jan touched on and nobody else did: structure context for past, present, and future. Past context is what exists &mdash; the tokens, the components, the established patterns. Present context is the task &mdash; what the agent is being asked to do right now, with what constraints. Future context is intent &mdash; the NorthStar, the direction, the decisions that haven&apos;t been encoded yet but should be. Most systems only give the agent past context. The most powerful context structures give it all three.</>),
+              },
+              {
+                question: "What if you have multiple products across various tech stacks in multiple repositories?",
+                answer: (<>Jan covered three viable approaches: a central MCP server that all repositories query, a spanning context folder that multiple repos reference, or a dedicated context repository that agents pull from. All three work. The choice comes down to who owns the source of truth and how it gets updated. My preference is the MCP model at scale, because it separates the knowledge layer from the implementation layer cleanly. Any agent, in any repo, in any stack, can query the brand tokens, the component contracts, the voice rules &mdash; without those rules being duplicated across repositories. The N layer lives once. Everyone draws from it.</>),
+              },
+              {
+                question: "What are the new job rubrics for designers at companies building this way?",
+                answer: (<>Jan said designers who prototype with AI are in higher demand at GitHub. That&apos;s a data point, not a rubric. Here&apos;s my read on the emerging rubric. The new bar isn&apos;t &ldquo;can you code&rdquo; &mdash; it&apos;s &ldquo;can you direct a system.&rdquo; Can you write specifications precise enough for an agent to implement correctly? Can you evaluate the output and know when it&apos;s wrong? Can you encode intent into context files that outlast any single conversation? Those are design skills applied to a new medium. The boundary that&apos;s blurring isn&apos;t between design and engineering. It&apos;s between authorship and specification.</>),
+              },
+              {
+                question: "Storybook as a canvas for creative expression &mdash; can you elaborate?",
+                answer: (<>Jan&apos;s framing here is genuinely exciting. Most teams use Storybook as documentation &mdash; a catalogue of components in their permitted states. Jan is proposing something different: Storybook as the place where designers build, explore, and test new directions inside the live system. Not a handoff tool. Not a reference library. An active design surface. When Storybook is connected to a CLI agent with the full design system as context, it becomes generative. You can prompt a new component variant, have the agent scaffold it, see it render in Storybook in real time, and evaluate it against the existing system &mdash; all without leaving the design environment. That&apos;s not vibe coding. It&apos;s directed creation inside a constrained, principled system.</>),
+              },
+            ].map((q, i) => (
+              <div
+                key={i}
+                className={`p-8 bg-[#0a0f1a] border border-[#1e293b] border-l-[3px] ${colorCycle[(i + 2) % colorCycle.length].border} rounded-xl`}
+              >
+                <div className="flex gap-6 items-start mb-5">
+                  <span className="font-mono text-[11px] text-white/20 w-5 pt-1 shrink-0">
+                    {String(i + 67).padStart(2, "0")}
+                  </span>
+                  <h3 className={`font-display text-lg font-semibold leading-[1.3] ${colorCycle[(i + 2) % colorCycle.length].label}`}>
+                    &ldquo;{q.question}&rdquo;
+                  </h3>
+                </div>
+                <div className="pl-11">
+                  <p className="text-[16px] text-white/55 leading-relaxed">{q.answer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* The Pattern */}
         <section className="bg-[#0f172a] px-8 md:px-20 py-24 max-w-[1440px] mx-auto">
           <span className="font-mono text-xs font-medium text-[var(--color-secondary)] tracking-[0.2em] uppercase block mb-4">

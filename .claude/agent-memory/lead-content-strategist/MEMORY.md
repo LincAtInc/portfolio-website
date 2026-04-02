@@ -1,3 +1,4 @@
 - [project_middleware_thought.md](project_middleware_thought.md) — "The Middleware Problem" thought page: who Lincoln actually needs to work with, middle management bypass, domain knowledge thesis
 - [project_when_agency_arrives.md](project_when_agency_arrives.md) — "When the Agency Arrives" thought page: agency rebrands vs DS architecture, rebuild-or-hack dilemma, N layer as prevention, Red Rooster experience
 - [project_cristian_room_after_talk.md](project_cristian_room_after_talk.md) — 8 Q&A cards for Room After the Talk: Cristian's governance talk, insertion point, numbering, key positioning angles
+- [project_jan_six_room_after_talk.md](project_jan_six_room_after_talk.md) — 10 Q&A cards for Room After the Talk: Jan Six's infrastructure talk, cards 67–76, temporal context split as Lincoln's addition
