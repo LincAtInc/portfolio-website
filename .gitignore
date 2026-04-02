@@ -59,3 +59,9 @@ test-results/
 
 # screenshots (generated, not source)
 screenshots/*.png
+
+# IDS talk slides (not for public repo)
+Jan six slides/
+
+*storybook.log
+storybook-static

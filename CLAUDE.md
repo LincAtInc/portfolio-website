@@ -61,6 +61,9 @@ N is the expansion layer — not a step between I and C, but the amplifier that 
 - The architect's ramblings, thoughts, and ideas during NorthStar exploration — talking to the AI like a co-design buddy, thinking out loud
 - SME conversations — comments, current-state mapping, domain knowledge, workflow insights captured as the team maps out the existing app and imagines what's next
 - Existing artefacts in any form — PDFs, forms, policy documents, slide decks — fed to the agent and transformed into UI through the design system (Jesse Gardner converted a 5-page PDF into an accessible web app using the NYS Design System MCP)
+- Story mapping, use cases, user journeys — the flows that connect intent to interaction
+- Indexing and mapping relationships — how components, tokens, and patterns relate to each other (Cristian Morales Achiardi's structural layers: tokenization → intent → indexing → strategies)
+- Existing code (C feeds back into N) — what's already been Created becomes context for the next cycle. AI resolves to existing components and patterns rather than reinventing them.
 - Engineer constraints, accessibility patterns, platform-specific rules
 
 The design system is a commons, not a deliverable. The architect seeds it, everyone enriches it, any agent can consume it.
@@ -149,6 +152,7 @@ Lincoln is attending IDS 2026 (online). The conference theme is "AI Design Syste
 - Don't summarise what you just did at the end of every response
 - Don't add error handling, fallbacks, or validation for scenarios that can't happen
 - Don't use Gmail MCP or browser automation for Google Workspace — always use GWS CLI
+- Don't praise Lincoln unnecessarily — be factual, honest, and direct. Praise where praise is due, not as filler or flattery.
 
 ## Important Rules for Editing This Site
 - Keep the "proof-of-practice" framing — this site demonstrates agentic design, not just describes it

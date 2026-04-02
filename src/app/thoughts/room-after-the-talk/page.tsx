@@ -574,6 +574,73 @@ export default function RoomAfterTheTalk() {
           </div>
         </section>
 
+        {/* Encoding Governance — Cristian Morales Achiardi's talk */}
+        <section className="bg-[#0f172a] px-8 md:px-20 py-24 max-w-[1440px] mx-auto">
+          <span className="font-mono text-xs font-medium text-[var(--color-accent)] tracking-[0.2em] uppercase block mb-4">
+            Encoding Governance
+          </span>
+          <h2 className="font-display text-[clamp(2rem,4vw,2.5rem)] font-bold text-white tracking-tight leading-[1.1] mb-4">
+            From the &ldquo;Encoding governance on agentic design systems&rdquo; talk
+          </h2>
+          <p className="text-[17px] text-white/50 leading-relaxed max-w-[680px] mb-12">
+            Cristian Morales Achiardi (Design Engineer, Enara Health) built something I recognise immediately: a solo-operated agentic design system in a healthcare context, code as the source of truth, governance as an output, and no permission from anyone to do it. His three primitives &mdash; skills, rules, instructions &mdash; map directly onto how I structure agent context. The audience asked sharp questions. Several went unanswered. These are my answers.
+          </p>
+
+          <div className="flex flex-col gap-6 max-w-[860px]">
+            {[
+              {
+                question: "Which is the value for a designer to know all the technical things of the process you have shown?",
+                answer: (<>Cristian&apos;s answer is right: ownership. When you understand the technical layer, you can own the quality of what gets implemented &mdash; not just what gets designed. But I&apos;d go further. The value isn&apos;t knowing how to write JavaScript. It&apos;s knowing how the system works well enough to encode your decisions into it. When I write a <Link href="/system/claude-md" className="text-[var(--color-primary)] no-underline hover:underline">CLAUDE.md</Link>, I&apos;m not writing code &mdash; I&apos;m encoding intent so precisely that the system produces the right code without me touching it. That&apos;s a design skill, not a development skill. The designer who can do that has removed the interpretation gap entirely.</>),
+              },
+              {
+                question: "Are you using multi-agents with skills?",
+                answer: (<>Cristian doesn&apos;t &mdash; plan mode and subagents are enough for his scale, and that&apos;s a sensible call. I do. I run named agents with persistent memory committed to git: UI Designer, UX Researcher, Frontend Developer, Content Strategist. Each reads the same CLAUDE.md but carries its own specialisation and memory of past decisions. The difference matters at scale. Cristian acknowledged &ldquo;a lot of stuff lives on my head&rdquo; &mdash; that&apos;s the problem named agents with written memory solve. The knowledge doesn&apos;t leave with the person. It lives in the agent definition, in git, readable by anyone &mdash; or any agent &mdash; who inherits the work. The <Link href="/system/agents" className="text-[var(--color-secondary)] no-underline hover:underline">System section shows how I&apos;ve structured this</Link>.</>),
+              },
+              {
+                question: "What tools can you recommend to fix a legacy design system?",
+                answer: (<>Cristian&apos;s approach is the right one: build a skill that knows what correct looks like, then run it as a linter across the legacy codebase. His scaffold-component skill generates components against current standards. His token-auditor detects drift. Both work without a full rewrite. I&apos;d add one thing: before you build the linter, write the CLAUDE.md. Define correct. Not as a document nobody reads &mdash; as structured context an agent can query. The linter is only as good as the definition of correctness it enforces. Start there. Build the audit skill second. The <Link href="/headless-ds" className="text-[var(--color-accent)] no-underline hover:underline">headless DS architecture</Link> explains how I structure that definition layer.</>),
+              },
+              {
+                question: "Do you think it&apos;s important to learn React?",
+                answer: (<>Cristian put it perfectly: he can&apos;t write a proper JavaScript function and built agentic infrastructure anyway. That&apos;s the honest answer, and I respect it. My answer is different because my context is different. Deep React experience is 30% of my identity &mdash; not because it made me a better designer, but because it made me a better architect. When I specify a component contract, I know what I&apos;m asking the agent to build. When the agent gets it wrong, I know why. But here&apos;s the reframe: you don&apos;t need to learn React to direct an agent that writes React. You need to understand the system well enough to know when the output is wrong. The bar isn&apos;t &ldquo;can you write it.&rdquo; It&apos;s &ldquo;can you evaluate it.&rdquo;</>),
+              },
+              {
+                question: "How do you see the future of AI in automating components and workflows? Will it ever be fully automated?",
+                answer: (<>Not fully automated. Not soon. Cristian is honest about this: he refactors his rules every few weeks for overlaps and contradictions, his pipeline is around 80k tokens, and whatever he said at the conference might be wrong by next week. That&apos;s not a weakness &mdash; it&apos;s the discipline being young. The future isn&apos;t a pipeline where nobody makes decisions. It&apos;s a pipeline where the mechanical decisions are automated and the consequential ones are human. &ldquo;Should this component exist at all?&rdquo; is a human question. &ldquo;Does it use the right token?&rdquo; is an automated one. Sustainability beats velocity every time.</>),
+              },
+              {
+                question: "Many design teams have been reduced in size. What&apos;s your take on teams shrinking to mainly lead and principal positions?",
+                answer: (<>Cristian&apos;s answer is careful and right: the bottleneck moves, and going faster indefinitely is not sustainable. I&apos;d add what he left implicit. The team shrinks in headcount and expands in capability &mdash; but only if the N layer is robust. A small team carrying large-team knowledge is only viable if that knowledge is externalised. When it lives in someone&apos;s head, it leaves with them. When it lives in CLAUDE.md, in agent definitions, in version-controlled rules, it&apos;s institutional. Cristian admitted &ldquo;a lot lives on my head.&rdquo; That&apos;s the vulnerability. The answer isn&apos;t to resist shrinking &mdash; it&apos;s to encode the knowledge so thoroughly that the work doesn&apos;t depend on any one person. That&apos;s <Link href="/thoughts/the-middleware-problem" className="text-[var(--color-warm)] no-underline hover:underline">The Middleware Problem</Link>.</>),
+              },
+              {
+                question: "Have you done theming tokens for different brands?",
+                answer: (<>Cristian hasn&apos;t &mdash; and he said so directly, which I respect. I have. Fun Lab at Dentsu/Merkle was exactly this: multi-brand token architecture across a portfolio of clients, with Chakra UI as the component layer. The pattern: semantic tokens reference primitive tokens, themes swap the primitives, components stay untouched. One button component. Many brand expressions of it. The agent reads the active theme and generates against those values. What makes multi-brand hard isn&apos;t the token architecture &mdash; it&apos;s the governance. Who decides when Brand A&apos;s &ldquo;primary&rdquo; diverges from Brand B&apos;s? That decision needs to be encoded, not left to interpretation.</>),
+              },
+              {
+                question: "Any tips on managing content with a design system?",
+                answer: (<>This question came up and nobody answered it. Treat content as a first-class token. Voice guidelines, microcopy rules, error message conventions, heading hierarchies &mdash; these belong in the same context layer as your colour tokens and spacing scale. Most design systems put content guidelines in a PDF nobody reads. Fold them into the machine-readable layer instead. Write rules the agent can consume: &ldquo;button labels are verbs,&rdquo; &ldquo;error messages name the field and tell the user what to do,&rdquo; &ldquo;headings use sentence case.&rdquo; The agent reads those rules exactly as it reads spacing tokens. Content governance scales the same way visual governance does &mdash; through encoded constraints, not style guides. My <Link href="/system/claude-md" className="text-[var(--color-primary)] no-underline hover:underline">CLAUDE.md</Link> carries voice as structured rules. Every word on this site was generated against them.</>),
+              },
+            ].map((q, i) => (
+              <div
+                key={i}
+                className={`p-8 bg-[#0a0f1a] border border-[#1e293b] border-l-[3px] ${colorCycle[(i) % colorCycle.length].border} rounded-xl`}
+              >
+                <div className="flex gap-6 items-start mb-5">
+                  <span className="font-mono text-[11px] text-white/20 w-5 pt-1 shrink-0">
+                    {String(i + 59).padStart(2, "0")}
+                  </span>
+                  <h3 className={`font-display text-lg font-semibold leading-[1.3] ${colorCycle[(i) % colorCycle.length].label}`}>
+                    &ldquo;{q.question}&rdquo;
+                  </h3>
+                </div>
+                <div className="pl-11">
+                  <p className="text-[16px] text-white/55 leading-relaxed">{q.answer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* The Pattern */}
         <section className="bg-[#0f172a] px-8 md:px-20 py-24 max-w-[1440px] mx-auto">
           <span className="font-mono text-xs font-medium text-[var(--color-secondary)] tracking-[0.2em] uppercase block mb-4">
