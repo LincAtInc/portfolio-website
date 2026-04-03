@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Nav } from "@/components/Nav";
+import { RevealSection } from "@/components/RevealSection";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,42 +9,63 @@ export const metadata: Metadata = {
     "Your design system team isn't stuck because of tooling. It's stuck because you're running one culture when you need three. Quinn and Cameron's CVF explains why — and the INC framework maps the fix.",
 };
 
-const cultures = [
+/* CVF quadrants in reading order: top-left, top-right, bottom-left, bottom-right */
+const quadrants = [
   {
-    name: "Adhocracy",
-    axis: "External + Flexible",
-    traits:
-      "Burn freely. Branch freely. Vision over validation. The garage before the handbook. Jazz, not sheet music.",
-    leader: "Innovator / Entrepreneur",
-    failure: "Chaos — brilliant sparks that never become fire",
-    color: "border-l-[#ef4444]",
-  },
-  {
-    name: "Clan",
-    axis: "Internal + Flexible",
+    position: "top-left",
+    cvfName: "Clan",
+    cvfType: "Collaborate",
+    axis: "Internal · Flexible",
     traits:
       "Shared language. Shared context. The team that doesn't need a meeting to align. Culture so strong it's load-bearing.",
+    dsRole: "Encodes collective knowledge — CLAUDE.md, tokens, shared narrative.",
     leader: "Facilitator / Mentor",
     failure: "Groupthink — harmony that suffocates conviction",
-    color: "border-l-[var(--color-secondary)]",
+    accentBorder: "border-[var(--color-secondary)]",
+    accentText: "text-[var(--color-secondary)]",
+    accentBg: "bg-[var(--color-secondary)]/5",
   },
   {
-    name: "Market",
-    axis: "External + Stable",
+    position: "top-right",
+    cvfName: "Adhocracy",
+    cvfType: "Create",
+    axis: "External · Flexible",
     traits:
-      "Ship. Measure. Win. The culture that doesn't care how it was built — only whether it converts.",
-    leader: "Competitor / Producer",
-    failure: "Burnout — output without reflection, velocity without direction",
-    color: "border-l-[var(--color-accent)]",
+      "Burn freely. Branch freely. Vision over validation. The garage before the handbook. Jazz, not sheet music.",
+    dsRole: "NorthStar prototyping — explores possibilities before anyone builds.",
+    leader: "Innovator / Entrepreneur",
+    failure: "Chaos — brilliant sparks that never become fire",
+    accentBorder: "border-[#ef4444]",
+    accentText: "text-[#ef4444]",
+    accentBg: "bg-[#ef4444]/5",
   },
   {
-    name: "Hierarchy",
-    axis: "Internal + Stable",
+    position: "bottom-left",
+    cvfName: "Hierarchy",
+    cvfType: "Control",
+    axis: "Internal · Stable",
     traits:
       "Standards. Governance. The machine that runs without you in the room. Reliability at scale.",
+    dsRole: "Governed components, versioned tokens, production systems that survive.",
     leader: "Coordinator / Monitor",
     failure: "Bureaucracy — process that protects itself, not the product",
-    color: "border-l-[var(--color-primary)]",
+    accentBorder: "border-[var(--color-primary)]",
+    accentText: "text-[var(--color-primary)]",
+    accentBg: "bg-[var(--color-primary)]/5",
+  },
+  {
+    position: "bottom-right",
+    cvfName: "Market",
+    cvfType: "Compete",
+    axis: "External · Stable",
+    traits:
+      "Ship. Measure. Win. The culture that doesn't care how it was built — only whether it converts.",
+    dsRole: "The customer of the system — converts capability into results at speed.",
+    leader: "Competitor / Producer",
+    failure: "Burnout — output without reflection, velocity without direction",
+    accentBorder: "border-[var(--color-accent)]",
+    accentText: "text-[var(--color-accent)]",
+    accentBg: "bg-[var(--color-accent)]/5",
   },
 ];
 
@@ -57,6 +79,63 @@ const incMapping = [
   { dimension: "AI role", ideate: "Generative — wild, unconstrained, disposable", narrate: "Contextual — informed by encoded knowledge", create: "Constrained — governed by tokens and standards" },
   { dimension: "When to burn work", ideate: "Always. Knowledge survives. Code doesn't.", narrate: "Rarely. Context is the compound asset.", create: "Never. Shipped code must persist." },
 ];
+
+interface QuadrantProps {
+  q: typeof quadrants[number];
+  topRight?: boolean;
+  bottomLeft?: boolean;
+  bottomRight?: boolean;
+  mobile?: boolean;
+}
+
+function QuadrantCard({ q, topRight, bottomLeft, bottomRight, mobile }: QuadrantProps) {
+  /* Compose border-radius per grid position so the matrix reads as a unified shape */
+  const radius = mobile
+    ? "rounded-xl"
+    : topRight
+    ? "rounded-tr-xl"
+    : bottomLeft
+    ? "rounded-bl-xl"
+    : bottomRight
+    ? "rounded-br-xl"
+    : "rounded-tl-xl"; /* top-left is the default (Clan) */
+
+  return (
+    <div
+      className={`p-8 bg-[#0a0f1a] border border-[#1e293b] ${radius} ${q.accentBg} flex flex-col gap-4`}
+    >
+      {/* Culture label */}
+      <div>
+        <div className="flex items-baseline gap-2 mb-1">
+          <h3 className={`font-display text-lg font-semibold text-white`}>{q.cvfName}</h3>
+          <span className={`font-mono text-[11px] uppercase tracking-[0.12em] ${q.accentText}`}>{q.cvfType}</span>
+        </div>
+        <span className="font-mono text-[11px] text-white/25 uppercase tracking-[0.08em]">{q.axis}</span>
+      </div>
+
+      {/* Traits */}
+      <p className="text-[14px] text-white/55 leading-relaxed">{q.traits}</p>
+
+      {/* DS role — the key link */}
+      <div className={`border-l-2 ${q.accentBorder} pl-3`}>
+        <span className="font-mono text-[10px] text-white/25 uppercase tracking-[0.1em] block mb-1">Design systems role</span>
+        <p className={`text-[13px] leading-relaxed ${q.accentText} opacity-80`}>{q.dsRole}</p>
+      </div>
+
+      {/* Meta */}
+      <div className="flex flex-col gap-1.5 pt-3 border-t border-[#1e293b] mt-auto">
+        <div className="flex gap-3">
+          <span className="font-mono text-[10px] text-white/20 uppercase tracking-[0.08em] w-[70px] shrink-0 pt-0.5">Leader</span>
+          <span className="text-[12px] text-white/55">{q.leader}</span>
+        </div>
+        <div className="flex gap-3">
+          <span className="font-mono text-[10px] text-[#ef4444]/50 uppercase tracking-[0.08em] w-[70px] shrink-0 pt-0.5">Fails as</span>
+          <span className="text-[12px] text-white/35 italic">{q.failure}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function CompetingValues() {
   return (
@@ -90,27 +169,52 @@ export default function CompetingValues() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {cultures.map((culture) => (
-              <div key={culture.name} className={`p-10 bg-[#0a0f1a] border border-[#1e293b] border-l-[3px] ${culture.color} rounded-xl`}>
-                <div className="flex items-start gap-3 mb-3">
-                  <h3 className="font-display text-xl font-semibold text-white">{culture.name}</h3>
-                </div>
-                <span className="font-mono text-[11px] text-white/30 uppercase tracking-[0.1em] block mb-4">{culture.axis}</span>
-                <p className="text-[15px] text-white/50 leading-relaxed mb-6">{culture.traits}</p>
-                <div className="flex flex-col gap-2 pt-4 border-t border-[#1e293b]">
-                  <div className="flex gap-3">
-                    <span className="font-mono text-[11px] text-white/25 uppercase tracking-[0.08em] w-[80px] shrink-0 pt-0.5">Leader</span>
-                    <span className="text-[13px] text-white/60">{culture.leader}</span>
-                  </div>
-                  <div className="flex gap-3">
-                    <span className="font-mono text-[11px] text-[#ef4444]/70 uppercase tracking-[0.08em] w-[80px] shrink-0 pt-0.5">Fails as</span>
-                    <span className="text-[13px] text-white/40 italic">{culture.failure}</span>
-                  </div>
-                </div>
+          {/* 2×2 CVF matrix with labelled axes */}
+          <RevealSection stagger={true}>
+            {/* Desktop: proper grid with axis labels. Mobile: single-column stack. */}
+            <div className="hidden md:grid grid-cols-[auto_1fr_1fr] grid-rows-[auto_1fr_1fr] gap-0">
+
+              {/* Row 0 — top axis labels */}
+              {/* Empty corner cell */}
+              <div aria-hidden="true" />
+              {/* Top-left label: Internal Focus */}
+              <div className="flex items-end justify-center pb-3">
+                <span className="font-mono text-xs uppercase tracking-wider text-white/30">Internal Focus</span>
               </div>
-            ))}
-          </div>
+              {/* Top-right label: External Focus */}
+              <div className="flex items-end justify-center pb-3">
+                <span className="font-mono text-xs uppercase tracking-wider text-white/30">External Focus</span>
+              </div>
+
+              {/* Row 1 — Flexible label + top two quadrants */}
+              {/* Left axis: Flexible */}
+              <div className="flex items-center justify-end pr-4">
+                <span className="font-mono text-xs uppercase tracking-wider text-white/30 [writing-mode:vertical-rl] rotate-180">Flexible</span>
+              </div>
+              {/* Quadrant: Clan (top-left) */}
+              <QuadrantCard q={quadrants[0]} />
+              {/* Quadrant: Adhocracy (top-right) */}
+              <QuadrantCard q={quadrants[1]} topRight />
+
+              {/* Row 2 — Stable/Control label + bottom two quadrants */}
+              {/* Left axis: Stable */}
+              <div className="flex items-center justify-end pr-4">
+                <span className="font-mono text-xs uppercase tracking-wider text-white/30 [writing-mode:vertical-rl] rotate-180">Stable / Control</span>
+              </div>
+              {/* Quadrant: Hierarchy (bottom-left) */}
+              <QuadrantCard q={quadrants[2]} bottomLeft />
+              {/* Quadrant: Market (bottom-right) */}
+              <QuadrantCard q={quadrants[3]} bottomRight />
+            </div>
+
+            {/* Mobile: stacked column with axis context as headings */}
+            <div className="md:hidden flex flex-col gap-4">
+              <p className="font-mono text-xs uppercase tracking-wider text-white/30 text-center mb-2">Flexible · Internal → External → Stable</p>
+              {quadrants.map((q) => (
+                <QuadrantCard key={q.cvfName} q={q} mobile />
+              ))}
+            </div>
+          </RevealSection>
         </section>
 
         {/* Quote 1 */}

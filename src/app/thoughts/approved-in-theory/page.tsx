@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Nav } from "@/components/Nav";
+import { RevealSection } from "@/components/RevealSection";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,41 +9,67 @@ export const metadata: Metadata = {
     "Every design systems architect knows the cycle: exec approval, zero implementation. The Angular-to-React migration delayed for years. Tokens approved but never prioritised. The blocker isn't the legacy codebase — it's the legacy org structure.",
 };
 
+// Entropy decreases with each step: opacity, padding, font size, dot size
 const pattern = [
   {
     stage: "The Vision",
     what: "You present the NorthStar. Execs are energised. The room is electric.",
     outcome: "Approved.",
-    color: "border-l-[var(--color-warm-light)]",
-    labelColor: "text-[var(--color-warm-light)]",
+    opacity: "opacity-100",
+    dotSize: "w-4 h-4",
+    textSize: "text-lg",
+    py: "py-8",
+    outcomeColor: "text-[var(--color-warm-light)]",
+    dotColor: "bg-[var(--color-warm-light)]",
+    lineColor: "after:from-[var(--color-warm-light)]/60",
   },
   {
     stage: "The Architecture",
     what: "You propose the token system. \"Brilliant. We'll prioritise that next quarter.\"",
     outcome: "Approved. Next quarter.",
-    color: "border-l-[var(--color-warm)]",
-    labelColor: "text-[var(--color-warm)]",
+    opacity: "opacity-80",
+    dotSize: "w-3.5 h-3.5",
+    textSize: "text-base",
+    py: "py-6",
+    outcomeColor: "text-[var(--color-warm)]/80",
+    dotColor: "bg-[var(--color-warm)]/80",
+    lineColor: "after:from-[var(--color-warm)]/40",
   },
   {
     stage: "The Prototype",
     what: "You build the NorthStar. Engineers are impressed. \"But we need to focus on the backlog.\"",
     outcome: "Approved. Not scheduled.",
-    color: "border-l-[var(--color-accent)]",
-    labelColor: "text-[var(--color-accent)]",
+    opacity: "opacity-60",
+    dotSize: "w-3 h-3",
+    textSize: "text-[15px]",
+    py: "py-5",
+    outcomeColor: "text-[var(--color-primary)]/60",
+    dotColor: "bg-[var(--color-primary)]/60",
+    lineColor: "after:from-[var(--color-primary)]/30",
   },
   {
     stage: "The Component Library",
     what: "You design the system. \"Looks fantastic. The devs are just a bit buried right now.\"",
     outcome: "Approved. Indefinitely deferred.",
-    color: "border-l-[var(--color-primary)]",
-    labelColor: "text-[var(--color-primary)]",
+    opacity: "opacity-45",
+    dotSize: "w-2.5 h-2.5",
+    textSize: "text-sm",
+    py: "py-4",
+    outcomeColor: "text-[var(--color-secondary)]/50",
+    dotColor: "bg-[var(--color-secondary)]/50",
+    lineColor: "after:from-[var(--color-secondary)]/20",
   },
   {
     stage: "Next Quarter",
     what: "New priorities. New backlog. Same cycle.",
     outcome: "Approved. Again.",
-    color: "border-l-[#ef4444]",
-    labelColor: "text-[#ef4444]",
+    opacity: "opacity-30",
+    dotSize: "w-2 h-2",
+    textSize: "text-xs",
+    py: "py-3",
+    outcomeColor: "text-[#ef4444]/40",
+    dotColor: "bg-[#ef4444]/40",
+    lineColor: "",
   },
 ];
 
@@ -50,22 +77,18 @@ const blockers = [
   {
     myth: "Angular is the blocker",
     reality: "A team that knows Angular is the blocker",
-    color: "border-l-[var(--color-warm)]",
   },
   {
     myth: "Complexity is the blocker",
     reality: "A sprint board that rewards feature delivery, not infrastructure, is the blocker",
-    color: "border-l-[var(--color-primary)]",
   },
   {
     myth: "Feasibility is the blocker",
     reality: "A culture that measures velocity, not vision, is the blocker",
-    color: "border-l-[var(--color-accent)]",
   },
   {
     myth: "The legacy codebase is the blocker",
     reality: "The legacy org structure is the blocker",
-    color: "border-l-[var(--color-secondary)]",
   },
 ];
 
@@ -86,13 +109,13 @@ export default function ApprovedInTheory() {
       </header>
 
       <main>
-        {/* The Pattern */}
+        {/* The Pattern — entropy timeline */}
         <section className="bg-[#0f172a] px-8 md:px-20 py-24 max-w-[1440px] mx-auto">
           <span className="font-mono text-xs font-medium text-[var(--color-warm)] tracking-[0.2em] uppercase block mb-4">The Pattern</span>
           <h2 className="font-display text-[clamp(2rem,4vw,2.5rem)] font-bold text-white tracking-tight leading-[1.1] mb-6">
             This cycle. Every. Single. Time.
           </h2>
-          <div className="text-[17px] text-white/50 leading-relaxed max-w-[680px] mb-12 space-y-4">
+          <div className="text-[17px] text-white/50 leading-relaxed max-w-[680px] mb-16 space-y-4">
             <p>
               I&apos;ve lived this at least four times across different organisations. It follows the same arc so precisely you could set a calendar reminder for when the deferral is coming.
             </p>
@@ -101,21 +124,67 @@ export default function ApprovedInTheory() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-4 max-w-[800px]">
-            {pattern.map((step, i) => (
-              <div key={step.stage} className={`p-8 bg-[#0a0f1a] border border-[#1e293b] border-l-[3px] ${step.color} rounded-xl flex gap-8 items-start`}>
-                <span className="font-mono text-[11px] text-white/20 w-5 pt-1 shrink-0">{String(i + 1).padStart(2, "0")}</span>
-                <div className="flex-1">
-                  <h3 className={`font-display text-lg font-semibold mb-2 ${step.labelColor}`}>{step.stage}</h3>
-                  <p className="text-[15px] text-white/50 leading-relaxed mb-3">{step.what}</p>
-                  <span className="font-mono text-[12px] text-white/25 italic">{step.outcome}</span>
+          {/* Entropy timeline */}
+          <RevealSection stagger className="max-w-[640px]">
+            <div className="relative">
+              {/* Connector line — full height background rule */}
+              <div
+                className="absolute left-[7px] top-2 bottom-0 w-px"
+                style={{
+                  background:
+                    "linear-gradient(to bottom, rgba(251,191,36,0.5) 0%, rgba(245,158,11,0.3) 25%, rgba(180,197,255,0.2) 50%, rgba(208,188,255,0.1) 75%, rgba(239,68,68,0.05) 100%)",
+                }}
+              />
+
+              {pattern.map((step, i) => (
+                <div
+                  key={step.stage}
+                  className={`relative flex gap-6 items-start ${step.py} ${step.opacity} transition-opacity`}
+                >
+                  {/* Dot on the line */}
+                  <div className="relative z-10 shrink-0 mt-[3px]">
+                    <span
+                      className={`block rounded-full ${step.dotSize} ${step.dotColor} ring-2 ring-[#0f172a]`}
+                    />
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1 min-w-0 pb-1">
+                    <div className="flex items-baseline gap-3 mb-1.5 flex-wrap">
+                      <h3
+                        className={`font-display font-semibold text-white ${step.textSize}`}
+                      >
+                        {step.stage}
+                      </h3>
+                      <span
+                        className={`font-mono ${i === 0 ? "text-[12px]" : "text-[11px]"} italic ${step.outcomeColor}`}
+                      >
+                        {step.outcome}
+                      </span>
+                    </div>
+                    <p
+                      className={`text-white/40 leading-relaxed ${step.textSize}`}
+                    >
+                      {step.what}
+                    </p>
+                  </div>
                 </div>
+              ))}
+
+              {/* Dead-end cap */}
+              <div className="relative flex gap-6 items-center opacity-20 pl-0 pt-1 pb-4">
+                <div className="relative z-10 shrink-0">
+                  <span className="block w-1 h-1 rounded-full bg-[#ef4444] mx-[3px]" />
+                </div>
+                <span className="font-mono text-[10px] text-[#ef4444]/60 italic tracking-wider">
+                  ∎ end of cycle
+                </span>
               </div>
-            ))}
-          </div>
+            </div>
+          </RevealSection>
         </section>
 
-        {/* The Real Blocker */}
+        {/* The Real Blocker — myth/reality cards */}
         <section className="px-8 md:px-20 py-24 max-w-[1440px] mx-auto">
           <span className="font-mono text-xs font-medium text-[var(--color-primary)] tracking-[0.2em] uppercase block mb-4">The Real Blocker</span>
           <h2 className="font-display text-[clamp(2rem,4vw,2.5rem)] font-bold text-white tracking-tight leading-[1.1] mb-6">
@@ -130,22 +199,33 @@ export default function ApprovedInTheory() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-[900px]">
+          <RevealSection stagger className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-[900px]">
             {blockers.map((b) => (
-              <div key={b.myth} className={`p-8 bg-[#0a0f1a] border border-[#1e293b] border-l-[3px] ${b.color} rounded-xl`}>
-                <div className="flex flex-col gap-3">
-                  <div>
-                    <span className="font-mono text-[11px] text-[#ef4444]/60 uppercase tracking-[0.08em] block mb-1">The myth</span>
-                    <p className="text-sm text-white/30 italic line-through">{b.myth}</p>
-                  </div>
-                  <div>
-                    <span className="font-mono text-[11px] text-white/30 uppercase tracking-[0.08em] block mb-1">The reality</span>
-                    <p className="text-[15px] text-white/70 leading-relaxed">{b.reality}</p>
-                  </div>
+              <div
+                key={b.myth}
+                className="rounded-xl overflow-hidden border border-[#1e293b]"
+              >
+                {/* Myth row — warm-tinted, struck-through */}
+                <div className="px-6 py-4 bg-[#2a1012] border-b border-[#3d1518]">
+                  <span className="font-mono text-[10px] text-[#ef4444]/70 uppercase tracking-[0.1em] block mb-1.5">
+                    The myth
+                  </span>
+                  <p className="text-sm text-[#ef4444]/50 italic line-through leading-relaxed">
+                    {b.myth}
+                  </p>
+                </div>
+                {/* Reality row — full contrast */}
+                <div className="px-6 py-4 bg-[#0a0f1a]">
+                  <span className="font-mono text-[10px] text-white/30 uppercase tracking-[0.1em] block mb-1.5">
+                    The reality
+                  </span>
+                  <p className="text-[15px] text-white/80 leading-relaxed font-medium">
+                    {b.reality}
+                  </p>
                 </div>
               </div>
             ))}
-          </div>
+          </RevealSection>
         </section>
 
         {/* Quote 1 */}

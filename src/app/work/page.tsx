@@ -76,6 +76,16 @@ const otherClients = [
   "Oracle", "Adobe", "Property NSW", "Rio Tinto", "RAC", "Department of Education",
 ];
 
+const ExternalLinkIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+    <polyline points="15 3 21 3 21 9" />
+    <line x1="10" y1="14" x2="21" y2="3" />
+  </svg>
+);
+
+const [featured, ...rest] = projects;
+
 export default function Work() {
   return (
     <>
@@ -94,47 +104,92 @@ export default function Work() {
       </RevealSection>
 
       <main className="max-w-[1440px] mx-auto px-8 md:px-20 pb-24">
-        {/* Project grid — stagger by row pair (0, 0, 1, 1, 2, 2); grid lives on RevealSection so stagger wrappers are direct children */}
-        <RevealSection stagger threshold={0.05} className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((p, i) => (
-              <div key={p.name} style={{ "--stagger": Math.floor(i / 2) } as React.CSSProperties}>
-                <a
-                  href={p.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group block border border-white/[0.06] rounded-xl overflow-hidden no-underline hover:border-white/[0.12] transition-colors"
-                >
-                  <div className="relative aspect-video overflow-hidden">
-                    <Image
-                      src={p.image}
-                      alt={p.name}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    {p.logo && (
-                      <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2">
-                        <Image src={p.logo} alt={p.company} width={80} height={24} className="h-5 w-auto object-contain" />
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-8">
-                    <div className="flex items-center justify-between mb-2">
-                      <h2 className="font-display text-xl font-semibold text-white">{p.name}</h2>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/30 group-hover:text-white/60 transition-colors">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" />
-                      </svg>
-                    </div>
-                    <p className="font-mono text-[11px] text-white/30 mb-3">{p.role} &middot; {p.company}</p>
-                    <p className="text-sm text-white/45 leading-relaxed mb-4">{p.desc}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {p.tags.map((tag) => (
-                        <span key={tag} className="font-mono text-[11px] text-white/30 bg-white/[0.04] px-2.5 py-1 rounded">{tag}</span>
-                      ))}
-                    </div>
-                  </div>
-                </a>
+
+        {/* Featured project — full-width hero card */}
+        <RevealSection threshold={0.1} className="mb-8">
+          <a
+            href={featured.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group grid grid-cols-1 md:grid-cols-[1.2fr_1fr] border border-white/[0.06] rounded-xl overflow-hidden no-underline hover:border-white/[0.12] transition-colors"
+          >
+            {/* Image — left column, full height */}
+            <div className="relative aspect-[16/10] overflow-hidden">
+              <Image
+                src={featured.image}
+                alt={featured.name}
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                priority
+              />
+              {featured.logo && (
+                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2">
+                  <Image src={featured.logo} alt={featured.company} width={80} height={24} className="h-5 w-auto object-contain" />
+                </div>
+              )}
+            </div>
+
+            {/* Text — right column */}
+            <div className="flex flex-col justify-center p-10 md:p-12">
+              <span className="font-mono text-[11px] text-[var(--color-accent)] tracking-[0.15em] uppercase mb-4">Featured Project</span>
+              <div className="flex items-start justify-between gap-4 mb-2">
+                <h2 className="font-display text-2xl md:text-3xl font-semibold text-white leading-tight">{featured.name}</h2>
+                <span className="text-white/30 group-hover:text-white/60 transition-colors mt-1 shrink-0">
+                  <ExternalLinkIcon />
+                </span>
               </div>
-            ))}
+              <p className="font-mono text-[11px] text-white/30 mb-5">{featured.role} &middot; {featured.company}</p>
+              <p className="text-base text-white/50 leading-relaxed mb-6">{featured.desc}</p>
+              <div className="flex flex-wrap gap-2">
+                {featured.tags.map((tag) => (
+                  <span key={tag} className="font-mono text-[11px] text-white/30 bg-white/[0.04] px-2.5 py-1 rounded">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </a>
+        </RevealSection>
+
+        {/* Remaining projects — 3-column grid */}
+        <RevealSection stagger threshold={0.05} className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {rest.map((p, i) => (
+            <div key={p.name} style={{ "--stagger": i } as React.CSSProperties}>
+              <a
+                href={p.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block border border-white/[0.06] rounded-xl overflow-hidden no-underline hover:border-white/[0.12] transition-colors h-full"
+              >
+                <div className="relative aspect-[16/9] overflow-hidden">
+                  <Image
+                    src={p.image}
+                    alt={p.name}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  {p.logo && (
+                    <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm rounded-lg px-2.5 py-1.5">
+                      <Image src={p.logo} alt={p.company} width={64} height={20} className="h-4 w-auto object-contain" />
+                    </div>
+                  )}
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <h2 className="font-display text-base font-semibold text-white">{p.name}</h2>
+                    <span className="text-white/30 group-hover:text-white/60 transition-colors">
+                      <ExternalLinkIcon />
+                    </span>
+                  </div>
+                  <p className="font-mono text-[11px] text-white/30 mb-3">{p.role} &middot; {p.company}</p>
+                  <p className="text-sm text-white/45 leading-relaxed mb-4">{p.desc}</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {p.tags.map((tag) => (
+                      <span key={tag} className="font-mono text-[11px] text-white/30 bg-white/[0.04] px-2.5 py-1 rounded">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </a>
+            </div>
+          ))}
         </RevealSection>
 
         <div className="mt-20 text-center">

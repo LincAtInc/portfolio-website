@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Nav } from "@/components/Nav";
+import { RevealSection } from "@/components/RevealSection";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -69,28 +70,55 @@ export default function SystemPage() {
       <main>
         {/* Cards */}
         <section className="bg-[#0f172a] px-8 md:px-20 py-24 max-w-[1440px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {systemPages.map((page) => (
-              <Link
-                key={page.href}
-                href={page.href}
-                className="group p-10 bg-[#0a0f1a] border border-[#1e293b] rounded-xl no-underline flex flex-col gap-4 hover:border-[#334155] transition-colors"
-              >
-                <span className="font-mono text-[11px] text-[var(--color-secondary)] uppercase tracking-[0.2em]">
-                  {page.label}
-                </span>
-                <h2 className="font-display text-xl font-semibold text-white leading-[1.2] group-hover:text-[var(--color-secondary)] transition-colors">
-                  {page.title}
-                </h2>
-                <p className="text-[15px] text-white/50 leading-relaxed flex-1">
-                  {page.description}
-                </p>
-                <span className="text-[13px] text-[var(--color-secondary)] group-hover:text-white transition-colors mt-2">
-                  Explore &rarr;
-                </span>
-              </Link>
-            ))}
-          </div>
+
+          {/* Featured card — start here */}
+          <RevealSection className="mb-6">
+            <Link
+              href={systemPages[0].href}
+              className="group flex flex-col gap-5 p-12 border border-[var(--color-secondary)]/30 rounded-xl no-underline hover:border-[var(--color-secondary)]/60 transition-colors"
+              style={{ background: "linear-gradient(135deg, #0a0f1a 80%, color-mix(in srgb, var(--color-secondary) 6%, transparent) 100%)" }}
+            >
+              <span className="font-mono text-[11px] text-[var(--color-secondary)] uppercase tracking-[0.2em]">
+                {systemPages[0].label}
+              </span>
+              <h2 className="font-display text-[clamp(1.5rem,3vw,2rem)] font-semibold text-white leading-[1.2] group-hover:text-[var(--color-secondary)] transition-colors">
+                {systemPages[0].title}
+              </h2>
+              <p className="text-base text-white/50 leading-relaxed max-w-[680px]">
+                {systemPages[0].description}
+              </p>
+              <span className="text-[13px] text-[var(--color-secondary)] group-hover:text-white transition-colors">
+                Explore &rarr;
+              </span>
+            </Link>
+          </RevealSection>
+
+          {/* Remaining cards — 2×2 grid */}
+          <RevealSection stagger={true}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {systemPages.slice(1).map((page) => (
+                <Link
+                  key={page.href}
+                  href={page.href}
+                  className="group p-10 bg-[#0a0f1a] border border-[#1e293b] rounded-xl no-underline flex flex-col gap-4 hover:border-[#334155] transition-colors"
+                >
+                  <span className="font-mono text-[11px] text-[var(--color-secondary)] uppercase tracking-[0.2em]">
+                    {page.label}
+                  </span>
+                  <h2 className="font-display text-xl font-semibold text-white leading-[1.2] group-hover:text-[var(--color-secondary)] transition-colors">
+                    {page.title}
+                  </h2>
+                  <p className="text-[15px] text-white/50 leading-relaxed flex-1">
+                    {page.description}
+                  </p>
+                  <span className="text-[13px] text-[var(--color-secondary)] group-hover:text-white transition-colors mt-2">
+                    Explore &rarr;
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </RevealSection>
+
         </section>
 
         {/* What this proves */}
