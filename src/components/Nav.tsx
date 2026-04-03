@@ -88,8 +88,11 @@ export function Nav() {
       </div>
 
       {/* Mobile menu */}
-      {open && (
-        <div className="lg:hidden mt-4 pt-4 border-t border-outline-variant/15 flex flex-col gap-1">
+      <div
+        className="lg:hidden overflow-hidden transition-all duration-300 ease-in-out"
+        style={{ maxHeight: open ? "500px" : "0", opacity: open ? 1 : 0 }}
+      >
+        <div className="mt-4 pt-4 border-t border-outline-variant/15 flex flex-col gap-1">
           {links.map((link) => {
             const active = link.href.startsWith("/")
               ? pathname.startsWith(link.href)
@@ -130,7 +133,7 @@ export function Nav() {
             </a>
           </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 }

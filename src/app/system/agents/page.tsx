@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Nav } from "@/components/Nav";
+import { RevealSection } from "@/components/RevealSection";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -133,9 +134,9 @@ export default function AgentTeamPage() {
             Each agent has a dedicated context file in <code className="text-[var(--color-accent)] text-[15px]">.claude/agents/</code> defining its role, expertise, and boundaries. They don&apos;t freelance. They stay in their lane — and that&apos;s what makes them good.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {agents.map((agent) => (
-              <div key={agent.name} className={`p-8 bg-[#0a0f1a] border border-[#1e293b] border-l-[3px] ${agent.color} rounded-xl flex flex-col`}>
+          <RevealSection stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {agents.map((agent, i) => (
+              <div key={agent.name} style={{ "--stagger": i } as React.CSSProperties} className={`p-8 bg-[#0a0f1a] border border-[#1e293b] border-l-[3px] ${agent.color} rounded-xl flex flex-col`}>
                 <div className="flex items-center gap-4 mb-4">
                   <div className={`w-11 h-11 rounded-full ${agent.bg} flex items-center justify-center shrink-0`}>
                     <span className="font-mono text-[13px] font-bold text-[#0a0f1a]">{agent.initials}</span>
@@ -165,7 +166,7 @@ export default function AgentTeamPage() {
                 </div>
               </div>
             ))}
-          </div>
+          </RevealSection>
         </section>
 
         {/* Quote */}
@@ -187,9 +188,9 @@ export default function AgentTeamPage() {
             Lincoln is not a prompt engineer. He is a creative director running a team. He sets the vision, assigns tasks to the right agent, reviews output, corrects course, and approves the final result.
           </p>
 
-          <div className="flex flex-col md:flex-row gap-4 items-stretch">
+          <RevealSection stagger className="flex flex-col md:flex-row gap-4 items-stretch">
             {orchestrationSteps.map((step, i) => (
-              <div key={step.step} className="flex-1 flex flex-col items-center">
+              <div key={step.step} style={{ "--stagger": i } as React.CSSProperties} className="flex-1 flex flex-col items-center">
                 <div className={`w-full p-6 rounded-xl border ${step.actor === "Lincoln" ? "bg-[#0a0f1a] border-white/20" : "bg-[var(--color-accent)]/5 border-[var(--color-accent)]/20"}`}>
                   <div className="flex items-center gap-3 mb-3">
                     <span className={`font-mono text-[11px] font-bold w-6 h-6 rounded-full flex items-center justify-center ${step.actor === "Lincoln" ? "bg-white text-[#0a0f1a]" : "bg-[var(--color-accent)] text-[#0a0f1a]"}`}>
@@ -207,7 +208,7 @@ export default function AgentTeamPage() {
                 )}
               </div>
             ))}
-          </div>
+          </RevealSection>
         </section>
 
         {/* Boundaries */}

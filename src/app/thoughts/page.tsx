@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Nav } from "@/components/Nav";
+import { RevealSection } from "@/components/RevealSection";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -84,15 +85,15 @@ export default function Thoughts() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {fears.map((fear) => (
-              <div key={fear.title} className="p-10 bg-[#0a0f1a] border border-[#1e293b] border-l-[3px] border-l-[var(--color-warm)] rounded-xl">
+          <RevealSection stagger className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {fears.map((fear, i) => (
+              <div key={fear.title} style={{ "--stagger": i } as React.CSSProperties} className="p-10 bg-[#0a0f1a] border border-[#1e293b] border-l-[3px] border-l-[var(--color-warm)] rounded-xl">
                 <h3 className="font-display text-xl font-semibold text-white mb-3">{fear.title}</h3>
                 <p className="text-[15px] text-white/50 leading-relaxed">{fear.desc}</p>
                 <span className="font-mono text-[11px] text-[#64748b] mt-4 block">{fear.source}</span>
               </div>
             ))}
-          </div>
+          </RevealSection>
         </section>
 
         {/* The Pivot */}
@@ -114,9 +115,9 @@ export default function Thoughts() {
             Every concern McGilchrist raises is valid — and every one has a design response. The question isn&apos;t whether AI is dangerous. It&apos;s whether we build systems that amplify wisdom or accelerate stupidity.
           </p>
 
-          <div className="flex flex-col gap-6">
-            {counterpoints.map((cp) => (
-              <div key={cp.fear} className={`p-10 bg-[#0a0f1a] border border-[#1e293b] border-l-[3px] ${cp.color} rounded-xl`}>
+          <RevealSection stagger className="flex flex-col gap-6">
+            {counterpoints.map((cp, i) => (
+              <div key={cp.fear} style={{ "--stagger": i } as React.CSSProperties} className={`p-10 bg-[#0a0f1a] border border-[#1e293b] border-l-[3px] ${cp.color} rounded-xl`}>
                 <div className="flex flex-col md:flex-row md:items-start gap-6">
                   <div className="md:w-[280px] shrink-0">
                     <span className="font-mono text-[11px] text-[var(--color-warm)] uppercase tracking-[0.08em] block mb-1">McGilchrist says</span>
@@ -130,7 +131,7 @@ export default function Thoughts() {
                 </div>
               </div>
             ))}
-          </div>
+          </RevealSection>
         </section>
 
         {/* Hemispheric Map */}
@@ -143,24 +144,24 @@ export default function Thoughts() {
             McGilchrist&apos;s hemispheres map onto I&lt;N&gt;C — but the relationship is partnership, not domination.
           </p>
 
-          <div className="flex flex-col md:flex-row gap-8 mb-12">
-            <div className="flex-1 p-10 rounded-xl bg-blue-400/[0.06] border border-blue-400/20">
+          <RevealSection stagger className="flex flex-col md:flex-row gap-8 mb-12">
+            <div style={{ "--stagger": 0 } as React.CSSProperties} className="flex-1 p-10 rounded-xl bg-blue-400/[0.06] border border-blue-400/20">
               <span className="font-mono text-[11px] text-blue-400 uppercase tracking-[0.1em]">Right Hemisphere — The Master</span>
               <p className="font-display text-5xl font-bold text-blue-400 tracking-tight mt-4 mb-2">I</p>
               <h3 className="font-display text-[22px] font-semibold text-white mb-3">Ideate</h3>
               <p className="text-[15px] text-white/50 leading-relaxed">The human spark. Vision, intuition, pattern recognition. What the machine cannot generate — and what AI should be designed to <strong className="text-white">serve</strong>, not replace.</p>
             </div>
-            <div className="flex flex-col items-center justify-center gap-2 shrink-0">
+            <div style={{ "--stagger": 1 } as React.CSSProperties} className="flex flex-col items-center justify-center gap-2 shrink-0">
               <span className="font-display text-4xl font-bold text-purple-400">&lt;N&gt;</span>
               <span className="font-mono text-[11px] text-[#64748b] uppercase tracking-[0.1em] text-center">Assistive<br />Bridge</span>
             </div>
-            <div className="flex-1 p-10 rounded-xl bg-cyan-400/[0.06] border border-cyan-400/20">
+            <div style={{ "--stagger": 2 } as React.CSSProperties} className="flex-1 p-10 rounded-xl bg-cyan-400/[0.06] border border-cyan-400/20">
               <span className="font-mono text-[11px] text-cyan-400 uppercase tracking-[0.1em]">Left Hemisphere — The Emissary</span>
               <p className="font-display text-5xl font-bold text-cyan-400 tracking-tight mt-4 mb-2">C</p>
               <h3 className="font-display text-[22px] font-semibold text-white mb-3">Create</h3>
               <p className="text-[15px] text-white/50 leading-relaxed">Sequential execution. This is where AI excels — and where it should stay. The emissary serves the master. Execution serves vision. <strong className="text-white">AI assists creation</strong>, it doesn&apos;t originate it.</p>
             </div>
-          </div>
+          </RevealSection>
 
           <p className="text-[15px] text-white/50 max-w-[800px] leading-relaxed">
             <strong className="text-purple-400">&lt;N&gt;</strong> — the Narrate layer — is the assistive bridge that keeps the relationship right. The design system ensures execution serves vision, not the other way around. McGilchrist&apos;s warning is precisely what happens when this bridge breaks: the emissary overthrows the master. The agentic design system is designed to prevent that.
