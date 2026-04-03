@@ -1,8 +1,8 @@
 // FigJam to Narrative — code.js
-// I → N extraction pipeline
+// Bidirectional I ↔ N pipeline
 // Part of the INC framework: Ideate → Narrate → Create
 
-figma.showUI(__html__, { width: 400, height: 500 });
+figma.showUI(__html__, { width: 420, height: 580, themeColors: true });
 
 // Colour convention mapping — keyed on the Figma sticky fill name
 var COLOUR_MAP = {
@@ -361,6 +361,7 @@ function extract() {
   figma.ui.postMessage({
     type: "extracted",
     markdown: markdown,
+    pageName: figma.currentPage.name,
     summary: {
       stickies: totalStickies,
       sections: totalSections,
@@ -369,10 +370,162 @@ function extract() {
   });
 }
 
+// ═══════════════════════════════════════════════════════
+// N → I : Import markdown back into FigJam as stickies
+// ═══════════════════════════════════════════════════════
+
+// Reverse colour map: category label → Figma sticky colour
+var REVERSE_COLOUR_MAP = {
+  "High Signal": "GREEN",
+  "Validated": "TEAL",
+  "Action Items": "ORANGE",
+  "Technical": "BLUE",
+  "Questions": "PINK",
+  "Discussion": "VIOLET",
+  "General": "YELLOW",
+  "Notes": "GRAY"
+};
+
+// Parse markdown into structured groups
+function parseNarrativeMarkdown(markdown) {
+  var lines = markdown.split("\n");
+  var title = "";
+  var groups = [];
+  var currentGroup = null;
+  var inFrontmatter = false;
+
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i].trim();
+
+    // Skip frontmatter
+    if (line === "---") {
+      inFrontmatter = !inFrontmatter;
+      continue;
+    }
+    if (inFrontmatter) continue;
+
+    // Title
+    if (line.indexOf("# ") === 0 && line.indexOf("## ") !== 0) {
+      title = line.substring(2).trim();
+      continue;
+    }
+
+    // Section header (## Category — count)
+    if (line.indexOf("## ") === 0) {
+      var headerText = line.substring(3).trim();
+      // Strip the count suffix (e.g. " — 8")
+      var dashIdx = headerText.indexOf(" — ");
+      var groupName = dashIdx > -1 ? headerText.substring(0, dashIdx).trim() : headerText;
+      // Skip non-sticky sections
+      if (groupName === "Connections" || groupName === "Links") {
+        currentGroup = null;
+        continue;
+      }
+      currentGroup = { name: groupName, items: [] };
+      groups.push(currentGroup);
+      continue;
+    }
+
+    // List item (- text)
+    if (line.indexOf("- ") === 0 && currentGroup) {
+      var itemText = line.substring(2).trim();
+      // Strip author suffix (*— Author*)
+      var authorIdx = itemText.lastIndexOf(" *—");
+      if (authorIdx > -1) {
+        itemText = itemText.substring(0, authorIdx).trim();
+      }
+      if (itemText) {
+        currentGroup.items.push(itemText);
+      }
+    }
+  }
+
+  return { title: title, groups: groups };
+}
+
+// Create stickies in FigJam from parsed markdown
+function importToFigJam(markdown) {
+  var parsed = parseNarrativeMarkdown(markdown);
+  var page = figma.currentPage;
+
+  // Find a clear area to place new content
+  var maxX = 0;
+  for (var i = 0; i < page.children.length; i++) {
+    var child = page.children[i];
+    var right = child.x + child.width;
+    if (right > maxX) maxX = right;
+  }
+  var startX = maxX + 200;
+  var startY = 0;
+
+  // Create a section for the import
+  var section = figma.createSection();
+  section.name = parsed.title || "Imported Narrative";
+
+  var stickyWidth = 300;
+  var stickyHeight = 200;
+  var colSpacing = 40;
+  var rowSpacing = 30;
+  var groupSpacing = 60;
+
+  var currentY = 80; // Leave room for section title
+  var totalStickies = 0;
+  var groupCount = 0;
+
+  for (var g = 0; g < parsed.groups.length; g++) {
+    var group = parsed.groups[g];
+    if (group.items.length === 0) continue;
+    groupCount++;
+
+    var stickyColour = REVERSE_COLOUR_MAP[group.name] || "YELLOW";
+
+    // Layout in columns of 3
+    var cols = 3;
+    for (var j = 0; j < group.items.length; j++) {
+      var col = j % cols;
+      var row = Math.floor(j / cols);
+
+      var sticky = figma.createSticky();
+      sticky.text.characters = group.items[j];
+      sticky.color = stickyColour;
+      sticky.x = 40 + col * (stickyWidth + colSpacing);
+      sticky.y = currentY + row * (stickyHeight + rowSpacing);
+
+      section.appendChild(sticky);
+      totalStickies++;
+    }
+
+    var rows = Math.ceil(group.items.length / cols);
+    currentY += rows * (stickyHeight + rowSpacing) + groupSpacing;
+  }
+
+  // Size the section to fit content
+  section.x = startX;
+  section.y = startY;
+  section.resizeWithoutConstraints(
+    40 + 3 * (stickyWidth + colSpacing) + 40,
+    currentY + 40
+  );
+
+  // Scroll to the new section
+  figma.viewport.scrollAndZoomIntoView([section]);
+
+  figma.ui.postMessage({
+    type: "imported",
+    summary: {
+      title: parsed.title,
+      stickies: totalStickies,
+      groups: groupCount
+    }
+  });
+}
+
 // Message handler
 figma.ui.onmessage = function(msg) {
   if (msg.type === "extract") {
     extract();
+  } else if (msg.type === "import") {
+    importToFigJam(msg.markdown);
   } else if (msg.type === "close") {
     figma.closePlugin();
   }

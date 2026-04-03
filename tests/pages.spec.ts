@@ -17,6 +17,7 @@ const pages = [
   { path: "/thoughts/product-primitives", title: "The Interface I Designed" },
   { path: "/explore", title: "What do you want to know?" },
   { path: "/system/agent-readable", title: "Three audiences" },
+  { path: "/system/figjam-plugin", title: "FigJam to Narrative" },
   { path: "/inc", title: "The INC Cycle" },
   { path: "/fit", title: "Right Fit" },
 ];

@@ -37,6 +37,13 @@ const systemPages = [
     description:
       "What a component looks like when the primary reader is an AI agent — and why JSON beats Markdown.",
   },
+  {
+    href: "/system/figjam-plugin",
+    label: "The Plugin",
+    title: "FigJam to Narrative",
+    description:
+      "A working Figma plugin that extracts ideation boards into structured markdown. The I→N pipeline as a shipped artefact.",
+  },
 ];
 
 export default function SystemPage() {
@@ -62,7 +69,7 @@ export default function SystemPage() {
       <main>
         {/* Cards */}
         <section className="bg-[#0f172a] px-8 md:px-20 py-24 max-w-[1440px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {systemPages.map((page) => (
               <Link
                 key={page.href}

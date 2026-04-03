@@ -5,261 +5,348 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FigJam to Narrative</title>
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
+    *, *::before, *::after { box-sizing: border-box; }
+
+    :root {
+      --ds-surface: #0b1326;
+      --ds-surface-container-low: #131b2e;
+      --ds-surface-container: #171f33;
+      --ds-surface-container-high: #222a3d;
+      --ds-on-surface: #dae2fd;
+      --ds-on-surface-variant: #c3c6d7;
+      --ds-primary: #b4c5ff;
+      --ds-primary-container: #2563eb;
+      --ds-secondary: #d0bcff;
+      --ds-tertiary: #4cd7f6;
+      --ds-warm: #f59e0b;
+      --ds-outline-variant: #434655;
+      --ds-font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+      --ds-font-body: "Inter", system-ui, sans-serif;
+      --ds-font-mono: "Space Grotesk", "JetBrains Mono", monospace;
+      --ds-radius-lg: 0.5rem;
+      --ds-radius-xl: 0.75rem;
     }
 
     body {
-      background: #0b1326;
-      color: #dae2fd;
-      font-family: Inter, -apple-system, sans-serif;
-      margin: 0;
-      padding: 16px;
-      font-size: 13px;
-      line-height: 1.5;
-      min-height: 500px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+      background: var(--ds-surface);
+      color: var(--ds-on-surface);
+      font-family: var(--ds-font-body);
+      margin: 0; padding: 16px;
+      font-size: 13px; line-height: 1.5;
+      min-height: 580px;
+      display: flex; flex-direction: column; gap: 12px;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Header */
-    header {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
+    header { display: flex; flex-direction: column; gap: 4px; }
     header h1 {
-      font-size: 15px;
-      font-weight: 600;
-      color: #dae2fd;
-      margin: 0;
-      letter-spacing: -0.01em;
+      font-family: var(--ds-font-display);
+      font-size: 16px; font-weight: 700;
+      color: var(--ds-on-surface); margin: 0;
+      letter-spacing: -0.02em;
     }
-
+    header h1 span.arrow { color: var(--ds-tertiary); }
     header p {
-      font-size: 11px;
-      color: #5c6f9c;
-      margin: 0;
-      font-style: italic;
+      font-family: var(--ds-font-mono);
+      font-size: 10px; color: var(--ds-on-surface-variant);
+      margin: 0; text-transform: uppercase; letter-spacing: 0.15em;
     }
 
-    /* Divider */
-    hr {
-      border: none;
-      border-top: 1px solid #1c2540;
-      margin: 0;
+    hr { border: none; border-top: 1px solid var(--ds-outline-variant); margin: 0; opacity: 0.4; }
+
+    /* Tabs */
+    .tabs {
+      display: flex; gap: 0; border-bottom: 1px solid var(--ds-outline-variant);
+    }
+    .tab {
+      flex: 1; padding: 8px 0; text-align: center;
+      font-family: var(--ds-font-mono); font-size: 11px;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--ds-on-surface-variant); cursor: pointer;
+      border: none; background: none;
+      border-bottom: 2px solid transparent;
+      transition: all 0.15s ease;
+    }
+    .tab:hover { color: var(--ds-on-surface); }
+    .tab.active {
+      color: var(--ds-primary);
+      border-bottom-color: var(--ds-primary-container);
+    }
+    .tab.active-import {
+      color: var(--ds-secondary);
+      border-bottom-color: var(--ds-secondary-container, #571bc1);
     }
 
-    /* Controls row */
-    .controls {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    /* Panels */
+    .panel { display: none; flex-direction: column; gap: 10px; flex: 1; }
+    .panel.active { display: flex; }
 
-    button {
-      background: #2563eb;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      padding: 8px 16px;
-      cursor: pointer;
-      font-size: 13px;
-      font-family: inherit;
-      font-weight: 500;
-      transition: background 0.15s ease;
-      flex-shrink: 0;
+    /* Controls */
+    .folder-row { display: flex; gap: 8px; align-items: center; }
+    .folder-row label {
+      font-family: var(--ds-font-mono); font-size: 10px;
+      color: var(--ds-on-surface-variant);
+      text-transform: uppercase; letter-spacing: 0.12em; white-space: nowrap;
     }
-
-    button:hover {
-      background: #3b82f6;
-    }
-
-    button:active {
-      background: #1d4ed8;
-    }
-
-    button:disabled {
-      background: #1c2540;
-      color: #3d4f73;
-      cursor: not-allowed;
-    }
-
-    button.secondary {
-      background: #131b2e;
-      border: 1px solid #222a3d;
-      color: #7b93cc;
-    }
-
-    button.secondary:hover {
-      background: #1a2440;
-      color: #dae2fd;
-    }
-
-    button.secondary:disabled {
-      background: #0f1624;
-      color: #2a3550;
-      border-color: #1a2030;
-    }
-
-    /* Summary line */
-    .summary {
-      font-size: 11px;
-      color: #5c6f9c;
-      min-height: 16px;
-    }
-
-    .summary.populated {
-      color: #7b93cc;
-    }
-
-    /* Output area */
-    .output-wrap {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      min-height: 0;
-    }
-
-    textarea {
-      background: #131b2e;
-      color: #b4c5ff;
-      border: 1px solid #222a3d;
-      border-radius: 8px;
-      font-family: 'Space Grotesk', 'Fira Code', 'Cascadia Code', Menlo, monospace;
-      font-size: 11px;
-      line-height: 1.6;
-      width: 100%;
-      height: 320px;
-      resize: none;
-      padding: 10px;
-      outline: none;
+    .folder-row input, .import-input {
+      background: var(--ds-surface-container-low);
+      color: var(--ds-primary);
+      border: 1px solid var(--ds-outline-variant);
+      border-radius: var(--ds-radius-lg);
+      padding: 6px 10px; font-family: var(--ds-font-mono);
+      font-size: 12px; flex: 1; outline: none;
       transition: border-color 0.15s ease;
     }
+    .folder-row input:focus, .import-input:focus { border-color: var(--ds-primary-container); }
+    .folder-row input::placeholder, .import-input::placeholder { color: var(--ds-outline-variant); }
 
-    textarea:focus {
-      border-color: #2563eb;
+    .action-row { display: flex; gap: 8px; align-items: center; }
+
+    button {
+      font-family: var(--ds-font-body); font-size: 13px; font-weight: 600;
+      border: none; border-radius: var(--ds-radius-lg);
+      padding: 8px 20px; cursor: pointer;
+      transition: all 0.15s ease; flex-shrink: 0;
+    }
+    button.primary {
+      background: var(--ds-primary-container); color: white;
+    }
+    button.primary:hover { background: #3b82f6; }
+    button.primary:active { background: #1d4ed8; }
+    button.primary:disabled {
+      background: var(--ds-surface-container-high);
+      color: var(--ds-outline-variant); cursor: not-allowed;
+    }
+    button.primary-purple {
+      background: #571bc1; color: white;
+    }
+    button.primary-purple:hover { background: #6d28d9; }
+    button.primary-purple:active { background: #4c1d95; }
+    button.primary-purple:disabled {
+      background: var(--ds-surface-container-high);
+      color: var(--ds-outline-variant); cursor: not-allowed;
+    }
+    button.secondary {
+      background: var(--ds-surface-container);
+      border: 1px solid var(--ds-outline-variant);
+      color: var(--ds-on-surface-variant);
+    }
+    button.secondary:hover {
+      background: var(--ds-surface-container-high);
+      color: var(--ds-on-surface);
+    }
+    button.secondary:disabled {
+      background: var(--ds-surface-container-low);
+      color: var(--ds-outline-variant); cursor: not-allowed;
     }
 
-    textarea::placeholder {
-      color: #2a3550;
-    }
+    .hint { font-size: 10px; color: var(--ds-on-surface-variant); opacity: 0.6; line-height: 1.3; }
 
-    /* Copy button row */
-    .copy-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .summary {
+      font-family: var(--ds-font-mono); font-size: 11px;
+      color: var(--ds-on-surface-variant); min-height: 16px;
     }
+    .summary.populated { color: var(--ds-tertiary); }
+    .summary.imported { color: var(--ds-secondary); }
 
-    .copy-feedback {
-      font-size: 11px;
-      color: #4ade80;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
+    .output-wrap { flex: 1; display: flex; flex-direction: column; gap: 8px; min-height: 0; }
 
-    .copy-feedback.visible {
-      opacity: 1;
+    textarea, .import-input {
+      background: var(--ds-surface-container-low);
+      color: var(--ds-primary);
+      border: 1px solid var(--ds-outline-variant);
+      border-radius: var(--ds-radius-xl);
+      font-family: var(--ds-font-mono); font-size: 11px; line-height: 1.6;
+      width: 100%; resize: none; padding: 12px; outline: none;
+      transition: border-color 0.15s ease;
     }
+    textarea { height: 260px; }
+    .import-input { height: 260px; color: var(--ds-secondary); }
+    textarea:focus, .import-input:focus { border-color: var(--ds-primary-container); }
+    textarea::placeholder, .import-input::placeholder { color: var(--ds-outline-variant); }
 
-    /* State: empty placeholder */
-    .placeholder-hint {
-      font-size: 11px;
-      color: #2a3550;
-      font-style: italic;
-      padding: 0 2px;
+    .save-row { display: flex; align-items: center; gap: 8px; }
+
+    /* File upload */
+    .file-row { display: flex; gap: 8px; align-items: center; }
+    .file-label {
+      font-family: var(--ds-font-mono); font-size: 10px;
+      color: var(--ds-on-surface-variant); text-transform: uppercase;
+      letter-spacing: 0.12em;
     }
+    input[type="file"] { display: none; }
+
+    .inc-badge {
+      font-family: var(--ds-font-mono); font-size: 9px;
+      letter-spacing: 0.1em; color: var(--ds-on-surface-variant);
+      opacity: 0.4; margin-top: auto; text-align: center; padding-top: 4px;
+    }
+    .inc-badge span.i { color: var(--ds-primary); opacity: 1; }
+    .inc-badge span.n { color: var(--ds-secondary); opacity: 1; }
+    .inc-badge span.c { color: var(--ds-tertiary); opacity: 1; }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>FigJam &#8594; Narrative</h1>
-    <p>I &#8594; N extraction &nbsp;&middot;&nbsp; INC framework</p>
+    <h1>FigJam <span class="arrow">&harr;</span> Narrative</h1>
+    <p>Bidirectional I &harr; N &middot; INC framework</p>
   </header>
 
-  <hr />
-
-  <div class="controls">
-    <button id="extractBtn" type="button">Extract</button>
-    <span class="placeholder-hint" id="scopeHint">Extracts from selection, or full page if nothing selected.</span>
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab active" id="tabExtract" type="button">I &rarr; N &nbsp; Extract</button>
+    <button class="tab" id="tabImport" type="button">N &rarr; I &nbsp; Import</button>
   </div>
 
-  <div class="summary" id="summary"></div>
-
-  <div class="output-wrap">
-    <textarea
-      id="output"
-      readonly
-      placeholder="Extracted markdown will appear here&#8230;"
-      spellcheck="false"
-    ></textarea>
-
-    <div class="copy-row">
-      <button class="secondary" id="copyBtn" type="button" disabled>Copy to clipboard</button>
-      <span class="copy-feedback" id="copyFeedback">Copied!</span>
+  <!-- EXTRACT PANEL (I → N) -->
+  <div class="panel active" id="panelExtract">
+    <div class="folder-row">
+      <label>Folder</label>
+      <input type="text" id="folderInput" placeholder="e.g. ids-2026" spellcheck="false" />
+    </div>
+    <div class="action-row">
+      <button class="primary" id="extractBtn" type="button">Extract</button>
+      <span class="hint" id="scopeHint">Extracts from selection, or full page if nothing selected.</span>
+    </div>
+    <div class="summary" id="extractSummary"></div>
+    <div class="output-wrap">
+      <textarea id="extractOutput" readonly placeholder="Extracted markdown will appear here&#8230;" spellcheck="false"></textarea>
+      <div class="save-row">
+        <button class="secondary" id="saveBtn" type="button" disabled>Save as .md</button>
+      </div>
     </div>
   </div>
 
-  <script>
-    var extractBtn = document.getElementById("extractBtn");
-    var copyBtn = document.getElementById("copyBtn");
-    var output = document.getElementById("output");
-    var summary = document.getElementById("summary");
-    var scopeHint = document.getElementById("scopeHint");
-    var copyFeedback = document.getElementById("copyFeedback");
-    var copyTimer = null;
+  <!-- IMPORT PANEL (N → I) -->
+  <div class="panel" id="panelImport">
+    <div class="action-row">
+      <button class="secondary" id="loadFileBtn" type="button">Load .md file</button>
+      <span class="hint">Or paste markdown below</span>
+      <input type="file" id="fileInput" accept=".md,.txt,.markdown" />
+    </div>
+    <div class="output-wrap">
+      <textarea class="import-input" id="importInput" placeholder="Paste narrative markdown here&#8230;" spellcheck="false"></textarea>
+      <div class="action-row">
+        <button class="primary-purple" id="importBtn" type="button" disabled>Import to FigJam</button>
+        <span class="hint">Creates colour-coded stickies in a new section</span>
+      </div>
+    </div>
+    <div class="summary" id="importSummary"></div>
+  </div>
 
-    // Trigger extraction
+  <div class="inc-badge">
+    <span class="i">I</span>&lt;<span class="n">N</span>&gt;<span class="c">C</span> &middot; lincolnmitchell.io
+  </div>
+
+  <script>
+    // Elements — Extract
+    var tabExtract = document.getElementById("tabExtract");
+    var tabImport = document.getElementById("tabImport");
+    var panelExtract = document.getElementById("panelExtract");
+    var panelImport = document.getElementById("panelImport");
+    var extractBtn = document.getElementById("extractBtn");
+    var folderInput = document.getElementById("folderInput");
+    var extractOutput = document.getElementById("extractOutput");
+    var extractSummary = document.getElementById("extractSummary");
+    var scopeHint = document.getElementById("scopeHint");
+    var saveBtn = document.getElementById("saveBtn");
+
+    // Elements — Import
+    var loadFileBtn = document.getElementById("loadFileBtn");
+    var fileInput = document.getElementById("fileInput");
+    var importInput = document.getElementById("importInput");
+    var importBtn = document.getElementById("importBtn");
+    var importSummary = document.getElementById("importSummary");
+
+    var currentPageName = "";
+
+    // Tab switching
+    tabExtract.addEventListener("click", function() {
+      tabExtract.className = "tab active";
+      tabImport.className = "tab";
+      panelExtract.className = "panel active";
+      panelImport.className = "panel";
+    });
+    tabImport.addEventListener("click", function() {
+      tabExtract.className = "tab";
+      tabImport.className = "tab active-import";
+      panelExtract.className = "panel";
+      panelImport.className = "panel active";
+    });
+
+    // ── EXTRACT (I → N) ──
+
     extractBtn.addEventListener("click", function() {
       extractBtn.disabled = true;
       extractBtn.textContent = "Extracting\u2026";
-      summary.textContent = "";
-      summary.className = "summary";
-      copyBtn.disabled = true;
-      output.value = "";
+      extractSummary.textContent = "";
+      extractSummary.className = "summary";
+      extractOutput.value = "";
       scopeHint.style.display = "none";
       parent.postMessage({ pluginMessage: { type: "extract" } }, "*");
     });
 
-    // Copy to clipboard
-    copyBtn.addEventListener("click", function() {
-      if (!output.value) return;
-      try {
-        navigator.clipboard.writeText(output.value).then(function() {
-          showCopyFeedback();
-        }).catch(function() {
-          // Fallback for older environments
-          output.select();
-          document.execCommand("copy");
-          showCopyFeedback();
-        });
-      } catch (e) {
-        output.select();
-        document.execCommand("copy");
-        showCopyFeedback();
-      }
-    });
-
-    function showCopyFeedback() {
-      copyFeedback.classList.add("visible");
-      if (copyTimer) clearTimeout(copyTimer);
-      copyTimer = setTimeout(function() {
-        copyFeedback.classList.remove("visible");
-      }, 2000);
+    function triggerDownload() {
+      if (!extractOutput.value) return;
+      var folder = folderInput.value.trim().toLowerCase().replace(/[^a-z0-9-]+/g, "-").replace(/-+$/g, "");
+      var pageName = currentPageName
+        ? currentPageName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-+$/g, "")
+        : "figjam-extract";
+      var filename = folder
+        ? "__" + folder + "__" + pageName + ".md"
+        : pageName + ".md";
+      var blob = new Blob([extractOutput.value], { type: "text/markdown;charset=utf-8" });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
     }
 
-    // Receive messages from the plugin code
+    saveBtn.addEventListener("click", triggerDownload);
+
+    // ── IMPORT (N → I) ──
+
+    loadFileBtn.addEventListener("click", function() {
+      fileInput.click();
+    });
+
+    fileInput.addEventListener("change", function() {
+      var file = fileInput.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        importInput.value = e.target.result;
+        importBtn.disabled = false;
+        importSummary.textContent = "Loaded: " + file.name;
+        importSummary.className = "summary populated";
+      };
+      reader.readAsText(file);
+    });
+
+    importInput.addEventListener("input", function() {
+      importBtn.disabled = !importInput.value.trim();
+    });
+
+    importBtn.addEventListener("click", function() {
+      if (!importInput.value.trim()) return;
+      importBtn.disabled = true;
+      importBtn.textContent = "Importing\u2026";
+      importSummary.textContent = "";
+      importSummary.className = "summary";
+      parent.postMessage({ pluginMessage: { type: "import", markdown: importInput.value } }, "*");
+    });
+
+    // ── MESSAGE HANDLER ──
+
     window.onmessage = function(event) {
       var msg = event.data.pluginMessage;
       if (!msg) return;
 
       if (msg.type === "extracted") {
-        output.value = msg.markdown || "";
+        extractOutput.value = msg.markdown || "";
         extractBtn.disabled = false;
         extractBtn.textContent = "Extract";
         scopeHint.style.display = "";
@@ -269,15 +356,28 @@
           var stickyWord = s.stickies === 1 ? "sticky" : "stickies";
           var sectionWord = s.sections === 1 ? "section" : "sections";
           var groupWord = s.colourGroups === 1 ? "colour group" : "colour groups";
-          var text = s.stickies + " " + stickyWord
+          extractSummary.textContent = s.stickies + " " + stickyWord
             + " across " + s.sections + " " + sectionWord
             + ", " + s.colourGroups + " " + groupWord;
-          summary.textContent = text;
-          summary.className = "summary" + (s.stickies > 0 ? " populated" : "");
+          extractSummary.className = "summary" + (s.stickies > 0 ? " populated" : "");
         }
 
-        if (output.value) {
-          copyBtn.disabled = false;
+        if (msg.pageName) currentPageName = msg.pageName;
+
+        if (extractOutput.value) {
+          saveBtn.disabled = false;
+          triggerDownload();
+        }
+      }
+
+      if (msg.type === "imported") {
+        importBtn.disabled = false;
+        importBtn.textContent = "Import to FigJam";
+        if (msg.summary) {
+          var is = msg.summary;
+          importSummary.textContent = "Created " + is.stickies + " stickies in " + is.groups + " colour groups"
+            + (is.title ? " — \"" + is.title + "\"" : "");
+          importSummary.className = "summary imported";
         }
       }
     };
