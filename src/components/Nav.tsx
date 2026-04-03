@@ -7,6 +7,7 @@ import { useState } from "react";
 const links = [
   { href: "#expand", label: "How N Expands" },
   { href: "#what", label: "What Is It" },
+  { href: "/inc", label: "INC Cycle" },
   { href: "/work", label: "Work" },
   { href: "/headless-ds", label: "Headless DS" },
   { href: "/system", label: "The System" },

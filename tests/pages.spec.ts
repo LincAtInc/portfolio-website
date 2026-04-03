@@ -16,6 +16,9 @@ const pages = [
   { path: "/thoughts/room-after-the-talk", title: "Room After the Talk" },
   { path: "/thoughts/product-primitives", title: "The Interface I Designed" },
   { path: "/explore", title: "What do you want to know?" },
+  { path: "/system/agent-readable", title: "Three audiences" },
+  { path: "/inc", title: "The INC Cycle" },
+  { path: "/fit", title: "Right Fit" },
 ];
 
 for (const page of pages) {

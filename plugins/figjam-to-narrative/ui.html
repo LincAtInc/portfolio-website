@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FigJam to Narrative</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0b1326;
+      color: #dae2fd;
+      font-family: Inter, -apple-system, sans-serif;
+      margin: 0;
+      padding: 16px;
+      font-size: 13px;
+      line-height: 1.5;
+      min-height: 500px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    header h1 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #dae2fd;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+
+    header p {
+      font-size: 11px;
+      color: #5c6f9c;
+      margin: 0;
+      font-style: italic;
+    }
+
+    /* Divider */
+    hr {
+      border: none;
+      border-top: 1px solid #1c2540;
+      margin: 0;
+    }
+
+    /* Controls row */
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: 13px;
+      font-family: inherit;
+      font-weight: 500;
+      transition: background 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    button:hover {
+      background: #3b82f6;
+    }
+
+    button:active {
+      background: #1d4ed8;
+    }
+
+    button:disabled {
+      background: #1c2540;
+      color: #3d4f73;
+      cursor: not-allowed;
+    }
+
+    button.secondary {
+      background: #131b2e;
+      border: 1px solid #222a3d;
+      color: #7b93cc;
+    }
+
+    button.secondary:hover {
+      background: #1a2440;
+      color: #dae2fd;
+    }
+
+    button.secondary:disabled {
+      background: #0f1624;
+      color: #2a3550;
+      border-color: #1a2030;
+    }
+
+    /* Summary line */
+    .summary {
+      font-size: 11px;
+      color: #5c6f9c;
+      min-height: 16px;
+    }
+
+    .summary.populated {
+      color: #7b93cc;
+    }
+
+    /* Output area */
+    .output-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-height: 0;
+    }
+
+    textarea {
+      background: #131b2e;
+      color: #b4c5ff;
+      border: 1px solid #222a3d;
+      border-radius: 8px;
+      font-family: 'Space Grotesk', 'Fira Code', 'Cascadia Code', Menlo, monospace;
+      font-size: 11px;
+      line-height: 1.6;
+      width: 100%;
+      height: 320px;
+      resize: none;
+      padding: 10px;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+
+    textarea:focus {
+      border-color: #2563eb;
+    }
+
+    textarea::placeholder {
+      color: #2a3550;
+    }
+
+    /* Copy button row */
+    .copy-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .copy-feedback {
+      font-size: 11px;
+      color: #4ade80;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .copy-feedback.visible {
+      opacity: 1;
+    }
+
+    /* State: empty placeholder */
+    .placeholder-hint {
+      font-size: 11px;
+      color: #2a3550;
+      font-style: italic;
+      padding: 0 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>FigJam &#8594; Narrative</h1>
+    <p>I &#8594; N extraction &nbsp;&middot;&nbsp; INC framework</p>
+  </header>
+
+  <hr />
+
+  <div class="controls">
+    <button id="extractBtn" type="button">Extract</button>
+    <span class="placeholder-hint" id="scopeHint">Extracts from selection, or full page if nothing selected.</span>
+  </div>
+
+  <div class="summary" id="summary"></div>
+
+  <div class="output-wrap">
+    <textarea
+      id="output"
+      readonly
+      placeholder="Extracted markdown will appear here&#8230;"
+      spellcheck="false"
+    ></textarea>
+
+    <div class="copy-row">
+      <button class="secondary" id="copyBtn" type="button" disabled>Copy to clipboard</button>
+      <span class="copy-feedback" id="copyFeedback">Copied!</span>
+    </div>
+  </div>
+
+  <script>
+    var extractBtn = document.getElementById("extractBtn");
+    var copyBtn = document.getElementById("copyBtn");
+    var output = document.getElementById("output");
+    var summary = document.getElementById("summary");
+    var scopeHint = document.getElementById("scopeHint");
+    var copyFeedback = document.getElementById("copyFeedback");
+    var copyTimer = null;
+
+    // Trigger extraction
+    extractBtn.addEventListener("click", function() {
+      extractBtn.disabled = true;
+      extractBtn.textContent = "Extracting\u2026";
+      summary.textContent = "";
+      summary.className = "summary";
+      copyBtn.disabled = true;
+      output.value = "";
+      scopeHint.style.display = "none";
+      parent.postMessage({ pluginMessage: { type: "extract" } }, "*");
+    });
+
+    // Copy to clipboard
+    copyBtn.addEventListener("click", function() {
+      if (!output.value) return;
+      try {
+        navigator.clipboard.writeText(output.value).then(function() {
+          showCopyFeedback();
+        }).catch(function() {
+          // Fallback for older environments
+          output.select();
+          document.execCommand("copy");
+          showCopyFeedback();
+        });
+      } catch (e) {
+        output.select();
+        document.execCommand("copy");
+        showCopyFeedback();
+      }
+    });
+
+    function showCopyFeedback() {
+      copyFeedback.classList.add("visible");
+      if (copyTimer) clearTimeout(copyTimer);
+      copyTimer = setTimeout(function() {
+        copyFeedback.classList.remove("visible");
+      }, 2000);
+    }
+
+    // Receive messages from the plugin code
+    window.onmessage = function(event) {
+      var msg = event.data.pluginMessage;
+      if (!msg) return;
+
+      if (msg.type === "extracted") {
+        output.value = msg.markdown || "";
+        extractBtn.disabled = false;
+        extractBtn.textContent = "Extract";
+        scopeHint.style.display = "";
+
+        if (msg.summary) {
+          var s = msg.summary;
+          var stickyWord = s.stickies === 1 ? "sticky" : "stickies";
+          var sectionWord = s.sections === 1 ? "section" : "sections";
+          var groupWord = s.colourGroups === 1 ? "colour group" : "colour groups";
+          var text = s.stickies + " " + stickyWord
+            + " across " + s.sections + " " + sectionWord
+            + ", " + s.colourGroups + " " + groupWord;
+          summary.textContent = text;
+          summary.className = "summary" + (s.stickies > 0 ? " populated" : "");
+        }
+
+        if (output.value) {
+          copyBtn.disabled = false;
+        }
+      }
+    };
+  </script>
+</body>
+</html>

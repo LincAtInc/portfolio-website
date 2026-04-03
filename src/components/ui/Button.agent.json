@@ -1,0 +1,315 @@
+{
+  "identity": {
+    "name": "Button",
+    "path": "src/components/ui/Button.tsx",
+    "import": "import { Button } from '@/components/ui'",
+    "description": "Interactive control for primary calls-to-action, secondary actions, and tertiary text-style navigation. Renders as <button> by default; when href is provided, renders as <a> for link navigation. Wraps HTML button attributes via ButtonHTMLAttributes.",
+    "audience": "agent",
+    "schema_version": "1.0.0"
+  },
+
+  "interface": {
+    "props": [
+      {
+        "name": "variant",
+        "type": "'primary' | 'secondary' | 'tertiary' | 'ghost'",
+        "default": "primary",
+        "required": false,
+        "semantic_category": "visual_hierarchy",
+        "description": "Controls visual weight and colour treatment. primary = gradient CTA with glow. secondary = bordered ghost with primary-fixed-dim text. tertiary = label-md styled text-only, hover underline. ghost = muted surface-variant text, hover on-surface.",
+        "usage_rules": [
+          "Use primary for the single highest-priority action per section",
+          "Use secondary for a complementary action that pairs with primary",
+          "Use tertiary for navigation-style links within body text",
+          "Use ghost for toolbar, nav, or utility actions where visual prominence must be minimal"
+        ]
+      },
+      {
+        "name": "size",
+        "type": "'sm' | 'md' | 'lg'",
+        "default": "md",
+        "required": false,
+        "semantic_category": "density",
+        "description": "Controls padding and font size. sm=px-4/py-2/text-sm. md=px-6/py-3/text-sm. lg=px-8/py-4/text-base. All three sizes use the same font-medium weight and rounded-md radius.",
+        "usage_rules": [
+          "Use lg in hero sections and CTA footers (Book a Chat, See the Headless DS)",
+          "Use md as the default in cards and page sections",
+          "Use sm in compact UI like toolbars, badges, or inline controls"
+        ]
+      },
+      {
+        "name": "href",
+        "type": "string | undefined",
+        "default": "undefined",
+        "required": false,
+        "semantic_category": "behaviour",
+        "description": "When provided, the component renders as an <a> element instead of <button>. Use for navigation links. When undefined, renders as <button> with full ButtonHTMLAttributes support including onClick, type, disabled.",
+        "usage_rules": [
+          "Pass href for all navigation actions — internal paths ('/system') or external URLs",
+          "Do not pass href and onClick together; choose the element type appropriate to the action",
+          "For external links, add target and rel as standard HTML attributes via props spread"
+        ]
+      },
+      {
+        "name": "children",
+        "type": "React.ReactNode",
+        "default": "—",
+        "required": true,
+        "semantic_category": "content",
+        "description": "Button label text. May include inline icons via flex gap-2 layout. All variants centre content with inline-flex and justify-center.",
+        "usage_rules": [
+          "Keep labels short and action-oriented: 'Book a Chat', 'View System', 'Explore'",
+          "Do not use punctuation at end of labels",
+          "Avoid 'Click here' or 'Learn more' without specificity — CTAs should state the action"
+        ]
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "default": "undefined",
+        "required": false,
+        "semantic_category": "extension",
+        "description": "Additional Tailwind classes merged via clsx after base and variant styles. Use for layout overrides (width, margin) — not for colour or typography overrides.",
+        "usage_rules": [
+          "Never override colour or typography via className — use variant and size props instead",
+          "Acceptable uses: w-full on mobile, mt-4 for spacing adjustments"
+        ]
+      }
+    ]
+  },
+
+  "tokens": {
+    "base": {
+      "classes": "inline-flex items-center justify-center gap-2 font-medium rounded-md transition-all duration-200 focus-ring cursor-pointer",
+      "description": "Applied to every Button regardless of variant or size",
+      "css_properties": {
+        "border-radius": "var(--radius-md) → 0.375rem",
+        "transition": "all 200ms",
+        "font-weight": "500 (font-medium)",
+        "focus-ring": "outline: 2px solid var(--color-primary-container); outline-offset: 2px — applied on :focus-visible only"
+      }
+    },
+    "variants": {
+      "primary": {
+        "classes": "bg-gradient-signature text-white hover:brightness-110 shadow-glow-primary",
+        "css_properties": {
+          "background": "linear-gradient(135deg, #2563eb, #8b5cf6)",
+          "color": "#ffffff",
+          "box-shadow": "var(--shadow-glow-primary) → 0 0 20px rgba(37, 99, 235, 0.25)",
+          "hover:filter": "brightness(110%)"
+        },
+        "design_intent": "Signature gradient (primary-container → secondary-container) signals the highest-priority CTA"
+      },
+      "secondary": {
+        "classes": "bg-transparent text-primary-fixed-dim border border-outline-variant/20 hover:bg-primary-container/10",
+        "css_properties": {
+          "background": "transparent",
+          "color": "var(--color-primary-fixed-dim) → #b4c5ff",
+          "border": "1px solid rgba(67, 70, 85, 0.20)",
+          "hover:background": "rgba(37, 99, 235, 0.10)"
+        },
+        "design_intent": "Bordered ghost that pairs with primary — indicates a complementary but lower-priority action"
+      },
+      "tertiary": {
+        "classes": "bg-transparent text-tertiary label-md hover:underline underline-offset-4",
+        "css_properties": {
+          "background": "transparent",
+          "color": "var(--color-tertiary) → #4cd7f6",
+          "font-family": "var(--font-mono)",
+          "font-size": "0.8125rem",
+          "letter-spacing": "0.05em",
+          "text-transform": "uppercase",
+          "hover:text-decoration": "underline",
+          "text-underline-offset": "4px"
+        },
+        "design_intent": "Text-only navigation link styled with mono label-md type treatment — blends into body copy but signals interactivity"
+      },
+      "ghost": {
+        "classes": "bg-transparent text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/50",
+        "css_properties": {
+          "background": "transparent",
+          "color": "var(--color-on-surface-variant) → #c3c6d7",
+          "hover:color": "var(--color-on-surface) → #dae2fd",
+          "hover:background": "rgba(34, 42, 61, 0.50)"
+        },
+        "design_intent": "Minimal-footprint control for utility actions — toolbar buttons, nav items, dismiss actions"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "classes": "px-4 py-2 text-sm",
+        "computed": "padding: 0.5rem 1rem; font-size: 0.875rem"
+      },
+      "md": {
+        "classes": "px-6 py-3 text-sm",
+        "computed": "padding: 0.75rem 1.5rem; font-size: 0.875rem"
+      },
+      "lg": {
+        "classes": "px-8 py-4 text-base",
+        "computed": "padding: 1rem 2rem; font-size: 1rem"
+      }
+    }
+  },
+
+  "variants": [
+    {
+      "label": "Primary CTA — hero or section footer",
+      "props": { "variant": "primary", "size": "lg", "href": "https://cal.com/lincmitch" },
+      "example": "<Button variant=\"primary\" size=\"lg\" href=\"https://cal.com/lincmitch\">Book a Chat</Button>",
+      "site_usage": "CTAFooter, hero sections"
+    },
+    {
+      "label": "Secondary CTA — paired alongside primary",
+      "props": { "variant": "secondary", "size": "lg", "href": "/headless-ds" },
+      "example": "<Button variant=\"secondary\" size=\"lg\" href=\"/headless-ds\">See the Headless DS</Button>",
+      "site_usage": "CTAFooter"
+    },
+    {
+      "label": "Ghost — nav utility",
+      "props": { "variant": "ghost", "size": "sm" },
+      "example": "<Button variant=\"ghost\" size=\"sm\">Menu</Button>",
+      "site_usage": "Nav, ThemeSwitcher adjacent controls"
+    },
+    {
+      "label": "Tertiary — inline text navigation",
+      "props": { "variant": "tertiary", "size": "md" },
+      "example": "<Button variant=\"tertiary\" size=\"md\">View System</Button>",
+      "site_usage": "Body copy links, thoughts page navigation"
+    },
+    {
+      "label": "Button with onClick — form or interaction",
+      "props": { "variant": "primary", "size": "md", "type": "submit" },
+      "example": "<Button variant=\"primary\" size=\"md\" type=\"submit\">Submit</Button>",
+      "site_usage": "Contact form, explore page intent submission"
+    }
+  ],
+
+  "states": {
+    "default": "Renders static with variant-appropriate background, text, and border",
+    "hover": {
+      "primary": "brightness(110%) on gradient — lightens without changing hue",
+      "secondary": "rgba(37, 99, 235, 0.10) background fill — subtle primary tint",
+      "tertiary": "underline with 4px offset — signals link nature",
+      "ghost": "on-surface text + surface-container-high/50 background fill"
+    },
+    "focus_visible": "2px solid var(--color-primary-container) outline with 2px offset — applies only on keyboard focus via .focus-ring utility",
+    "disabled": "Inherits HTML disabled attribute from ButtonHTMLAttributes spread. No dedicated disabled styles in source — relies on browser default opacity and cursor:not-allowed. Avoid using disabled state; prefer removing the button when the action is unavailable.",
+    "active": "No explicit active styles. transition-all 200ms provides smooth state transitions."
+  },
+
+  "accessibility": {
+    "role": "button (native <button> element) or link (native <a> element when href provided)",
+    "keyboard": {
+      "button_element": "Enter and Space activate — native browser behaviour",
+      "anchor_element": "Enter activates — native browser behaviour"
+    },
+    "focus_indicator": "Visible .focus-ring class applies outline on :focus-visible — satisfies WCAG 2.1 AA 1.4.11 Non-text Contrast",
+    "colour_contrast": {
+      "primary": "White text on gradient (#2563eb→#8b5cf6) — exceeds 4.5:1",
+      "secondary": "#b4c5ff text on dark surface — verify per background",
+      "tertiary": "#4cd7f6 on dark surface — verify per background",
+      "ghost": "#c3c6d7 on dark surface — approximately 7:1 on surface-container"
+    },
+    "semantic_notes": [
+      "When href is provided the component renders as <a> — do not add role='button' to anchor elements",
+      "Use aria-label on icon-only buttons",
+      "Button text must describe the action, not the component type"
+    ]
+  },
+
+  "governance": {
+    "trust_level": "trusted",
+    "owner": "Lead FED Developer",
+    "last_validated": "2026-04-02",
+    "rules": [
+      "Never hardcode hex or rgb values — always use variant prop to access design tokens",
+      "Never add inline styles to Button — use className for layout adjustments only",
+      "Render as <a> (via href) for navigation; render as <button> for actions",
+      "Use only the four defined variants — do not invent new colour treatments",
+      "Only one primary Button per visible section — visual hierarchy requires a single apex CTA"
+    ],
+    "antipatterns": [
+      {
+        "pattern": "<button style={{ background: '#2563eb' }}>",
+        "reason": "Bypasses design token system — use variant='primary' instead"
+      },
+      {
+        "pattern": "<Button variant='primary' href='...' onClick={...}>",
+        "reason": "onClick on an anchor element is a misuse of semantics — choose button or anchor"
+      },
+      {
+        "pattern": "Multiple primary Buttons in the same section",
+        "reason": "Destroys visual hierarchy — pair primary with secondary or ghost"
+      },
+      {
+        "pattern": "<Button variant='primary' className='text-red-500'>",
+        "reason": "className must not override token-defined colours — use a different variant"
+      }
+    ]
+  },
+
+  "relationships": {
+    "tokens_file": "src/app/globals.css",
+    "storybook": "src/components/ui/Button.stories.tsx",
+    "parent_components": [
+      "src/components/CTAFooter.tsx",
+      "src/app/system/claude-md/page.tsx",
+      "src/app/system/agents/page.tsx"
+    ],
+    "sibling_components": [
+      "src/components/ui/Badge.tsx",
+      "src/components/ui/Card.tsx",
+      "src/components/ui/Section.tsx"
+    ],
+    "design_system_page": "/headless-ds"
+  },
+
+  "knowledge_graph": {
+    "maps_to_intent": [
+      {
+        "user_intent": "Schedule a call with Lincoln",
+        "component": "Button",
+        "props": { "variant": "primary", "size": "lg", "href": "https://cal.com/lincmitch" },
+        "label": "Book a Chat"
+      },
+      {
+        "user_intent": "Navigate to a page within the site",
+        "component": "Button",
+        "props": { "variant": "secondary", "href": "/system" },
+        "label": "The System"
+      },
+      {
+        "user_intent": "Submit a form",
+        "component": "Button",
+        "props": { "variant": "primary", "size": "md", "type": "submit" },
+        "label": "Send"
+      },
+      {
+        "user_intent": "Dismiss or cancel",
+        "component": "Button",
+        "props": { "variant": "ghost", "size": "sm" },
+        "label": "Close"
+      },
+      {
+        "user_intent": "Inline navigation link in body text",
+        "component": "Button",
+        "props": { "variant": "tertiary", "href": "..." },
+        "label": "Read more"
+      }
+    ],
+    "site_usage_examples": [
+      {
+        "location": "CTAFooter component",
+        "usage": "Primary 'Book a Chat' + Secondary 'See the Headless DS' — canonical primary/secondary pairing"
+      },
+      {
+        "location": "system/agents page",
+        "usage": "Cyan-coloured anchor tags styled inline — NOT using Button component. Agent note: these should be migrated to Button variant='primary' / variant='secondary'"
+      },
+      {
+        "location": "system/claude-md page",
+        "usage": "Anchor tags styled inline for 'Let's Build Yours' and 'View the Full File' — same migration note as above"
+      }
+    ]
+  }
+}

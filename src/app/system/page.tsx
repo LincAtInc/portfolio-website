@@ -30,6 +30,13 @@ const systemPages = [
     description:
       "The single file that governs six agents. This is what machine-readable culture looks like.",
   },
+  {
+    href: "/system/agent-readable",
+    label: "The Format",
+    title: "Agent-readable components",
+    description:
+      "What a component looks like when the primary reader is an AI agent — and why JSON beats Markdown.",
+  },
 ];
 
 export default function SystemPage() {
@@ -55,7 +62,7 @@ export default function SystemPage() {
       <main>
         {/* Cards */}
         <section className="bg-[#0f172a] px-8 md:px-20 py-24 max-w-[1440px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {systemPages.map((page) => (
               <Link
                 key={page.href}

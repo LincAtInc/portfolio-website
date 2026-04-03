@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Nav } from "@/components/Nav";
 import { HowNExpands } from "@/components/HowNExpands";
 import { WhatIsAgenticNarrative } from "@/components/WhatIsAgenticNarrative";
+import { AgentTeamVisual } from "@/components/AgentTeamVisual";
 import { CTAFooter } from "@/components/CTAFooter";
 
 export default function Home() {
@@ -29,6 +30,11 @@ export default function Home() {
       <main>
         <HowNExpands />
         <WhatIsAgenticNarrative />
+        <section className="section-mid py-20 px-6 md:px-8 lg:px-12">
+          <div className="max-w-6xl mx-auto">
+            <AgentTeamVisual />
+          </div>
+        </section>
         <CTAFooter />
       </main>
     </>

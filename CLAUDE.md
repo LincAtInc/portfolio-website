@@ -64,6 +64,7 @@ N is the expansion layer — not a step between I and C, but the amplifier that 
 - Story mapping, use cases, user journeys — the flows that connect intent to interaction
 - Indexing and mapping relationships — how components, tokens, and patterns relate to each other (Cristian Morales Achiardi's structural layers: tokenization → intent → indexing → strategies)
 - Existing code (C feeds back into N) — what's already been Created becomes context for the next cycle. AI resolves to existing components and patterns rather than reinventing them.
+- Screen recordings of stakeholder meetings, user interviews, online sessions — video-to-markdown via AI (Gemini, etc.) turns live conversations into structured narrative context
 - Engineer constraints, accessibility patterns, platform-specific rules
 
 The design system is a commons, not a deliverable. The architect seeds it, everyone enriches it, any agent can consume it.

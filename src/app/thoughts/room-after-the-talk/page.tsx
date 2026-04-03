@@ -716,6 +716,81 @@ export default function RoomAfterTheTalk() {
           </div>
         </section>
 
+        {/* Zero Drift — Mr. Biscuit's talk */}
+        <section className="px-8 md:px-20 py-24 max-w-[1440px] mx-auto">
+          <span className="font-mono text-xs font-medium text-[var(--color-accent)] tracking-[0.2em] uppercase block mb-4">
+            Zero Drift
+          </span>
+          <h2 className="font-display text-[clamp(2rem,4vw,2.5rem)] font-bold text-white tracking-tight leading-[1.1] mb-4">
+            From the &ldquo;Vibe coding with zero drift&rdquo; talk
+          </h2>
+          <p className="text-[17px] text-white/50 leading-relaxed max-w-[680px] mb-12">
+            Shuaiqi &ldquo;Mr. Biscuit&rdquo; Sun (Design System Architect, Independent) gave the most hands-on demo of the conference. Variable Visualiser for parametric Figma components. A resolver that exports design tokens as runtime-resolvable JSON. Cursor AI generating React from Figma links. He showed the full pipeline from Figma to Storybook to production &mdash; and was honest about its limits. His YouTube tutorials fill in the details his conference slot couldn&apos;t cover. These are my responses to the questions the audience raised and the gaps the demo left open.
+          </p>
+
+          <div className="flex flex-col gap-6 max-w-[860px]">
+            {[
+              {
+                question: "How do you handle multi-brand token setups where differences go beyond colours and padding?",
+                answer: (<>Mr. Biscuit&apos;s multiplexing technique &mdash; routing through brand packs to break Figma&apos;s 4-mode limit &mdash; is clever for colour and spacing. But multi-brand at scale means different component APIs, different interaction patterns, different content rules, different accessibility requirements per brand. Colour swaps are the easy part. The hard part is when Brand A&apos;s button has an icon slot and Brand B&apos;s doesn&apos;t. When the navigation pattern changes entirely between verticals. When the voice rules mean the same component needs different microcopy. Those differences live in the narrative layer, not the token layer. Tokens give you the what. You need context files that give the agent the why and the when.</>),
+              },
+              {
+                question: "How does this scale to thousands of variables across hundreds of modes?",
+                answer: (<>The Variable Visualiser graph is beautiful at demo scale &mdash; a few collections, a dozen connections. At enterprise scale, with hundreds of components each binding dozens of variables across multiple brands, themes, and density modes, the visual graph becomes unreadable. The same problem hits the resolver: runtime resolution of deeply nested aliases has performance implications. The parametric approach is correct in principle. But the tooling needs to evolve from visual graph to queryable infrastructure &mdash; which is exactly what Jan Six&apos;s MCP approach and Jesse Gardner&apos;s custom MCP server solve. The graph is for understanding. The MCP is for operating at scale.</>),
+              },
+              {
+                question: "What is the time cost of setting up the parametric system versus just instructing AI directly?",
+                answer: (<>This is the question Mr. Biscuit&apos;s demo inadvertently answered. Each component generation took 30 minutes in Cursor. Context ran out mid-session, requiring a fresh chat. The prompt template had to be re-fed every time. That&apos;s the cost of not having persistent context. The parametric variable setup is front-loaded work that pays off in consistency. But the real time cost isn&apos;t in Figma &mdash; it&apos;s in the AI workflow. A persistent context file that the agent loads automatically eliminates the 30-minute rediscovery cycle. The setup cost isn&apos;t variables versus no variables. It&apos;s persistent context versus ephemeral prompting.</>),
+              },
+              {
+                question: "How do you handle breaking changes in parametric components?",
+                answer: (<>When a parametric component&apos;s variable bindings change &mdash; a new token added, a mode renamed, an alias chain restructured &mdash; the code must sync. Mr. Biscuit acknowledged this: everything except binding changes can be iterated by re-exporting JSON. But binding changes require code updates. This is the same versioning problem every design system faces, parametric or not. The difference is visibility. In a parametric system, the Variable Visualiser graph shows you exactly which connections changed. In a variant-based system, you&apos;re hunting through 600 components hoping to find the inconsistency. Parametric doesn&apos;t eliminate breaking changes. It makes them traceable.</>),
+              },
+              {
+                question: "How do you keep Figma and code in sync when the AI generates the initial component?",
+                answer: (<>Mr. Biscuit&apos;s answer is the resolver: export the JSON, the resolver reads it, done. That works for token values. But the deeper sync problem is structural. When Cursor AI generates a component from a Figma link, it interprets the design through the MCP&apos;s lens. It might miss a layout constraint. It might not stretch children correctly. It might misread which mode applies where. The video showed all of these happening. The sync mechanism isn&apos;t the JSON export. It&apos;s the prompt that tells the AI how to interpret the design. That prompt &mdash; his <code className="text-white/40">compDesignToCode.md</code> &mdash; is doing the real work. And it needs to be as carefully maintained as the tokens themselves.</>),
+              },
+              {
+                question: "What about accessibility? Semantic markup beyond visual appearance?",
+                answer: (<>This is the gap in every &ldquo;Figma to code&rdquo; pipeline, not just Mr. Biscuit&apos;s. Figma variables control visual properties: colours, spacing, radii, typography. They don&apos;t encode ARIA attributes, keyboard navigation patterns, focus management, screen reader announcements, or semantic HTML structure. The generated React component gets the styling right but says nothing about whether the button uses a <code className="text-white/40">&lt;button&gt;</code> element or a styled <code className="text-white/40">&lt;div&gt;</code>. Whether it has <code className="text-white/40">aria-pressed</code> for toggle states. Whether focus is trapped correctly in a modal context. Accessibility lives in the component contract, not the token layer. It belongs in the context files the agent reads before it generates anything &mdash; not as an afterthought once the visual output looks right.</>),
+              },
+              {
+                question: "Can you combine existing variant-based components with the variable approach?",
+                answer: (<>Yes, and this is the realistic migration path for most teams. You don&apos;t burn down your existing component library to go parametric. You start with the highest-maintenance components &mdash; buttons, inputs, cards &mdash; where the combinatorial explosion hurts most. Convert those to parametric variables. Leave simpler components as variants until the cost of maintaining them manually exceeds the cost of converting them. Mr. Biscuit&apos;s &ldquo;600 variants for one button&rdquo; argument is compelling precisely because buttons are the worst case. Not every component has six independent axes of variation. Pick the ones that do.</>),
+              },
+              {
+                question: "If 90% of the work is done in Figma, what happens when you need to work without Figma?",
+                answer: (<>This is the question Mr. Biscuit&apos;s framing invites but doesn&apos;t address. &ldquo;Figma as source of truth&rdquo; works for teams with Figma. It doesn&apos;t work for solo practitioners, startups without design tooling budgets, or code-first teams where the codebase IS the design system. Mr. Biscuit briefly acknowledged this in his IDS talk: &ldquo;for startups and personal projects, code-first without Figma is fine.&rdquo; That throwaway line is actually a different philosophy. If your tokens live in CSS custom properties rather than Figma variables, the AI reads them directly from the codebase. No export step. No resolver. No plugin dependency. No 4-mode limitation. The &ldquo;shortest path&rdquo; isn&apos;t Figma to code. It&apos;s removing the steps between intent and implementation.</>),
+              },
+              {
+                question: "The parametric approach is more resilient to human error &mdash; but what about AI error?",
+                answer: (<>Mr. Biscuit&apos;s strongest argument is that parametric variables eliminate the human errors inherent in maintaining 600 variants. He&apos;s right. But the demo introduced a different class of error: AI misinterpretation. The LLM didn&apos;t stretch children correctly. It misread mode names. It needed manual corrections for layout, visibility, and state logic. It ran out of context. These aren&apos;t human errors &mdash; they&apos;re prompt errors. The quality of AI output is bounded by the quality of context it receives. A detailed prompt template improves consistency. Persistent context that the agent loads automatically improves it further. The error surface hasn&apos;t disappeared. It&apos;s moved from maintaining variants to maintaining context.</>),
+              },
+              {
+                question: "What is the role of the design systems architect if AI generates the components?",
+                answer: (<>Mr. Biscuit&apos;s demo shows the architect&apos;s new role clearly, even if he doesn&apos;t name it. The architect builds the parametric variable structure. Defines the collections, modes, and aliasing chains. Writes the prompt template that tells the AI how to interpret the design. Debugs the visual graph when something looks wrong. Decides which properties are parametric and which aren&apos;t. Evaluates whether the AI output matches the design intent. None of that is &ldquo;writing CSS.&rdquo; All of it is design systems architecture. The job hasn&apos;t been automated. The medium has changed. You&apos;re still making the structural decisions. You&apos;re just encoding them differently.</>),
+              },
+            ].map((q, i) => (
+              <div
+                key={i}
+                className={`p-8 bg-[#0a0f1a] border border-[#1e293b] border-l-[3px] ${colorCycle[(i + 3) % colorCycle.length].border} rounded-xl`}
+              >
+                <div className="flex gap-6 items-start mb-5">
+                  <span className="font-mono text-[11px] text-white/20 w-5 pt-1 shrink-0">
+                    {String(i + 77).padStart(2, "0")}
+                  </span>
+                  <h3 className={`font-display text-lg font-semibold leading-[1.3] ${colorCycle[(i + 3) % colorCycle.length].label}`}>
+                    &ldquo;{q.question}&rdquo;
+                  </h3>
+                </div>
+                <div className="pl-11">
+                  <p className="text-[16px] text-white/55 leading-relaxed">{q.answer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* The Pattern */}
         <section className="bg-[#0f172a] px-8 md:px-20 py-24 max-w-[1440px] mx-auto">
           <span className="font-mono text-xs font-medium text-[var(--color-secondary)] tracking-[0.2em] uppercase block mb-4">
