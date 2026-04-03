@@ -43,7 +43,14 @@ const systemPages = [
     label: "The Plugin",
     title: "FigJam to Narrative",
     description:
-      "A working Figma plugin that extracts ideation boards into structured markdown. The I→N pipeline as a shipped artefact.",
+      "A working Figma plugin that extracts ideation boards into structured markdown. The I\u2192N pipeline as a shipped artefact.",
+  },
+  {
+    href: "/system/workflows",
+    label: "The Delivery",
+    title: "What I ship with Claude",
+    description:
+      "Six workflows \u2014 each a full I<N>C cycle. From app audits to plugin development, this is what one person with the right methodology delivers.",
   },
 ];
 

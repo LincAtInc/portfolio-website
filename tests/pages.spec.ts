@@ -20,6 +20,7 @@ const pages = [
   { path: "/system/figjam-plugin", title: "FigJam to Narrative" },
   { path: "/inc", title: "The INC Cycle" },
   { path: "/fit", title: "Right Fit" },
+  { path: "/system/workflows", title: "What I Ship With Claude" },
 ];
 
 for (const page of pages) {
