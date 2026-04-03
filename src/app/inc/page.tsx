@@ -1,5 +1,6 @@
 import { Nav } from "@/components/Nav";
 import { CTAFooter } from "@/components/CTAFooter";
+import { RevealSection } from "@/components/RevealSection";
 import type { Metadata } from "next";
 import {
   User,
@@ -282,27 +283,30 @@ export default function INCPage() {
       <Nav />
 
       {/* Hero */}
-      <header className="text-center px-8 pt-24 pb-16 max-w-4xl mx-auto">
-        <span className="label-sm text-secondary tracking-[0.2em] block mb-6">
-          The Framework
-        </span>
-        <h1 className="display-lg text-on-surface mb-6">
-          The{" "}
-          <span className="font-mono text-gradient">
-            I&lt;N&gt;C
-          </span>{" "}
-          Cycle
-        </h1>
-        <p className="text-xl text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
-          One framework. Seven stages. Each one a full cycle of Ideate,
-          Narrate, Create — where every output becomes the input for the next.
-        </p>
-      </header>
+      <RevealSection threshold={0.1}>
+        <header className="text-center px-8 pt-24 pb-16 max-w-4xl mx-auto">
+          <span className="label-sm text-secondary tracking-[0.2em] block mb-6">
+            The Framework
+          </span>
+          <h1 className="display-lg text-on-surface mb-6">
+            The{" "}
+            <span className="font-mono text-gradient">
+              I&lt;N&gt;C
+            </span>{" "}
+            Cycle
+          </h1>
+          <p className="text-xl text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
+            One framework. Seven stages. Each one a full cycle of Ideate,
+            Narrate, Create — where every output becomes the input for the next.
+          </p>
+        </header>
+      </RevealSection>
 
       {/* Framework explainer */}
       <section className="section-low px-8 py-16">
         <div className="max-w-4xl mx-auto">
-          <div className="grid sm:grid-cols-3 gap-4">
+          {/* I / N / C cards stagger left to right; grid on RevealSection so stagger divs are direct children */}
+          <RevealSection stagger threshold={0.05} className="grid sm:grid-cols-3 gap-4">
             {[
               {
                 letter: "I",
@@ -328,9 +332,10 @@ export default function INCPage() {
                 body:
                   "Something worth showing. Every C feeds back into N for the next cycle. The NorthStar is the first C. The product is the seventh.",
               },
-            ].map(({ letter, label, colour, bg, body }) => (
+            ].map(({ letter, label, colour, bg, body }, i) => (
               <div
                 key={letter}
+                style={{ "--stagger": i } as React.CSSProperties}
                 className={`rounded-xl p-6 border ${bg}`}
               >
                 <p className={`font-mono font-bold text-2xl mb-1 ${colour}`}>
@@ -342,42 +347,46 @@ export default function INCPage() {
                 </p>
               </div>
             ))}
-          </div>
+          </RevealSection>
 
           {/* N grows callout */}
-          <div className="mt-8 rounded-xl bg-surface-container border border-outline-variant/20 px-6 py-5 flex flex-col sm:flex-row sm:items-center gap-4">
-            <div className="flex items-center gap-3 shrink-0">
-              <INCBadge nSize="xl" />
+          <RevealSection threshold={0.2} className="mt-8">
+            <div className="rounded-xl bg-surface-container border border-outline-variant/20 px-6 py-5 flex flex-col sm:flex-row sm:items-center gap-4">
+              <div className="flex items-center gap-3 shrink-0">
+                <INCBadge nSize="xl" />
+              </div>
+              <p className="text-sm text-on-surface-variant leading-relaxed">
+                N grows at every stage. At stage 1, N is a CLAUDE.md and some
+                tokens. By stage 7, N is a full design system, encoded domain
+                knowledge, usage data, and brand commons. Everyone contributes.
+                Anyone can draw from it.
+              </p>
             </div>
-            <p className="text-sm text-on-surface-variant leading-relaxed">
-              N grows at every stage. At stage 1, N is a CLAUDE.md and some
-              tokens. By stage 7, N is a full design system, encoded domain
-              knowledge, usage data, and brand commons. Everyone contributes.
-              Anyone can draw from it.
-            </p>
-          </div>
+          </RevealSection>
         </div>
       </section>
 
       {/* Lincoln solo zone callout */}
       <section className="section-base px-8 py-10">
         <div className="max-w-4xl mx-auto">
-          <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center rounded-xl border border-primary/20 bg-primary-container/5 px-6 py-5">
-            <div className="shrink-0 flex items-center gap-2 text-primary">
-              <User size={20} />
-              <span className="font-mono font-bold text-lg">1</span>
+          <RevealSection threshold={0.2}>
+            <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center rounded-xl border border-primary/20 bg-primary-container/5 px-6 py-5">
+              <div className="shrink-0 flex items-center gap-2 text-primary">
+                <User size={20} />
+                <span className="font-mono font-bold text-lg">1</span>
+              </div>
+              <div>
+                <p className="label-sm text-primary/70 mb-1">Stages 1–3: Solo</p>
+                <p className="text-sm text-on-surface-variant leading-relaxed">
+                  I operate alone through the first three stages. One person and
+                  an agent, seeding N so stages 4–7 can scale without me. The
+                  NorthStar, PoC, and working prototype are discovery artefacts.
+                  By stage 3, N is rich enough that a cross-functional team can
+                  pick up and run.
+                </p>
+              </div>
             </div>
-            <div>
-              <p className="label-sm text-primary/70 mb-1">Stages 1–3: Solo</p>
-              <p className="text-sm text-on-surface-variant leading-relaxed">
-                I operate alone through the first three stages. One person and
-                an agent, seeding N so stages 4–7 can scale without me. The
-                NorthStar, PoC, and working prototype are discovery artefacts.
-                By stage 3, N is rich enough that a cross-functional team can
-                pick up and run.
-              </p>
-            </div>
-          </div>
+          </RevealSection>
         </div>
       </section>
 
@@ -393,17 +402,19 @@ export default function INCPage() {
             </span>
           </div>
 
-          {/* Stages */}
+          {/* Stages — each reveals as it scrolls into view */}
           <div>
             {stages.map((stage, index) => (
-              <div key={stage.number}>
-                <StageCard stage={stage} index={index} />
-                {index < stages.length - 1 && (
-                  <div className="flex justify-start sm:justify-center pl-5 sm:pl-0 mb-2 text-outline-variant/40">
-                    <ArrowDown size={14} />
-                  </div>
-                )}
-              </div>
+              <RevealSection key={stage.number} threshold={0.15}>
+                <div>
+                  <StageCard stage={stage} index={index} />
+                  {index < stages.length - 1 && (
+                    <div className="flex justify-start sm:justify-center pl-5 sm:pl-0 mb-2 text-outline-variant/40">
+                      <ArrowDown size={14} />
+                    </div>
+                  )}
+                </div>
+              </RevealSection>
             ))}
           </div>
 

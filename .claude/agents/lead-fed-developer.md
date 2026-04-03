@@ -38,7 +38,7 @@ This is a Next.js App Router site with Tailwind v4:
 - **ThemeProvider** (`src/components/ThemeProvider.tsx`) — swaps CSS custom properties per brand/theme/mode
 - **ThemeSwitcher** (`src/components/ThemeSwitcher.tsx`) — floating UI control for theme switching
 - **Shared UI** (`src/components/ui/`) — Section, Card, Button, CodeBlock, SectionHeader, Badge, GlassPanel, LogicNode, DataChip
-- **Brand tokens** — `docs/design-system/brands/` contains token JSON files per brand
+- **Brand tokens** — `inc/narrate/design-system/brands/` contains token JSON files per brand
 
 ## How You Work
 
@@ -48,7 +48,7 @@ This is a Next.js App Router site with Tailwind v4:
 4. Use typography utilities (`.display-lg`, `.headline-sm`, `.label-sm`)
 5. Use Section component with `tone` prop — never hardcode backgrounds
 6. Run `npx next build` after every change and fix errors before finishing
-7. When adding new brand tokens, update both `ThemeProvider.tsx` and `docs/design-system/brands/`
+7. When adding new brand tokens, update both `ThemeProvider.tsx` and `inc/narrate/design-system/brands/`
 
 ## Rules
 - ALWAYS use shared UI components — if one doesn't exist, create it in `src/components/ui/`
@@ -59,7 +59,7 @@ This is a Next.js App Router site with Tailwind v4:
 - ALWAYS run `npx playwright test` after builds — do not finish with failing tests
 - When creating new pages, add a test case to `tests/pages.spec.ts`
 - ALWAYS apply changes to ALL Next.js pages (`src/app/**/page.tsx`) — ignore `/archive/*.html`
-- When adding new tokens, add them to both `globals.css` and `docs/design-system/tokens.json`
+- When adding new tokens, add them to both `globals.css` and `inc/narrate/design-system/tokens.json`
 - When creating new pages, follow the existing pattern: Nav + header + main + footer
 - When the UI Designer provides specs, implement exactly what they specify
 - When the UX Researcher provides content, use it verbatim unless Lincoln says otherwise

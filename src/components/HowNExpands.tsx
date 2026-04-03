@@ -1,4 +1,5 @@
 import { Section, SectionHeader, Card } from "@/components/ui";
+import { RevealSection } from "@/components/RevealSection";
 
 const cards = [
   {
@@ -62,30 +63,33 @@ export function HowNExpands() {
         description="Domain knowledge encoded as machine-readable context doesn't just sit in the middle. It actively amplifies what's possible on both sides."
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {cards.map((card) => (
-          <Card key={card.dir} variant="filled" hoverable>
-            <p className={`label-sm mb-4 ${card.dirColor}`}>{card.dir}</p>
-            <h3 className="headline-sm text-on-surface mb-3">{card.title}</h3>
-            <p className="text-sm text-on-surface-variant leading-relaxed mb-4">
-              {card.desc}
-            </p>
-            <ul className="list-none p-0 m-0 space-y-0">
-              {card.items.map((item) => (
-                <li
-                  key={item}
-                  className="text-sm text-on-surface-variant/70 py-2 flex items-center gap-2.5"
-                >
-                  <span
-                    className={`w-1.5 h-1.5 rounded-full shrink-0 ${card.dotColor}`}
-                  />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </Card>
+      {/* reveal-stagger: direct children are the stagger wrappers, so the grid is on the RevealSection itself */}
+      <RevealSection stagger threshold={0.05} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {cards.map((card, i) => (
+          <div key={card.dir} style={{ "--stagger": i } as React.CSSProperties}>
+            <Card variant="filled" hoverable>
+              <p className={`label-sm mb-4 ${card.dirColor}`}>{card.dir}</p>
+              <h3 className="headline-sm text-on-surface mb-3">{card.title}</h3>
+              <p className="text-sm text-on-surface-variant leading-relaxed mb-4">
+                {card.desc}
+              </p>
+              <ul className="list-none p-0 m-0 space-y-0">
+                {card.items.map((item) => (
+                  <li
+                    key={item}
+                    className="text-sm text-on-surface-variant/70 py-2 flex items-center gap-2.5"
+                  >
+                    <span
+                      className={`w-1.5 h-1.5 rounded-full shrink-0 ${card.dotColor}`}
+                    />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </Card>
+          </div>
         ))}
-      </div>
+      </RevealSection>
     </Section>
   );
 }

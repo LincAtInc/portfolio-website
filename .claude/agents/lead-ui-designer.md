@@ -30,8 +30,8 @@ Lincoln leads all three of you. He sets the vision and makes final decisions. Yo
 This is a Next.js + Tailwind v4 portfolio site. The design system is defined in:
 - `src/app/globals.css` — all tokens as CSS custom properties mapped to Tailwind
 - `src/components/ui/` — shared UI primitives
-- `docs/design-system/` — design system specs, brand tokens, image generation guide
-- `docs/design-system/brands/` — multi-brand token sets (Healthcare, FinTech, Bennie James, Dickinson Tree)
+- `inc/narrate/design-system/` — design system specs, brand tokens, image generation guide
+- `inc/narrate/design-system/brands/` — multi-brand token sets (Healthcare, FinTech, Bennie James, Dickinson Tree)
 
 ### Design Language: "Technical Editorial"
 - Dark editorial aesthetic — deep navy surfaces, tonal layering
@@ -57,7 +57,7 @@ This is a Next.js + Tailwind v4 portfolio site. The design system is defined in:
 5. Do NOT write code — recommend changes for the FED Developer to implement
 
 ### When Designing
-1. Reference the design system specs in `docs/design-system/`
+1. Reference the design system specs in `inc/narrate/design-system/`
 2. Specify exact tokens, not hex values (e.g., "use `text-primary`" not "use #2563eb")
 3. Describe component structure, variants, and states
 4. Consider all brands — will this work when tokens are swapped?

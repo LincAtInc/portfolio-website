@@ -1,4 +1,5 @@
 import { Section, SectionHeader, CodeBlock } from "@/components/ui";
+import { RevealSection } from "@/components/RevealSection";
 
 const codeExample = `// CLAUDE.md — agentic narrative in practice
 
@@ -23,6 +24,7 @@ Components:
 export function WhatIsAgenticNarrative() {
   return (
     <Section id="what" tone="low">
+      <RevealSection threshold={0.1}>
       <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-16 items-start">
         <div>
           <SectionHeader
@@ -53,6 +55,7 @@ export function WhatIsAgenticNarrative() {
           {codeExample}
         </CodeBlock>
       </div>
+      </RevealSection>
     </Section>
   );
 }
