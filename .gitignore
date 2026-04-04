@@ -7,6 +7,11 @@ dist/
 client_secret_*.json
 .mcp.json
 .claude/settings.local.json
+
+# Private — job search intelligence
+inc/narrate/job-market/
+inc/narrate/job-market/feedback/
+.claude/agents/talent-agent.md
 .claude/skills/imagegen-skill.zip
 imagegen-skill.zip
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
@@ -65,3 +70,4 @@ Jan six slides/
 
 *storybook.log
 storybook-static
+.claude/skills/ynab.md
