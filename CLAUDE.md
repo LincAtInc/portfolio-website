@@ -3,7 +3,7 @@
 ## Owner
 Lincoln Mitchell — Design Systems Architect
 **Consultancy:** Interfaces-N-Creatives (since 2008)
-**Contact:** linc@lincolnmitchell.io | +44 757 232 1347
+**Contact:** linc@lincolnmitchell.io
 **Locations:** London, UK & Sydney, Australia (dual nationality)
 **Status:** Open to full-time or contract opportunities
 
