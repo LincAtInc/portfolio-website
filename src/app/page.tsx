@@ -5,10 +5,11 @@ import { WhatIsAgenticNarrative } from "@/components/WhatIsAgenticNarrative";
 import { AgentTeamVisual } from "@/components/AgentTeamVisual";
 import { CTAFooter } from "@/components/CTAFooter";
 import { RevealSection } from "@/components/RevealSection";
+import { BrandHome } from "@/components/BrandHome";
 
 export default function Home() {
   return (
-    <>
+    <BrandHome>
       <Nav />
       {/* Hero image loads with priority — no entrance animation */}
       <Image
@@ -45,6 +46,6 @@ export default function Home() {
           <CTAFooter />
         </RevealSection>
       </main>
-    </>
+    </BrandHome>
   );
 }

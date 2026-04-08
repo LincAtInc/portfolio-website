@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
 
-type Brand = "portfolio" | "healthcare" | "fintech" | "bennie-james";
+type Brand = "portfolio" | "inc" | "healthcare" | "fintech" | "bennie-james";
 type Theme = string;
 type Mode = "light" | "dark";
 
@@ -25,6 +25,44 @@ export function useTheme() {
 
 const tokenSets: Record<string, Record<string, string>> = {
   "portfolio:default:dark": {},
+  "inc:default:light": {
+    "--color-primary": "#b45309",
+    "--color-primary-container": "#fef3c7",
+    "--color-on-primary": "#ffffff",
+    "--color-on-primary-container": "#78350f",
+    "--color-secondary": "#2563eb",
+    "--color-secondary-container": "#dbeafe",
+    "--color-tertiary": "#059669",
+    "--color-surface": "#fffbf5",
+    "--color-surface-container-low": "#ffffff",
+    "--color-surface-container": "#ffffff",
+    "--color-surface-container-high": "#fef7ed",
+    "--color-surface-container-highest": "#fdf2e3",
+    "--color-on-surface": "#1c1917",
+    "--color-on-surface-variant": "#57534e",
+    "--color-background": "#fffbf5",
+    "--color-on-background": "#0c0a09",
+    "--color-outline-variant": "#e7e5e4",
+  },
+  "inc:default:dark": {
+    "--color-primary": "#f59e0b",
+    "--color-primary-container": "#78350f",
+    "--color-on-primary": "#78350f",
+    "--color-on-primary-container": "#fef3c7",
+    "--color-secondary": "#60a5fa",
+    "--color-secondary-container": "#1e3a5f",
+    "--color-tertiary": "#34d399",
+    "--color-surface": "#1c1917",
+    "--color-surface-container-low": "#0c0a09",
+    "--color-surface-container": "#292524",
+    "--color-surface-container-high": "#44403c",
+    "--color-surface-container-highest": "#57534e",
+    "--color-on-surface": "#fafaf9",
+    "--color-on-surface-variant": "#d6d3d1",
+    "--color-background": "#0c0a09",
+    "--color-on-background": "#fafaf9",
+    "--color-outline-variant": "#44403c",
+  },
   "healthcare:clinical:light": {
     "--color-primary": "#059669",
     "--color-primary-container": "#d1fae5",
@@ -201,15 +239,30 @@ const tokenSets: Record<string, Record<string, string>> = {
 
 export const brandConfig: Record<Brand, { label: string; themes: { value: string; label: string }[] }> = {
   portfolio: { label: "Portfolio", themes: [{ value: "default", label: "Agentic Narrative" }] },
+  inc: { label: "INC", themes: [{ value: "default", label: "Discovery" }] },
   healthcare: { label: "Healthcare", themes: [{ value: "clinical", label: "Clinical" }, { value: "wellness", label: "Wellness" }] },
   fintech: { label: "FinTech", themes: [{ value: "corporate", label: "Corporate" }, { value: "consumer", label: "Consumer" }] },
   "bennie-james": { label: "Bennie James", themes: [{ value: "soulful", label: "Soulful" }] },
 };
 
-export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [brand, setBrand] = useState<Brand>("portfolio");
+function getBrandFromCookie(): Brand {
+  if (typeof document === "undefined") return "portfolio";
+  const match = document.cookie.match(/(?:^|; )brand=([^;]*)/);
+  const value = match?.[1];
+  if (value && value in brandConfig) return value as Brand;
+  return "portfolio";
+}
+
+function getDefaultMode(brand: Brand): Mode {
+  // INC consultancy site defaults to light mode (business audience)
+  return brand === "inc" ? "light" : "dark";
+}
+
+export function ThemeProvider({ children, initialBrand: serverBrand }: { children: ReactNode; initialBrand?: Brand }) {
+  const initial = serverBrand ?? getBrandFromCookie();
+  const [brand, setBrand] = useState<Brand>(initial);
   const [theme, setTheme] = useState<Theme>("default");
-  const [mode, setMode] = useState<Mode>("dark");
+  const [mode, setMode] = useState<Mode>(getDefaultMode(initial));
 
   useEffect(() => {
     const key = `${brand}:${theme}:${mode}`;
